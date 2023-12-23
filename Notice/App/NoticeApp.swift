@@ -12,7 +12,7 @@ import SwiftData
 struct NoticeApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Todo.self, Event.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -22,11 +22,14 @@ struct NoticeApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+    
+    @State private var appState = AppState()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView(context: sharedModelContainer.mainContext)
         }
         .modelContainer(sharedModelContainer)
+        .environment(appState)        
     }
 }
