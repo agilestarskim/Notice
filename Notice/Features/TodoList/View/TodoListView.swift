@@ -13,27 +13,13 @@ struct TodoListView: View {
     @EnvironmentObject private var vm: TodoViewModel
     
     var body: some View {
-        VStack(spacing: 0) {
-            Picker("Filter", selection: $vm.filter) {
-                ForEach(Filter.allCases, id: \.self) { filter in
-                    Text(filter.rawValue)                        
-                        .tag(filter)
-                }
+        NavigationStack {
+            VStack(spacing: 0) {
+                FilterPicker
+                TodosList
             }
-            .pickerStyle(.segmented)
-            .colorMultiply(appState.theme.accent)
-            .padding(.top)
-            .padding(.horizontal)
-            
-            List {
-                ForEach(vm.todos) { todo in
-                    TodoCellView(todo: todo)
-                }
-            }
-            .listRowSpacing(10)
-            .scrollContentBackground(.hidden)
+            .background(appState.theme.background)            
         }
-        .background(appState.theme.background)
         .sheet(isPresented: $vm.isOpenEditorToCreate) {
             TodoFormView()
         }
@@ -44,8 +30,29 @@ struct TodoListView: View {
             vm.fetchTodos()
         }
     }
-}
-
-#Preview {
-    TodoListView()
+    
+    var FilterPicker: some View {
+        Picker("Filter", selection: $vm.filter) {
+            ForEach(Filter.allCases, id: \.self) { filter in
+                Text(filter.rawValue)
+                    .tag(filter)
+            }
+        }
+        .pickerStyle(.segmented)        
+        .colorMultiply(appState.theme.accent)
+        .padding(.top)
+        .padding(.horizontal)
+    }
+    
+    var TodosList: some View {
+        List {
+            ForEach(vm.todos) { todo in
+                TodoCellView(todo: todo)
+            }
+        }                
+        .animation(.default, value: vm.filter)
+        .animation(.default, value: vm.todos)
+        .listRowSpacing(10)
+        .scrollContentBackground(.hidden)
+    }
 }

@@ -12,31 +12,29 @@ struct TodoFormView: View {
     @Environment(AppState.self) private var appState
     @EnvironmentObject private var vm: TodoViewModel
     
-    
-    @State private var title: String
-    @State private var memo: String
-    @State private var flag: Bool
-    @State private var date: Date
+    @State private var title: String = ""
+    @State private var memo: String = ""
+    @State private var flag: Bool = false
+    @State private var date: Date = .now
     @State private var subTodos: [SubTodo] = []
-    let todo: Todo?
     
-    init(todo: Todo? = nil) {
-        self.todo = todo
-        
-        self._title = State(initialValue: todo?.title ?? "")
-        self._memo = State(initialValue: todo?.memo ?? "")
-        self._flag = State(initialValue: todo?.flag ?? false)
-        self._date = State(initialValue: todo?.date ?? .now)
-    }
+    @State private var subTodoTitle: String = ""
     
     var body: some View {
         NavigationStack {
             List {
-                Group {
+                Section {
                     TitleTextField
                     MemoTextField
                     FlagToggle
                     StartDatePicker
+                }
+                .foregroundStyle(appState.theme.primary)
+                .listRowBackground(appState.theme.container.opacity(0.8))
+                
+                Section {
+                    SubTodoTextField
+                    SubTodosList
                 }
                 .foregroundStyle(appState.theme.primary)
                 .listRowBackground(appState.theme.container.opacity(0.8))
@@ -55,12 +53,14 @@ struct TodoFormView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("완료", action: done)
                         .tint(appState.theme.accent)
+                        .opacity(title.isEmpty ? 0.5 : 1)
                 }
             }
         }
+        .onAppear(perform: setData)
     }
     
-    var TitleTextField: some View {
+    private var TitleTextField: some View {
         TextField(
             "title",
             text: $title,
@@ -70,7 +70,7 @@ struct TodoFormView: View {
         .autocorrectionDisabled()
     }
     
-    var MemoTextField: some View {
+    private var MemoTextField: some View {
         TextField(
             "memo",
             text: $memo,
@@ -80,12 +80,12 @@ struct TodoFormView: View {
         .autocorrectionDisabled()
     }
     
-    var FlagToggle: some View {
+    private var FlagToggle: some View {
         Toggle("중요", isOn: $flag)
             .tint(appState.theme.accent)
     }
     
-    var StartDatePicker: some View {
+    private var StartDatePicker: some View {
         HStack {
             Text("시작일")
             Spacer()
@@ -99,13 +99,67 @@ struct TodoFormView: View {
         }
     }
     
-    func done() {
+    private var SubTodoTextField: some View {
+        HStack {
+            TextField(
+                "SubTodo",
+                text: $subTodoTitle,
+                prompt: Text("세부 할 일")
+                    .foregroundStyle(appState.theme.secondary)
+            )
+            
+            Button("Add", action: addSubTodo)
+                .disabled(subTodoTitle.isEmpty)
+                .buttonStyle(.borderedProminent)
+                .tint(appState.theme.accent)
+        }
+    }
+    
+    private var SubTodosList: some View {
+        ForEach(subTodos) { subTodo in
+            HStack {
+                Text(subTodo.title)
+                Spacer()
+                Button {
+                    removeSubTodo(subTodo: subTodo)
+                } label: {
+                    Image(systemName: "x.circle.fill")
+                }
+            }
+        }
+        .animation(.bouncy, value: subTodos)
+    }
+    
+    private func setData() {
+        if let todo = vm.editingTodo, let subTodos = todo.subTodos {
+            self.title = todo.title
+            self.memo = todo.memo
+            self.date = todo.date
+            self.flag = todo.flag
+            self.subTodos = subTodos
+        }
+    }
+    
+    private func addSubTodo() {
+        let subTodo = SubTodo(title: self.subTodoTitle, isDone: false)
+        self.subTodos.append(subTodo)
+        self.subTodoTitle = ""
+    }
+    
+    private func removeSubTodo(subTodo: SubTodo) {
+        if let index = self.subTodos.firstIndex(of: subTodo) {
+            self.subTodos.remove(at: index)
+        }
+    }
+    
+    private func done() {
+        if title.isEmpty { return }
         let newTodo = Todo(title: title, memo: memo, date: date, flag: flag, subTodos: subTodos)
-        if let todo = self.todo {
-            vm.update(origin: todo, edit: newTodo)
+        if vm.editingTodo != nil {
+            vm.update(newTodo)
         } else {
             vm.create(newTodo)
         }
-        dismiss()
+        dismiss()        
     }
 }

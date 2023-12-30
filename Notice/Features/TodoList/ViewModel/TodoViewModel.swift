@@ -13,7 +13,7 @@ final class TodoViewModel: ObservableObject {
     @Published var todos: [Todo] = []
     @Published var filter: Filter = .all
     @Published var isOpenEditorToCreate = false
-    @Published var isOpenEditorToEdit = false
+    @Published var editingTodo: Todo?
     
     private let context: ModelContext
     
@@ -33,40 +33,75 @@ final class TodoViewModel: ObservableObject {
         isOpenEditorToCreate = true
     }
     
-    func onTapEditButton() {
-        isOpenEditorToEdit = true
+    func onTapEditButton(todo: Todo) {
+        editingTodo = todo
     }
     
     func create(_ todo: Todo) {
-        context.insert(todo)
+        context.insert(todo)        
         fetchTodos()
     }
     
-    func update(origin: Todo, edit: Todo) {
-        origin.title = edit.title
-        origin.memo = edit.memo
-        origin.date = edit.date
-        origin.flag = edit.flag
-        origin.subTodos = edit.subTodos
-        
+    func update(_ newTodo: Todo) {
+        if let origin = editingTodo {
+            context.delete(origin)
+            context.insert(newTodo)
+            fetchTodos()
+        }
+    }
+    
+    func delete(_ todo: Todo) {
+        context.delete(todo)
         fetchTodos()
     }
     
     func toggleDone(_ todo: Todo) {
         todo.isDone.toggle()
         
-        fetchTodos()
+        todo.subTodos?.forEach {
+            $0.isDone = todo.isDone
+        }
+        slowMotion {
+            self.fetchTodos()
+        }
     }
     
-    func doneButtonImage(_ todo: Todo) -> Image {
-        if todo.isDone {
+    func toggleSubtodoDone(_ subTodo: SubTodo, of todo: Todo) {
+        subTodo.isDone.toggle()
+        
+        if subTodo.isDone == false && todo.isDone == true {
+            todo.isDone = false
+        }
+        
+        if let subTodos = todo.subTodos, subTodos.allSatisfy({$0.isDone}) {
+            todo.isDone = true
+        }
+        
+        slowMotion {
+            self.fetchTodos()
+        }
+    }
+    
+    func doneButtonImage(_ isDone: Bool) -> Image {
+        if isDone {
             return Image(systemName: "circle.circle.fill")
         } else {
             return Image(systemName: "circle")
         }
     }
     
-    var predicate: Predicate<Todo> {
+    func fetchTodos() {
+        let sort = [SortDescriptor(\Todo.date)]
+        let fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: sort)
+        
+        do {
+            self.todos = try context.fetch(fetchDescriptor)
+        } catch {
+            print("Fail to fetch Todos")
+        }
+    }
+    
+    private var predicate: Predicate<Todo> {
         switch filter {
         case .all:
             return #Predicate<Todo> { todo in
@@ -89,16 +124,10 @@ final class TodoViewModel: ObservableObject {
         }
     }
     
-    func fetchTodos() {    
-        let sort = SortDescriptor(\Todo.date)
-        
-        let fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: [sort])
-        
-        do {
-            self.todos = try context.fetch(fetchDescriptor)
-        } catch {
-            print("Fail to fetch Todos")
-        }        
+    private func slowMotion(_ excute: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            excute()
+        }
     }
 }
 

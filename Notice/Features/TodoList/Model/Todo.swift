@@ -15,6 +15,7 @@ final class Todo {
     var date: Date
     var isDone: Bool
     var flag: Bool
+    
     @Relationship(deleteRule: .cascade)
     var subTodos: [SubTodo]?
     
@@ -24,13 +25,13 @@ final class Todo {
         date: Date = .now,
         isDone: Bool = false,
         flag: Bool = false,
-        subTodos: [SubTodo] = []
+        subTodos: [SubTodo]? = nil
     ) {
         self.title = title
         self.memo = memo
         self.date = date
         self.isDone = isDone
-        self.flag = flag
+        self.flag = flag    
         self.subTodos = subTodos
     }
 }
