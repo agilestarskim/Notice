@@ -21,13 +21,13 @@ struct MSDaysView<Content: View>: View {
         LazyVGrid(columns: self.columns, spacing: 0) {
             ForEach(dates, id: \.self) { day in
                 MSDayView(
-                    day: day,                    
-                    textColor: calendarDayColor(day),
-                    content: content,
+                    day: day,
                     isSameMonth:  isSameMonth(day),
                     isSameDay: isSameDay(day, selectedDate),
-                    selectedColor: appState.theme.container
-                )                               
+                    textColor: calendarDayColor(day),
+                    selectedColor: appState.theme.secondary,
+                    content: content
+                )
                 .onTapGesture {
                     if isSameMonth(day) {                        
                         selectedDate = day.stripTime()

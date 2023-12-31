@@ -34,7 +34,7 @@ struct MSCalendar<Content: View>: View {
                 pageIndex: $pageIndex,
                 calendar: calendar,
                 content: content
-            )
+            )            
         }
     }
 }

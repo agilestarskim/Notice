@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MSDayView<Content: View>: View {
     let day: Date
-    let textColor: Color
-    let content: (Date) -> Content
     let isSameMonth: Bool
-    let isSameDay: Bool
+    let isSameDay: Bool    
+    let textColor: Color
     let selectedColor: Color
+    let content: (Date) -> Content
     
     var body: some View {
         VStack {
@@ -33,9 +33,8 @@ struct MSDayView<Content: View>: View {
         .overlay {
             if isSameDay && isSameMonth {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(selectedColor.opacity(0.1))
-                    .stroke(.dawnSecondary, lineWidth: 0.5, antialiased: true)
-                    .transition(.scale)
+                    .stroke(selectedColor, lineWidth: 0.5, antialiased: true)
+                    .padding(0.5)
                     
             }
         }

@@ -89,9 +89,11 @@ struct TodoCellView: View {
                 isOpenSubTodoToggle.toggle()
             } label: {
                 Image(systemName: "chevron.forward")
+                    .foregroundStyle(appState.theme.secondary)
                     .rotationEffect(isOpenSubTodoToggle ? .degrees(90) : .zero)
             }
-            .tint(appState.theme.secondary)
+            .buttonStyle(.plain)
+            
         }
     }
     
@@ -112,8 +114,9 @@ struct TodoCellView: View {
                     
                     Text(subTodo.title)
                         .foregroundStyle(appState.theme.primary)
-                }                
-            }            
+                }
+                
+            }
         }
     }
 }

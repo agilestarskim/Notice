@@ -35,7 +35,7 @@ struct MSInfinteMonthView<Content: View>: View {
         .scrollPosition(id: $pageIndex)
         .scrollIndicators(.hidden)
         .animation(.default, value: pageIndex)
-        .onChange(of: pageIndex, onChangePage)
+        .onChange(of: pageIndex, onChangePage)        
     }
     
     private func pageDate(index: Int?) -> Date {

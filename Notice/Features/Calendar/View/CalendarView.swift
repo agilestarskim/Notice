@@ -22,8 +22,7 @@ struct CalendarView: View {
                         calendar: vm.calendar,
                         content: { CalendarDayView(events: vm.dailyEvents(by: $0)) }
                     )
-                    .frame(height: geo.size.height * 0.5)
-                    .padding(.horizontal, 4)
+                    .frame(height: geo.size.height * 0.5)                    
                     
                     CalendarDetailView(events: vm.dailyEvents)
                         .frame(height: geo.size.height * 0.5)
