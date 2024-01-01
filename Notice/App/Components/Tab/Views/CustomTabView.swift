@@ -15,7 +15,7 @@ struct CustomTabView: View {
         LazyVGrid(columns: columns, spacing: 0) {
             TabIcon(tab: .calendar)
             TabIcon(tab: .todo)
-            plusButton
+            PlusButton()
             TabIcon(tab: .goal)
             TabIcon(tab: .memo)
         }
@@ -24,7 +24,7 @@ struct CustomTabView: View {
         .background(appState.theme.container)
     }
     
-    var plusButton: some View {
+    func PlusButton() -> some View {
         Button {
             appState.onTapPlusButton()
         } label: {

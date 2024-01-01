@@ -69,7 +69,7 @@ struct TodoCellView: View {
             }
             
             HStack {
-                Text(Format.shared.day(todo.date) + " " + Format.shared.time(todo.date))
+                Text(Format.shared.string(todo.date, style: .MdE) + " " + Format.shared.string(todo.date, style: .hmma))
                     .foregroundStyle(appState.theme.secondary)
                     .font(.footnote)
                 
@@ -103,7 +103,7 @@ struct TodoCellView: View {
             ForEach(subTodos) { subTodo in
                 HStack {
                     Button {
-                        vm.toggleSubtodoDone(subTodo, of: self.todo)
+                        vm.toggleSubTodoDone(subTodo, of: self.todo)
                     } label: {
                         vm.doneButtonImage(subTodo.isDone)
                     }

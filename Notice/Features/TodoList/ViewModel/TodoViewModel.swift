@@ -8,10 +8,9 @@
 import SwiftData
 import SwiftUI
 
-final class TodoViewModel: ObservableObject {
-        
+final class TodoViewModel: ObservableObject {        
     @Published var todos: [Todo] = []
-    @Published var filter: Filter = .all
+    @Published var filter: TodoFilter = .all
     @Published var isOpenEditorToCreate = false
     @Published var editingTodo: Todo?
     
@@ -27,6 +26,18 @@ final class TodoViewModel: ObservableObject {
     init(context: ModelContext) {
         self.context = context
         fetchTodos()
+    }
+    
+    func fetchTodos() {
+        let sort = [SortDescriptor(\Todo.date)]
+        
+        let fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: sort)
+        
+        do {
+            self.todos = try context.fetch(fetchDescriptor)
+        } catch {
+            print("Fail to fetch Todos")
+        }
     }
     
     func onTapPlusButton() {
@@ -66,7 +77,7 @@ final class TodoViewModel: ObservableObject {
         }
     }
     
-    func toggleSubtodoDone(_ subTodo: SubTodo, of todo: Todo) {
+    func toggleSubTodoDone(_ subTodo: SubTodo, of todo: Todo) {
         subTodo.isDone.toggle()
         
         if subTodo.isDone == false && todo.isDone == true {
@@ -87,17 +98,6 @@ final class TodoViewModel: ObservableObject {
             return Image(systemName: "circle.circle.fill")
         } else {
             return Image(systemName: "circle")
-        }
-    }
-    
-    func fetchTodos() {
-        let sort = [SortDescriptor(\Todo.date)]
-        let fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: sort)
-        
-        do {
-            self.todos = try context.fetch(fetchDescriptor)
-        } catch {
-            print("Fail to fetch Todos")
         }
     }
     

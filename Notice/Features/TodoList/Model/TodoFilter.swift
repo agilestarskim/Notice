@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Filter: String, CaseIterable {
+enum TodoFilter: String, CaseIterable {
     case all
     case today
     case done

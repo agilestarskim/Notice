@@ -84,7 +84,9 @@ final class CalendarViewModel: ObservableObject {
     }
     
     var dailyEvents: [Event] {
-        self.events.filter { calendar.isDate($0.startDate, inSameDayAs: selectedDate) }
+        self.events
+            .filter { calendar.isDate($0.startDate, inSameDayAs: selectedDate) }
+            .sorted { $0.startDate < $1.startDate }
     }
     
     func dailyEvents(by date: Date) -> [Event] {

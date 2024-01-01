@@ -11,8 +11,20 @@
 		1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0722032B32D7C3008B80A0 /* EventCategory.swift */; };
 		1F12142F2B37106000DB04CD /* SubTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F12142E2B37106000DB04CD /* SubTodo.swift */; };
 		1F1214342B37110700DB04CD /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1214332B37110700DB04CD /* TodoViewModel.swift */; };
-		1F1214362B371D9300DB04CD /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1214352B371D9300DB04CD /* Filter.swift */; };
+		1F1214362B371D9300DB04CD /* TodoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1214352B371D9300DB04CD /* TodoFilter.swift */; };
 		1F24EF382B3680C700FA6B25 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */; };
+		1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565F72B42B6CC000CD6CA /* Goal.swift */; };
+		1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */; };
+		1F2565FD2B42BD39000CD6CA /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FC2B42BD39000CD6CA /* GoalViewModel.swift */; };
+		1F2566002B42C7E3000CD6CA /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FF2B42C7E3000CD6CA /* GoalView.swift */; };
+		1F2566022B42C9E3000CD6CA /* GoalViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566012B42C9E3000CD6CA /* GoalViewMode.swift */; };
+		1F2566082B42D9A0000CD6CA /* GoalDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566072B42D9A0000CD6CA /* GoalDuration.swift */; };
+		1F25660C2B42EB40000CD6CA /* GoalOnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */; };
+		1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */; };
+		1F2566102B42EB98000CD6CA /* GoalPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660F2B42EB98000CD6CA /* GoalPendingView.swift */; };
+		1F2566122B42F13A000CD6CA /* CollectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566112B42F13A000CD6CA /* CollectionCardView.swift */; };
+		1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566132B42F145000CD6CA /* LaneCardView.swift */; };
+		1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566192B42FA87000CD6CA /* PendingCardView.swift */; };
 		1F638A0A2B3291FA004D32C9 /* NoticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A092B3291FA004D32C9 /* NoticeApp.swift */; };
 		1F638A0C2B3291FA004D32C9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A0B2B3291FA004D32C9 /* MainView.swift */; };
 		1F638A102B3291FB004D32C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F638A0F2B3291FB004D32C9 /* Assets.xcassets */; };
@@ -39,7 +51,6 @@
 		1F638A762B329275004D32C9 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A5C2B329275004D32C9 /* TodoListView.swift */; };
 		1F638A772B329275004D32C9 /* TodoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A5D2B329275004D32C9 /* TodoCellView.swift */; };
 		1F638A782B329275004D32C9 /* MemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A5F2B329275004D32C9 /* MemoView.swift */; };
-		1F638A792B329275004D32C9 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A612B329275004D32C9 /* GoalView.swift */; };
 		1F638A7E2B32927E004D32C9 /* Dawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A7B2B32927E004D32C9 /* Dawn.swift */; };
 		1F638A7F2B32927E004D32C9 /* Forest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A7C2B32927E004D32C9 /* Forest.swift */; };
 		1F638A802B32927E004D32C9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A7D2B32927E004D32C9 /* Theme.swift */; };
@@ -72,8 +83,20 @@
 		1F0722032B32D7C3008B80A0 /* EventCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
 		1F12142E2B37106000DB04CD /* SubTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTodo.swift; sourceTree = "<group>"; };
 		1F1214332B37110700DB04CD /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
-		1F1214352B371D9300DB04CD /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		1F1214352B371D9300DB04CD /* TodoFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFilter.swift; sourceTree = "<group>"; };
 		1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
+		1F2565F72B42B6CC000CD6CA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFilter.swift; sourceTree = "<group>"; };
+		1F2565FC2B42BD39000CD6CA /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
+		1F2565FF2B42C7E3000CD6CA /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
+		1F2566012B42C9E3000CD6CA /* GoalViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewMode.swift; sourceTree = "<group>"; };
+		1F2566072B42D9A0000CD6CA /* GoalDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDuration.swift; sourceTree = "<group>"; };
+		1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalOnProgressView.swift; sourceTree = "<group>"; };
+		1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSuccessFailureView.swift; sourceTree = "<group>"; };
+		1F25660F2B42EB98000CD6CA /* GoalPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPendingView.swift; sourceTree = "<group>"; };
+		1F2566112B42F13A000CD6CA /* CollectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCardView.swift; sourceTree = "<group>"; };
+		1F2566132B42F145000CD6CA /* LaneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaneCardView.swift; sourceTree = "<group>"; };
+		1F2566192B42FA87000CD6CA /* PendingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCardView.swift; sourceTree = "<group>"; };
 		1F638A062B3291FA004D32C9 /* Notice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F638A092B3291FA004D32C9 /* NoticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeApp.swift; sourceTree = "<group>"; };
 		1F638A0B2B3291FA004D32C9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -105,7 +128,6 @@
 		1F638A5C2B329275004D32C9 /* TodoListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		1F638A5D2B329275004D32C9 /* TodoCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoCellView.swift; sourceTree = "<group>"; };
 		1F638A5F2B329275004D32C9 /* MemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoView.swift; sourceTree = "<group>"; };
-		1F638A612B329275004D32C9 /* GoalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		1F638A7B2B32927E004D32C9 /* Dawn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dawn.swift; sourceTree = "<group>"; };
 		1F638A7C2B32927E004D32C9 /* Forest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forest.swift; sourceTree = "<group>"; };
 		1F638A7D2B32927E004D32C9 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -146,7 +168,7 @@
 			children = (
 				1F0722012B32D42A008B80A0 /* Todo.swift */,
 				1F12142E2B37106000DB04CD /* SubTodo.swift */,
-				1F1214352B371D9300DB04CD /* Filter.swift */,
+				1F1214352B371D9300DB04CD /* TodoFilter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +189,55 @@
 				1F1214332B37110700DB04CD /* TodoViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1F2565F62B42B6B8000CD6CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1F2565F72B42B6CC000CD6CA /* Goal.swift */,
+				1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */,
+				1F2566012B42C9E3000CD6CA /* GoalViewMode.swift */,
+				1F2566072B42D9A0000CD6CA /* GoalDuration.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1F2565F92B42BA5D000CD6CA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1F2565FC2B42BD39000CD6CA /* GoalViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1F2565FE2B42C7D8000CD6CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1F2565FF2B42C7E3000CD6CA /* GoalView.swift */,
+				1F2566182B42F448000CD6CA /* Card */,
+				1F2566172B42F432000CD6CA /* State */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1F2566172B42F432000CD6CA /* State */ = {
+			isa = PBXGroup;
+			children = (
+				1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */,
+				1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */,
+				1F25660F2B42EB98000CD6CA /* GoalPendingView.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		1F2566182B42F448000CD6CA /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				1F2566112B42F13A000CD6CA /* CollectionCardView.swift */,
+				1F2566132B42F145000CD6CA /* LaneCardView.swift */,
+				1F2566192B42FA87000CD6CA /* PendingCardView.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 		1F6389FD2B3291F9004D32C9 = {
@@ -332,7 +403,9 @@
 		1F638A602B329275004D32C9 /* Goal */ = {
 			isa = PBXGroup;
 			children = (
-				1F638A612B329275004D32C9 /* GoalView.swift */,
+				1F2565FE2B42C7D8000CD6CA /* View */,
+				1F2565F92B42BA5D000CD6CA /* ViewModel */,
+				1F2565F62B42B6B8000CD6CA /* Model */,
 			);
 			path = Goal;
 			sourceTree = "<group>";
@@ -535,30 +608,41 @@
 				1F638A762B329275004D32C9 /* TodoListView.swift in Sources */,
 				1F638A652B329275004D32C9 /* EventView.swift in Sources */,
 				1F638A782B329275004D32C9 /* MemoView.swift in Sources */,
+				1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */,
+				1F2566122B42F13A000CD6CA /* CollectionCardView.swift in Sources */,
 				1F638A7F2B32927E004D32C9 /* Forest.swift in Sources */,
 				1F638A712B329275004D32C9 /* Format.swift in Sources */,
 				1F638A8E2B3292D5004D32C9 /* MenuView.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
 				1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */,
+				1F2566002B42C7E3000CD6CA /* GoalView.swift in Sources */,
 				1F638A7E2B32927E004D32C9 /* Dawn.swift in Sources */,
-				1F638A792B329275004D32C9 /* GoalView.swift in Sources */,
+				1F2565FD2B42BD39000CD6CA /* GoalViewModel.swift in Sources */,
 				1F638A6F2B329275004D32C9 /* CalendarView.swift in Sources */,
 				1F638A8B2B3292D5004D32C9 /* Tabs.swift in Sources */,
 				1F638A0C2B3291FA004D32C9 /* MainView.swift in Sources */,
 				1F638A662B329275004D32C9 /* CalendarDetailView.swift in Sources */,
 				1F638A902B3292DC004D32C9 /* AppState.swift in Sources */,
+				1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */,
 				1F638A6D2B329275004D32C9 /* MSInfinteMonthView.swift in Sources */,
+				1F2566102B42EB98000CD6CA /* GoalPendingView.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
+				1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */,
+				1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */,
 				1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */,
 				1F638A772B329275004D32C9 /* TodoCellView.swift in Sources */,
 				1F638A6C2B329275004D32C9 /* Date+.swift in Sources */,
-				1F1214362B371D9300DB04CD /* Filter.swift in Sources */,
+				1F25660C2B42EB40000CD6CA /* GoalOnProgressView.swift in Sources */,
+				1F1214362B371D9300DB04CD /* TodoFilter.swift in Sources */,
 				1F24EF382B3680C700FA6B25 /* CalendarDayView.swift in Sources */,
 				1F12142F2B37106000DB04CD /* SubTodo.swift in Sources */,
 				1F638A0A2B3291FA004D32C9 /* NoticeApp.swift in Sources */,
+				1F2566082B42D9A0000CD6CA /* GoalDuration.swift in Sources */,
 				1F638A6E2B329275004D32C9 /* CalendarFormView.swift in Sources */,
 				1F638A682B329275004D32C9 /* MSCalendar.swift in Sources */,
+				1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */,
+				1F2566022B42C9E3000CD6CA /* GoalViewMode.swift in Sources */,
 				1F1214342B37110700DB04CD /* TodoViewModel.swift in Sources */,
 				1F0722022B32D42A008B80A0 /* Todo.swift in Sources */,
 				1F638A752B329275004D32C9 /* TodoFormView.swift in Sources */,

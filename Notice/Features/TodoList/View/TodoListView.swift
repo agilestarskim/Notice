@@ -33,7 +33,7 @@ struct TodoListView: View {
     
     var FilterPicker: some View {
         Picker("Filter", selection: $vm.filter) {
-            ForEach(Filter.allCases, id: \.self) { filter in
+            ForEach(TodoFilter.allCases, id: \.self) { filter in
                 Text(filter.rawValue)
                     .tag(filter)
             }
@@ -54,5 +54,6 @@ struct TodoListView: View {
         .animation(.default, value: vm.todos)
         .listRowSpacing(10)
         .scrollContentBackground(.hidden)
+        .safeAreaPadding(.bottom, 70)
     }
 }

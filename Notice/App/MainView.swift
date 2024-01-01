@@ -12,13 +12,16 @@ struct MainView: View {
     @Environment(AppState.self) private var appState
     @StateObject private var calendarViewModel: CalendarViewModel
     @StateObject private var todoViewModel: TodoViewModel
+    @StateObject private var goalViewModel: GoalViewModel
     
     init(context: ModelContext) {
         let calendarViewModel = CalendarViewModel(context: context)
         let todoViewModel = TodoViewModel(context: context)
+        let goalViewModel = GoalViewModel(context: context)
         
         self._calendarViewModel = StateObject(wrappedValue: calendarViewModel)
         self._todoViewModel = StateObject(wrappedValue: todoViewModel)
+        self._goalViewModel = StateObject(wrappedValue: goalViewModel)
     }
     
     var body: some View {
@@ -32,6 +35,7 @@ struct MainView: View {
                     .environmentObject(todoViewModel)
             case .goal:
                 GoalView()
+                    .environmentObject(goalViewModel)
             case .memo:
                 MemoView()
             }

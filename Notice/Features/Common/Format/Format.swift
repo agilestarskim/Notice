@@ -10,30 +10,25 @@ import Foundation
 final class Format {
     static let shared = Format()
     
-    private let formatter = DateFormatter()
-    
-    private init() {
+    private lazy var formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        
         formatter.locale = Locale.current
         formatter.timeZone = .current
-    }
+        
+        return formatter
+    }()
     
-    func yearMonth(_ date: Date) -> String {
-        formatter.dateFormat = "yyyy.MM"
+    func string(_ date: Date, style formatStyle: NoticeFormatStyle) -> String {
+        formatter.dateFormat = formatStyle.rawValue
         return formatter.string(from: date)
     }
     
-    func yearMonthDay(_ date: Date) -> String {
-        formatter.dateFormat = "yyyy.MM.dd (E)"
-        return formatter.string(from: date)
-    }
-    
-    func day(_ date: Date) -> String {
-        formatter.dateFormat = "M.d (E)"
-        return formatter.string(from: date)
-    }
-    
-    func time(_ date: Date) -> String {
-        formatter.dateFormat = "h:mm a"
-        return formatter.string(from: date)
+    enum NoticeFormatStyle: String {
+        case yyyyMM = "yyyy.MM"
+        case yyyyMMdd = "yyyy.MM.dd"
+        case yyyyMMddE = "yyyy.MM.dd (E)"
+        case MdE = "M.d (E)"
+        case hmma = "h:mm a"
     }
 }
