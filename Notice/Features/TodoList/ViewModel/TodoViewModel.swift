@@ -41,7 +41,7 @@ final class TodoViewModel: ObservableObject {
     }
     
     func onTapPlusButton() {
-        isOpenEditorToCreate = true
+        isOpenEditorToCreate = true        
     }
     
     func onTapEditButton(todo: Todo) {

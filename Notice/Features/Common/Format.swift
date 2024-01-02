@@ -20,6 +20,7 @@ final class Format {
     }()
     
     func string(_ date: Date, style formatStyle: NoticeFormatStyle) -> String {
+        if date.isForever { return "-" }
         formatter.dateFormat = formatStyle.rawValue
         return formatter.string(from: date)
     }

@@ -1,0 +1,175 @@
+//
+//  GoalFormView.swift
+//  Notice
+//
+//  Created by 김민성 on 1/2/24.
+//
+
+import SwiftUI
+
+struct GoalFormView: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(AppState.self) private var appState
+    @EnvironmentObject private var vm: GoalViewModel
+    
+    @State private var title: String = ""
+    @State private var memo: String = ""
+    @State private var startDate: Date = .now
+    @State private var endDate: Date = .now
+    @State private var image: Data? = nil
+    @State private var duration: GoalDuration = .week
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    TitleTextField
+                    MemoTextField
+                    StartDatePicker
+                    DurationPicker
+                    EndDatePicker
+                }
+                .foregroundStyle(appState.theme.primary)
+                .listRowBackground(appState.theme.container.opacity(0.8))
+                
+                Section {
+                   
+                }
+                .foregroundStyle(appState.theme.primary)
+                .listRowBackground(appState.theme.container.opacity(0.8))
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            .scrollContentBackground(.hidden)
+            .background(appState.theme.background)
+            .listRowSpacing(10)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("목표 추가")
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundStyle(appState.theme.accent)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("완료", action: done)
+                        .tint(appState.theme.accent)
+                        .opacity(title.isEmpty ? 0.5 : 1)
+                }
+            }
+        }
+        .onAppear(perform: setData)
+        .onChange(of: startDate, setEndDate)
+        .onChange(of: duration) { oldValue, newValue in
+            if oldValue == .forever && newValue == .custom {
+                setCustomEndDateFromForever()
+            } else {
+                setEndDate()
+            }
+        }
+    }
+    
+    private var TitleTextField: some View {
+        TextField(
+            "title",
+            text: $title,
+            prompt: Text("제목을 입력하세요")
+                .foregroundStyle(appState.theme.secondary)
+        )
+        .autocorrectionDisabled()
+    }
+    
+    private var MemoTextField: some View {
+        TextField(
+            "memo",
+            text: $memo,
+            prompt: Text("메모를 입력하세요")
+                .foregroundStyle(appState.theme.secondary)
+        )
+        .autocorrectionDisabled()
+    }
+    
+    @ViewBuilder
+    var StartDatePicker: some View {
+        HStack {
+            Text("시작일")
+            Spacer()
+            if let goal = vm.editingGoal {
+                Text(Format.shared.string(goal.startDate, style: .yyyyMMdd))
+            } else {
+                DatePicker(
+                    "startDate",
+                    selection: $startDate,
+                    in: .now...,
+                    displayedComponents: [.date]
+                )
+                .labelsHidden()
+                .colorInvert()
+            }
+        }
+    }
+    
+    @ViewBuilder
+    var DurationPicker: some View {
+        if vm.editingGoal == nil {
+            Picker("목표기간", selection: $duration) {
+                ForEach(GoalDuration.allCases, id: \.rawValue) { duration in
+                    Text(duration.rawValue)
+                        .tag(duration)
+                        .foregroundStyle(appState.theme.secondary)
+                }
+            }
+            .tint(appState.theme.accent)
+        }
+    }
+    
+    @ViewBuilder
+    var EndDatePicker: some View {
+        HStack {
+            Text("종료일")
+            Spacer()
+            if let goal = vm.editingGoal {
+                Text(Format.shared.string(goal.endDate, style: .yyyyMMdd))
+            } else if duration == .custom {
+                DatePicker(
+                    "endDate",
+                    selection: $endDate,
+                    displayedComponents: [.date]
+                )
+                .labelsHidden()
+                .colorInvert()
+            } else {
+                Text(Format.shared.string(endDate, style: .yyyyMMdd))
+            }
+        }
+    }
+    
+    private func done() {
+        
+    }
+    
+    private func setCustomEndDateFromForever() {
+        if let endDate = vm.calculateEndDate(.week, after: startDate) {
+            self.endDate = endDate
+        }
+    }
+    
+    private func setEndDate() {
+        if let endDate = vm.calculateEndDate(duration, after: startDate) {
+            self.endDate = endDate
+        }
+    }
+    
+    private func setData() {
+        if let goal = vm.editingGoal {
+            self.title = goal.title
+            self.memo = goal.memo
+            self.startDate = goal.startDate
+            self.endDate = goal.endDate
+        } else {
+            setEndDate()
+        }
+    }
+}
+
+#Preview {
+    GoalFormView()
+}

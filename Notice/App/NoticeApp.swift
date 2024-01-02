@@ -28,8 +28,9 @@ struct NoticeApp: App {
     var body: some Scene {
         WindowGroup {
             MainView(context: sharedModelContainer.mainContext)
+                .preferredColorScheme(.light)
         }
         .modelContainer(sharedModelContainer)
-        .environment(appState)        
+        .environment(appState)
     }
 }

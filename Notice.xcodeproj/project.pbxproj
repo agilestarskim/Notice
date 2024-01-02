@@ -25,6 +25,8 @@
 		1F2566122B42F13A000CD6CA /* CollectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566112B42F13A000CD6CA /* CollectionCardView.swift */; };
 		1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566132B42F145000CD6CA /* LaneCardView.swift */; };
 		1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566192B42FA87000CD6CA /* PendingCardView.swift */; };
+		1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */; };
+		1F4631FF2B445C82007B89C5 /* Forever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4631FE2B445C82007B89C5 /* Forever.swift */; };
 		1F638A0A2B3291FA004D32C9 /* NoticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A092B3291FA004D32C9 /* NoticeApp.swift */; };
 		1F638A0C2B3291FA004D32C9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A0B2B3291FA004D32C9 /* MainView.swift */; };
 		1F638A102B3291FB004D32C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F638A0F2B3291FB004D32C9 /* Assets.xcassets */; };
@@ -97,6 +99,8 @@
 		1F2566112B42F13A000CD6CA /* CollectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCardView.swift; sourceTree = "<group>"; };
 		1F2566132B42F145000CD6CA /* LaneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaneCardView.swift; sourceTree = "<group>"; };
 		1F2566192B42FA87000CD6CA /* PendingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCardView.swift; sourceTree = "<group>"; };
+		1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFormView.swift; sourceTree = "<group>"; };
+		1F4631FE2B445C82007B89C5 /* Forever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forever.swift; sourceTree = "<group>"; };
 		1F638A062B3291FA004D32C9 /* Notice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F638A092B3291FA004D32C9 /* NoticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeApp.swift; sourceTree = "<group>"; };
 		1F638A0B2B3291FA004D32C9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				1F2565FF2B42C7E3000CD6CA /* GoalView.swift */,
+				1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */,
 				1F2566182B42F448000CD6CA /* Card */,
 				1F2566172B42F432000CD6CA /* State */,
 			);
@@ -369,17 +374,10 @@
 		1F638A4F2B329275004D32C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				1F638A522B329275004D32C9 /* Format */,
+				1F638A532B329275004D32C9 /* Format.swift */,
+				1F4631FE2B445C82007B89C5 /* Forever.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		1F638A522B329275004D32C9 /* Format */ = {
-			isa = PBXGroup;
-			children = (
-				1F638A532B329275004D32C9 /* Format.swift */,
-			);
-			path = Format;
 			sourceTree = "<group>";
 		};
 		1F638A542B329275004D32C9 /* TodoList */ = {
@@ -606,12 +604,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F638A762B329275004D32C9 /* TodoListView.swift in Sources */,
+				1F4631FF2B445C82007B89C5 /* Forever.swift in Sources */,
 				1F638A652B329275004D32C9 /* EventView.swift in Sources */,
 				1F638A782B329275004D32C9 /* MemoView.swift in Sources */,
 				1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */,
 				1F2566122B42F13A000CD6CA /* CollectionCardView.swift in Sources */,
 				1F638A7F2B32927E004D32C9 /* Forest.swift in Sources */,
 				1F638A712B329275004D32C9 /* Format.swift in Sources */,
+				1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */,
 				1F638A8E2B3292D5004D32C9 /* MenuView.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
