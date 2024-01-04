@@ -157,10 +157,10 @@ struct TodoFormView: View {
         
         let newTodo = Todo(title: title, memo: memo, date: date, flag: flag, subTodos: subTodos)
         
-        if vm.editingTodo != nil {
-            vm.update(newTodo)
+        if vm.editingTodo == nil {
+            vm.create(newTodo)            
         } else {
-            vm.create(newTodo)
+            vm.update(newTodo)
         }
         dismiss()        
     }

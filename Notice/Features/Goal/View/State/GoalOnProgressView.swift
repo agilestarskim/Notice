@@ -25,13 +25,13 @@ struct GoalOnProgressView: View {
         VStack {
             ForEach(GoalDuration.allCases, id: \.rawValue) { duration in
                 VStack(alignment: .leading) {
-                    Text(duration.rawValue)
+                    Text(duration.title)
                         .fontWeight(.semibold)
                         .foregroundStyle(appState.theme.secondary)
                     ScrollView(.horizontal) {
                         LazyHStack {
-                            ForEach(0..<10, id: \.self) { index in
-                                LaneCardView()
+                            ForEach(vm.goals) { goal in
+                                LaneCardView(goal: goal)
                             }
                         }
                         .scrollTargetLayout()
@@ -46,8 +46,8 @@ struct GoalOnProgressView: View {
     
     var CollectionView: some View {
         LazyVStack {
-            ForEach(0..<10, id: \.self) { index in
-                CollectionCardView()
+            ForEach(vm.goals) { goal in
+                CollectionCardView(goal: goal)
             }
         }
     }

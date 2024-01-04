@@ -50,10 +50,7 @@ struct GoalView: View {
         }
         .sheet(isPresented: $vm.isOpenEditorToCreate) {
             GoalFormView()
-        }
-        .sheet(item: $vm.editingGoal) { _ in
-            GoalFormView()
-        }
+        }        
     }
     
     var FilterPicker: some View {

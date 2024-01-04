@@ -30,7 +30,11 @@ final class GoalViewModel: ObservableObject {
     }
     
     func fetchGoals() {
-        
+        do {
+            self.goals = try context.fetch(FetchDescriptor<Goal>())
+        } catch {
+            print("failed to load goals")
+        }
     }
     
     func onTapPlusButton() {
@@ -39,6 +43,21 @@ final class GoalViewModel: ObservableObject {
     
     func onTapEditButton(goal: Goal) {        
         editingGoal = goal
+    }
+    
+    func create(_ goal: Goal) {
+        context.insert(goal)
+        fetchGoals()
+    }
+    
+    func update(_ newGoal: Goal) {
+        if let origin = editingGoal {
+            origin.title = newGoal.title
+            origin.memo = newGoal.memo
+            origin.image = newGoal.image       
+            
+            fetchGoals()
+        }
     }
     
     func calculateEndDate(

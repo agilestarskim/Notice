@@ -16,8 +16,9 @@ struct GoalFormView: View {
     @State private var memo: String = ""
     @State private var startDate: Date = .now
     @State private var endDate: Date = .now
-    @State private var image: Data? = nil
     @State private var duration: GoalDuration = .week
+    @State private var image: Data? = nil
+    
 
     var body: some View {
         NavigationStack {
@@ -112,7 +113,7 @@ struct GoalFormView: View {
         if vm.editingGoal == nil {
             Picker("목표기간", selection: $duration) {
                 ForEach(GoalDuration.allCases, id: \.rawValue) { duration in
-                    Text(duration.rawValue)
+                    Text(duration.title)
                         .tag(duration)
                         .foregroundStyle(appState.theme.secondary)
                 }
@@ -143,9 +144,19 @@ struct GoalFormView: View {
     }
     
     private func done() {
+        if title.isEmpty { return }
         
+        let newGoal = Goal(title: title, memo: memo, startDate: startDate, endDate: endDate, duration: duration.rawValue, image: image, state: 0)
+        
+        if vm.editingGoal == nil {
+            vm.create(newGoal)
+        } else {
+            vm.update(newGoal)
+        }
+        dismiss()
     }
     
+    /* Forever에서 Custom으로 변경 시 DatePicker가 4000년이 세팅되는 것을 방지 */
     private func setCustomEndDateFromForever() {
         if let endDate = vm.calculateEndDate(.week, after: startDate) {
             self.endDate = endDate
@@ -164,6 +175,8 @@ struct GoalFormView: View {
             self.memo = goal.memo
             self.startDate = goal.startDate
             self.endDate = goal.endDate
+            self.duration = GoalDuration(rawValue: goal.duration) ?? .week
+            self.image = goal.image
         } else {
             setEndDate()
         }

@@ -14,14 +14,16 @@ final class Goal {
     var memo: String
     var startDate: Date
     var endDate: Date
+    var duration: Int
     var image: Data?
-    var state: Int
+    var state: Int /* onProgress: 0, success: 1, failure: 2, pending: 3 */
     
     init(
         title: String = "",
         memo: String = "",
         startDate: Date = .now,
         endDate: Date = .distantFuture,
+        duration: Int = 0,
         image: Data? = nil,
         state: Int = 0
     ) {
@@ -29,6 +31,7 @@ final class Goal {
         self.memo = memo
         self.startDate = startDate
         self.endDate = endDate
+        self.duration = duration
         self.image = image
         self.state = state
     }

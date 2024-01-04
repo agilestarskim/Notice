@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct GoalPendingView: View {
+    @Environment(AppState.self) private var appState
+    @EnvironmentObject private var vm: GoalViewModel
+    
     var body: some View {
         VStack {
-            ForEach(0..<10, id: \.self) { index in
+            ForEach(vm.goals) { goal in
                 PendingCardView()
             }
         }

@@ -238,8 +238,8 @@
 		1F2566182B42F448000CD6CA /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				1F2566112B42F13A000CD6CA /* CollectionCardView.swift */,
 				1F2566132B42F145000CD6CA /* LaneCardView.swift */,
+				1F2566112B42F13A000CD6CA /* CollectionCardView.swift */,
 				1F2566192B42FA87000CD6CA /* PendingCardView.swift */,
 			);
 			path = Card;

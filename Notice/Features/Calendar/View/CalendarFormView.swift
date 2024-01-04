@@ -111,10 +111,10 @@ struct CalendarFormView: View {
     func done() {
         if title.isEmpty { return }
         let newEvent = Event(title: title, memo: memo, category: category, startDate: startDate)
-        if let event = vm.editingEvent {
-            vm.update(newEvent)
+        if vm.editingEvent == nil {
+            vm.create(newEvent)            
         } else {
-            vm.create(newEvent)
+            vm.update(newEvent)
         }
         dismiss()
     }

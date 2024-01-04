@@ -32,8 +32,8 @@ struct GoalSuccessFailureView: View {
                         .foregroundStyle(appState.theme.secondary)
                     ScrollView(.horizontal) {
                         LazyHStack {
-                            ForEach(0..<10, id: \.self) { index in
-                                LaneCardView()
+                            ForEach(vm.goals) { goal in
+                                LaneCardView(goal: goal)
                             }
                         }
                         .scrollTargetLayout()
@@ -48,8 +48,8 @@ struct GoalSuccessFailureView: View {
     
     var CollectionView: some View {
         LazyVGrid(columns: columns) {
-            ForEach(0..<10, id: \.self) { index in
-                CollectionCardView()
+            ForEach(vm.goals) { goal in
+                CollectionCardView(goal: goal)
             }
         }
     }
