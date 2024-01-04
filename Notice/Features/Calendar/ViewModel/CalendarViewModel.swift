@@ -13,6 +13,7 @@ final class CalendarViewModel: ObservableObject {
     @Published var selectedDate: Date = .now
     @Published var pageIndex: Int? = 0
     @Published var isOpenEditorToCreate = false
+    @Published var editingEvent: Event? = nil
     @Published var isOpenEditorToEdit = false
     
     private let context: ModelContext
@@ -34,11 +35,13 @@ final class CalendarViewModel: ObservableObject {
         fetchMontlyEvents()
     }
     
-    func update(origin: Event, edit: Event) {
-        origin.title = edit.title
-        origin.memo = edit.memo
-        origin.category = edit.category
-        origin.startDate = edit.startDate
+    func update(_ newEvent: Event) {
+        if let origin = editingEvent {
+            origin.title = newEvent.title
+            origin.memo = newEvent.memo
+            origin.category = newEvent.category
+            origin.startDate = newEvent.startDate
+        }
         
         fetchMontlyEvents()
     }
@@ -52,8 +55,8 @@ final class CalendarViewModel: ObservableObject {
         isOpenEditorToCreate = true
     }
     
-    func onTapEditButton() {
-        isOpenEditorToEdit = true
+    func onTapEditButton(_ event: Event) {
+        editingEvent = event
     }
     
     func gotoToday() {

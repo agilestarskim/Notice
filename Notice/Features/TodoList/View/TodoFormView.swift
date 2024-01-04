@@ -154,7 +154,9 @@ struct TodoFormView: View {
     
     private func done() {
         if title.isEmpty { return }
+        
         let newTodo = Todo(title: title, memo: memo, date: date, flag: flag, subTodos: subTodos)
+        
         if vm.editingTodo != nil {
             vm.update(newTodo)
         } else {

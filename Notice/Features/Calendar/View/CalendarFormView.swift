@@ -13,20 +13,10 @@ struct CalendarFormView: View {
     @Environment(AppState.self) private var appState
     @EnvironmentObject private var vm: CalendarViewModel
     
-    @State private var title: String
-    @State private var memo: String
-    @State private var category: String
-    @State private var startDate: Date
-    
-    private let event: Event?
-    
-    init(event: Event? = nil, defaultStartDate: Date) {
-        self.event = event
-        self._title = State(initialValue: event?.title ?? "")
-        self._memo = State(initialValue: event?.memo ?? "")
-        self._category = State(initialValue: event?.category ?? EventCategory.meeting.rawValue)
-        self._startDate = State(initialValue: event?.startDate ?? defaultStartDate)
-    }
+    @State private var title: String = ""
+    @State private var memo: String = ""
+    @State private var category: String = EventCategory.meeting.rawValue
+    @State private var startDate: Date = .now
     
     var body: some View {
         NavigationStack {
@@ -54,9 +44,11 @@ struct CalendarFormView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("완료", action: done)
                         .tint(appState.theme.accent)
+                        .opacity(title.isEmpty ? 0.5 : 1)
                 }
             }
         }
+        .onAppear(perform: setData)
     }
     
     var TitleTextField: some View {
@@ -104,12 +96,23 @@ struct CalendarFormView: View {
         }
     }
     
+    private func setData() {
+        if let event = vm.editingEvent {
+            self.title = event.title
+            self.memo = event.memo
+            self.category = event.category
+            self.startDate = event.startDate
+        } else {
+            self.startDate = vm.selectedDate
+        }
+    }
     
     
     func done() {
+        if title.isEmpty { return }
         let newEvent = Event(title: title, memo: memo, category: category, startDate: startDate)
-        if let event = self.event {
-            vm.update(origin: event, edit: newEvent)
+        if let event = vm.editingEvent {
+            vm.update(newEvent)
         } else {
             vm.create(newEvent)
         }

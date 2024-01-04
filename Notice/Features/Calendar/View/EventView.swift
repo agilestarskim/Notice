@@ -46,12 +46,14 @@ struct EventView: View {
         }
         .listRowSeparator(.hidden)
         .listRowBackground(appState.theme.container.opacity(0.5))
-        .sheet(isPresented: $vm.isOpenEditorToEdit) {
-            CalendarFormView(event: event, defaultStartDate: vm.selectedDate)
+        .sheet(item: $vm.editingEvent) { _ in
+            CalendarFormView()
         }
         .swipeActions(edge: .leading) {
-            Button("Edit", action: vm.onTapEditButton)
-                .tint(appState.theme.accent)
+            Button("Edit") {
+                vm.onTapEditButton(event)
+            }
+            .tint(appState.theme.accent)
         }
         .swipeActions(edge: .trailing) {
             Button("Delete", role: .destructive) { vm.delete(event) }                

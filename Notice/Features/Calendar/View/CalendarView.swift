@@ -49,7 +49,7 @@ struct CalendarView: View {
             }
         }        
         .sheet(isPresented: $vm.isOpenEditorToCreate) {
-            CalendarFormView(defaultStartDate: vm.selectedDate)
+            CalendarFormView()
         }
         .onAppear {
             appState.onTapPlusButton = vm.onTapPlusButton
