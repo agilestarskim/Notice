@@ -36,8 +36,7 @@ struct GoalOnProgressView: View {
                         }
                         .scrollTargetLayout()
                     }
-                    .scrollTargetBehavior(.viewAligned)
-                    .frame(height: 150)
+                    .scrollTargetBehavior(.viewAligned)                    
                     .scrollIndicators(.hidden)
                 }
             }

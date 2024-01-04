@@ -14,7 +14,7 @@ struct GoalPendingView: View {
     var body: some View {
         VStack {
             ForEach(vm.goals) { goal in
-                PendingCardView()
+                PendingCardView(goal: goal)
             }
         }
     }

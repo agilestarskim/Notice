@@ -24,7 +24,8 @@ struct GoalView: View {
                     case .pending:
                         GoalPendingView()
                     }
-                }                 
+                }     
+                .scrollBounceBehavior(.basedOnSize)
                 .scrollIndicators(.hidden)
                 .padding(.horizontal, 20)
                 .safeAreaPadding(.bottom, 70)

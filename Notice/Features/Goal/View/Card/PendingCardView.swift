@@ -9,22 +9,25 @@ import SwiftUI
 
 struct PendingCardView: View {
     @Environment(AppState.self) private var appState
+    let goal: Goal
     
     var body: some View {
         VStack {
-            HStack {
-                Circle()
-                    .fill(appState.theme.secondary)
-                    .frame(width: 44, height: 44)
+            HStack(alignment: .top, spacing: 20) {
+                GoalImage
+                    .frame(height: 130)
+                    .aspectRatio(3/4, contentMode: .fit)
+                
                 VStack(alignment: .leading) {
-                    Text("Title")
+                    Text(goal.title)
+                        .font(.title3)
                         .bold()
-                        .foregroundStyle(appState.theme.primary)
-                    Text("This is the memo")
-                        .foregroundStyle(appState.theme.secondary)
-                    Text("종료시점부터 10일 경과")
-                        .foregroundStyle(appState.theme.secondary)
+                    Text(goal.memo)
+                        .lineLimit(1)
+                    Spacer()
+                    Text("종료: \(Format.shared.string(goal.endDate, style: .yyyyMMdd))")
                 }
+                .foregroundStyle(appState.theme.primary)
                 Spacer()
             }
             .padding()
@@ -59,5 +62,20 @@ struct PendingCardView: View {
         }
         .background(appState.theme.container)
         .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+    
+    var GoalImage: some View {
+        ZStack {
+            if let imageData = goal.image {
+                Image(uiImage: UIImage(data: imageData) ?? .init())
+                    .resizable()
+                    .aspectRatio(3/4, contentMode: .fill)
+            } else {
+                Image(uiImage: UIImage(resource: .test))
+                    .resizable()
+                    .aspectRatio(3/4, contentMode: .fill)
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }

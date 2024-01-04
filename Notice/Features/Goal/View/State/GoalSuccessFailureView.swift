@@ -11,7 +11,7 @@ struct GoalSuccessFailureView: View {
     @Environment(AppState.self) private var appState
     @EnvironmentObject private var vm: GoalViewModel
     
-    let columns = Array(repeating: GridItem(spacing: 10), count: 2)
+    let columns = Array(repeating: GridItem(.flexible(maximum: .infinity),spacing: 10), count: 2)
     
     var body: some View {
         Group {
