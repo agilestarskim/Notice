@@ -7,10 +7,8 @@
 
 import Foundation
 
-final class Format {
-    static let shared = Format()
-    
-    private lazy var formatter: DateFormatter = {
+extension DateFormatter {
+    static private let shared: DateFormatter = {
         let formatter = DateFormatter()
         
         formatter.locale = Locale.current
@@ -19,10 +17,10 @@ final class Format {
         return formatter
     }()
     
-    func string(_ date: Date, style formatStyle: NoticeFormatStyle) -> String {
+    static func string(_ date: Date, style formatStyle: NoticeFormatStyle) -> String {
         if date.isForever { return "-" }
-        formatter.dateFormat = formatStyle.rawValue
-        return formatter.string(from: date)
+        shared.dateFormat = formatStyle.rawValue
+        return shared.string(from: date)
     }
     
     enum NoticeFormatStyle: String {

@@ -11,26 +11,30 @@ import SwiftData
 @main
 struct NoticeApp: App {
     @State private var appState = AppState()
+    @StateObject private var calendarViewModel: CalendarViewModel
+    @StateObject private var todoViewModel: TodoViewModel
+    @StateObject private var goalViewModel: GoalViewModel
     
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Todo.self, Event.self, Goal.self
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+    init() {
+        let context = NoticeModelContainer.shared.mainContext
+        
+        let calendarViewModel = CalendarViewModel(context: context)
+        let todoViewModel = TodoViewModel(context: context)
+        let goalViewModel = GoalViewModel(context: context)
+        
+        self._calendarViewModel = StateObject(wrappedValue: calendarViewModel)
+        self._todoViewModel = StateObject(wrappedValue: todoViewModel)
+        self._goalViewModel = StateObject(wrappedValue: goalViewModel)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            MainView(context: sharedModelContainer.mainContext)
+            MainView()
                 .preferredColorScheme(.light)
-        }
-        .modelContainer(sharedModelContainer)
+        }        
         .environment(appState)
+        .environmentObject(calendarViewModel)
+        .environmentObject(todoViewModel)
+        .environmentObject(goalViewModel)
     }
 }

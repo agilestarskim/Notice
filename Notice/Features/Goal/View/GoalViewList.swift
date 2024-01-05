@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GoalView: View {
+struct GoalViewList: View {
     @Environment(AppState.self) private var appState
     @EnvironmentObject private var vm: GoalViewModel
     

@@ -9,18 +9,18 @@ import Foundation
 
 enum Tabs: CaseIterable {
     
-    case calendar, todo, goal, memo
+    case calendar, check, memo, stat
     
     var label: String {
         switch self {
         case .calendar:
             "Calendar"
-        case .todo:
-            "Todo"
-        case .goal:
-            "Goal"
+        case .check:
+            "Check"
         case .memo:
             "Memo"
+        case .stat:
+            "Stat"
         }
     }
     
@@ -28,12 +28,12 @@ enum Tabs: CaseIterable {
         switch self {
         case .calendar:
             "calendar"
-        case .todo:
+        case .check:
             "checklist.checked"
-        case .goal:
-            "target"
         case .memo:
             "book.pages"
+        case .stat:
+            "chart.bar.xaxis"
         }
     }
 }

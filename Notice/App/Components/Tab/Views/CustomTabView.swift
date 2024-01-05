@@ -14,10 +14,10 @@ struct CustomTabView: View {
     var body: some View {
         LazyVGrid(columns: columns, spacing: 0) {
             TabIcon(tab: .calendar)
-            TabIcon(tab: .todo)
+            TabIcon(tab: .check)
             PlusButton()
-            TabIcon(tab: .goal)
             TabIcon(tab: .memo)
+            TabIcon(tab: .data)
         }
         .padding(.horizontal, 10)
         .padding(.top, 10)

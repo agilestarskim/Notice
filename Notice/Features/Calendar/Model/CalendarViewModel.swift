@@ -18,12 +18,7 @@ final class CalendarViewModel: ObservableObject {
     
     private let context: ModelContext
     
-    let calendar: Calendar = {
-        var calendar = Calendar.current
-        calendar.locale = .current
-        calendar.timeZone = .current
-        return calendar
-    }()
+    let calendar: Calendar = Calendar.shared
     
     init(context: ModelContext) {
         self.context = context
