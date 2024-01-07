@@ -47,7 +47,7 @@ final class TodoManager: ObservableObject {
     }
     
     func create(_ todo: Todo) {
-        context.insert(todo)        
+        context.insert(todo)
         fetchTodos()
     }
     

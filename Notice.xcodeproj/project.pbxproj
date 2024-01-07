@@ -27,8 +27,10 @@
 		1F3771612B49001A00334065 /* NTPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3771602B49001A00334065 /* NTPicker.swift */; };
 		1F3E08362B4AD51B0092F7AF /* Bool+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */; };
 		1F3E08382B4AD95B0092F7AF /* TodoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08372B4AD95B0092F7AF /* TodoState.swift */; };
+		1F3E083A2B4ADFA60092F7AF /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08392B4ADFA60092F7AF /* Routine.swift */; };
+		1F3E083C2B4AEE360092F7AF /* PerformedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E083B2B4AEE360092F7AF /* PerformedDate.swift */; };
 		1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */; };
-		1F59FE762B483F040067BEA2 /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE752B483F040067BEA2 /* RoutineViewModel.swift */; };
+		1F59FE762B483F040067BEA2 /* RoutineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE752B483F040067BEA2 /* RoutineManager.swift */; };
 		1F59FE7A2B483F520067BEA2 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE792B483F520067BEA2 /* RoutineView.swift */; };
 		1F59FE7C2B483F5C0067BEA2 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE7B2B483F5C0067BEA2 /* GoalView.swift */; };
 		1F59FE8C2B4841600067BEA2 /* CheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE8B2B4841600067BEA2 /* CheckListView.swift */; };
@@ -111,8 +113,10 @@
 		1F3771602B49001A00334065 /* NTPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPicker.swift; sourceTree = "<group>"; };
 		1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Comparable.swift"; sourceTree = "<group>"; };
 		1F3E08372B4AD95B0092F7AF /* TodoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoState.swift; sourceTree = "<group>"; };
+		1F3E08392B4ADFA60092F7AF /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
+		1F3E083B2B4AEE360092F7AF /* PerformedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformedDate.swift; sourceTree = "<group>"; };
 		1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFormView.swift; sourceTree = "<group>"; };
-		1F59FE752B483F040067BEA2 /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
+		1F59FE752B483F040067BEA2 /* RoutineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineManager.swift; sourceTree = "<group>"; };
 		1F59FE792B483F520067BEA2 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		1F59FE7B2B483F5C0067BEA2 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
 		1F59FE8B2B4841600067BEA2 /* CheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListView.swift; sourceTree = "<group>"; };
@@ -284,7 +288,9 @@
 		1F59FE862B4840320067BEA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1F59FE752B483F040067BEA2 /* RoutineViewModel.swift */,
+				1F3E08392B4ADFA60092F7AF /* Routine.swift */,
+				1F3E083B2B4AEE360092F7AF /* PerformedDate.swift */,
+				1F59FE752B483F040067BEA2 /* RoutineManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -732,6 +738,7 @@
 				1F2566002B42C7E3000CD6CA /* GoalViewList.swift in Sources */,
 				1F638A7E2B32927E004D32C9 /* Dawn.swift in Sources */,
 				1F2565FD2B42BD39000CD6CA /* GoalViewModel.swift in Sources */,
+				1F3E083A2B4ADFA60092F7AF /* Routine.swift in Sources */,
 				1F638A6F2B329275004D32C9 /* CalendarView.swift in Sources */,
 				1F638A8B2B3292D5004D32C9 /* Tabs.swift in Sources */,
 				1F638A0C2B3291FA004D32C9 /* MainView.swift in Sources */,
@@ -743,7 +750,7 @@
 				1F638A6D2B329275004D32C9 /* MSInfinteMonthView.swift in Sources */,
 				1F59FE952B484A460067BEA2 /* CheckType.swift in Sources */,
 				1F2566102B42EB98000CD6CA /* GoalPendingView.swift in Sources */,
-				1F59FE762B483F040067BEA2 /* RoutineViewModel.swift in Sources */,
+				1F59FE762B483F040067BEA2 /* RoutineManager.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
 				1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */,
 				1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */,
@@ -760,6 +767,7 @@
 				1F638A6E2B329275004D32C9 /* CalendarFormView.swift in Sources */,
 				1F638A682B329275004D32C9 /* MSCalendar.swift in Sources */,
 				1F3771612B49001A00334065 /* NTPicker.swift in Sources */,
+				1F3E083C2B4AEE360092F7AF /* PerformedDate.swift in Sources */,
 				1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */,
 				1F2566022B42C9E3000CD6CA /* GoalViewMode.swift in Sources */,
 				1F1214342B37110700DB04CD /* TodoManager.swift in Sources */,
