@@ -1,18 +1,32 @@
 //
-//  TodoView.swift
+//  TodoListView.swift
 //  Notice
 //
-//  Created by 김민성 on 1/5/24.
+//  Created by 김민성 on 11/6/23.
 //
 
 import SwiftUI
+import SwiftData
 
 struct TodoView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @Environment(AppState.self) private var appState
+    @EnvironmentObject private var manager: TodoManager
+    
+    var body: some View {        
+        List {
+            ForEach(manager.todos) { todo in
+                TodoCellView(todo: todo)
+            }
+        }
+        .animation(.default, value: manager.todos)
+        .listRowSpacing(10)
+        .scrollContentBackground(.hidden)
+        .safeAreaPadding(.bottom, 70)
+        .sheet(isPresented: $manager.shouldOpenEditor) {
+            TodoFormView()
+        }
+        .onAppear {
+            appState.onTapPlusButton = manager.onTapPlusButton
+        }        
     }
-}
-
-#Preview {
-    TodoView()
 }

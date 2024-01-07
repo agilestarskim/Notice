@@ -8,29 +8,33 @@
 import SwiftUI
 
 struct CheckListView: View {
+    @Environment(AppState.self) private var appState
     @State private var checkType: CheckType = .todo
     
     var body: some View {
         NavigationStack {
             VStack {
-                Picker("Check Type", selection: $checkType) {
-                    ForEach(CheckType.allCases, id: \.self) { checkType in
-                        Text(checkType.rawValue)
-                            .tag(checkType)
-                    }
-                }
-                .pickerStyle(.segmented)
-                
+                NTPicker(
+                    $checkType,
+                    CheckType.allCases,
+                    theme: appState.theme
+                )
+                .padding(.horizontal)
+                .padding(.top)
                 switch checkType {
                 case .todo:
                     TodoView()
                 case .routine:
-                    RoutineView()
+                    List {
+                        RoutineView()
+                    }
                 case .goal:
-                    GoalView()
+                    List {
+                        GoalView()
+                    }                    
                 }
-            }
-            
+            } 
+            .background(appState.theme.background)
         }
     }
 }

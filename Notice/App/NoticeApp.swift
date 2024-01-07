@@ -12,18 +12,18 @@ import SwiftData
 struct NoticeApp: App {
     @State private var appState = AppState()
     @StateObject private var calendarViewModel: CalendarViewModel
-    @StateObject private var todoViewModel: TodoViewModel
+    @StateObject private var todoManager: TodoManager
     @StateObject private var goalViewModel: GoalViewModel
     
     init() {
-        let context = NoticeModelContainer.shared.mainContext
+        let context = NTModelContainer.shared.mainContext
         
         let calendarViewModel = CalendarViewModel(context: context)
-        let todoViewModel = TodoViewModel(context: context)
+        let todoManager = TodoManager(context: context)
         let goalViewModel = GoalViewModel(context: context)
         
         self._calendarViewModel = StateObject(wrappedValue: calendarViewModel)
-        self._todoViewModel = StateObject(wrappedValue: todoViewModel)
+        self._todoManager = StateObject(wrappedValue: todoManager)
         self._goalViewModel = StateObject(wrappedValue: goalViewModel)
     }
     
@@ -34,7 +34,7 @@ struct NoticeApp: App {
         }        
         .environment(appState)
         .environmentObject(calendarViewModel)
-        .environmentObject(todoViewModel)
+        .environmentObject(todoManager)
         .environmentObject(goalViewModel)
     }
 }

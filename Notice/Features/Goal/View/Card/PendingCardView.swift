@@ -25,7 +25,7 @@ struct PendingCardView: View {
                     Text(goal.memo)
                         .lineLimit(1)
                     Spacer()
-                    Text("종료: \(Format.shared.string(goal.endDate, style: .yyyyMMdd))")
+                    Text("종료: \(DateFormatter.string(goal.endDate, style: .yyyyMMdd))")
                 }
                 .foregroundStyle(appState.theme.primary)
                 Spacer()

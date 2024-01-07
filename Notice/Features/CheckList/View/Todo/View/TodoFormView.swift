@@ -10,7 +10,7 @@ import SwiftUI
 struct TodoFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: TodoViewModel
+    @EnvironmentObject private var manager: TodoManager
     
     @State private var title: String = ""
     @State private var memo: String = ""
@@ -131,7 +131,7 @@ struct TodoFormView: View {
     }
     
     private func setData() {
-        if let todo = vm.editingTodo, let subTodos = todo.subTodos {
+        if let todo = manager.editingTodo, let subTodos = todo.subTodos {
             self.title = todo.title
             self.memo = todo.memo
             self.date = todo.date
@@ -157,10 +157,10 @@ struct TodoFormView: View {
         
         let newTodo = Todo(title: title, memo: memo, date: date, flag: flag, subTodos: subTodos)
         
-        if vm.editingTodo == nil {
-            vm.create(newTodo)            
+        if manager.editingTodo == nil {
+            manager.create(newTodo)
         } else {
-            vm.update(newTodo)
+            manager.update(newTodo)
         }
         dismiss()        
     }

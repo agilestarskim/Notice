@@ -94,7 +94,7 @@ struct GoalFormView: View {
             Text("시작일")
             Spacer()
             if let goal = vm.editingGoal {
-                Text(Format.shared.string(goal.startDate, style: .yyyyMMdd))
+                Text(DateFormatter.string(goal.startDate, style: .yyyyMMdd))
             } else {
                 DatePicker(
                     "startDate",
@@ -128,7 +128,7 @@ struct GoalFormView: View {
             Text("종료일")
             Spacer()
             if let goal = vm.editingGoal {
-                Text(Format.shared.string(goal.endDate, style: .yyyyMMdd))
+                Text(DateFormatter.string(goal.endDate, style: .yyyyMMdd))
             } else if duration == .custom {
                 DatePicker(
                     "endDate",
@@ -138,7 +138,7 @@ struct GoalFormView: View {
                 .labelsHidden()
                 .colorInvert()
             } else {
-                Text(Format.shared.string(endDate, style: .yyyyMMdd))
+                Text(DateFormatter.string(endDate, style: .yyyyMMdd))
             }
         }
     }

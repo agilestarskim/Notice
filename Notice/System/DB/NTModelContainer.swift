@@ -7,7 +7,7 @@
 
 import SwiftData
 
-struct NoticeModelContainer {
+struct NTModelContainer {
     static let shared: ModelContainer = {
         let schema = Schema([
             Todo.self, Event.self, Goal.self

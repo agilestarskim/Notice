@@ -17,13 +17,13 @@ extension DateFormatter {
         return formatter
     }()
     
-    static func string(_ date: Date, style formatStyle: NoticeFormatStyle) -> String {
+    static func string(_ date: Date, style formatStyle: NTFormatStyle) -> String {
         if date.isForever { return "-" }
         shared.dateFormat = formatStyle.rawValue
         return shared.string(from: date)
     }
     
-    enum NoticeFormatStyle: String {
+    enum NTFormatStyle: String {
         case yyyyMM = "yyyy.MM"
         case yyyyMMdd = "yyyy.MM.dd"
         case yyyyMMddE = "yyyy.MM.dd (E)"

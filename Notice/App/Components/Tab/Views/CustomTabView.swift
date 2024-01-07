@@ -17,7 +17,7 @@ struct CustomTabView: View {
             TabIcon(tab: .check)
             PlusButton()
             TabIcon(tab: .memo)
-            TabIcon(tab: .data)
+            TabIcon(tab: .stat)
         }
         .padding(.horizontal, 10)
         .padding(.top, 10)

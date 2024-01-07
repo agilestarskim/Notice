@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodoCellView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: TodoViewModel
+    @EnvironmentObject private var manager: TodoManager
     @State private var isOpenSubTodoToggle: Bool = true
     
     let todo: Todo
@@ -27,32 +27,33 @@ struct TodoCellView: View {
         }
         .listRowSeparator(.hidden)
         .listRowBackground(appState.theme.container)        
-        .sheet(item: $vm.editingTodo) { _ in
+        .sheet(item: $manager.editingTodo) { _ in
             TodoFormView()
         }
         .swipeActions(edge: .leading) {
             Button("Edit") {
-                vm.onTapEditButton(todo: self.todo)
+                manager.onTapEditButton(todo: self.todo)
             }
             .tint(appState.theme.accent)
         }
         .swipeActions(edge: .trailing) {
             Button("Delete", role: .destructive) {
-                vm.delete(self.todo)
+                manager.delete(self.todo)
             }
         }
     }
     
     private var TodoDoneButton: some View {
         Button {
-            vm.toggleDone(todo)
+            manager.toggleDone(todo)
         } label: {
-            vm.doneButtonImage(todo.isDone)
+            manager.doneButtonImage(todo.isDone)
                 .symbolEffect(.bounce, value: todo.isDone)
                 .font(.title)
         }
         .buttonStyle(.plain)
         .foregroundStyle(todo.isDone ? appState.theme.accent : appState.theme.secondary)
+        .id(todo.id)
     }
     
     @ViewBuilder
@@ -69,7 +70,7 @@ struct TodoCellView: View {
             }
             
             HStack {
-                Text(Format.shared.string(todo.date, style: .MdE) + " " + Format.shared.string(todo.date, style: .hmma))
+                Text(DateFormatter.string(todo.date, style: .MdE) + " " + DateFormatter.string(todo.date, style: .hmma))
                     .foregroundStyle(appState.theme.secondary)
                     .font(.footnote)
                 
@@ -78,6 +79,13 @@ struct TodoCellView: View {
                         .foregroundStyle(appState.theme.accent)
                         .imageScale(.small)
                 }
+                
+                let state = manager.todoState(todo)
+                if state == .today {
+                    TodayBadge
+                } else if state == .over {
+                    OverBadge
+                }                
             }
         }
     }
@@ -103,9 +111,9 @@ struct TodoCellView: View {
             ForEach(subTodos) { subTodo in
                 HStack {
                     Button {
-                        vm.toggleSubTodoDone(subTodo, of: self.todo)
+                        manager.toggleSubTodoDone(subTodo, of: self.todo)
                     } label: {
-                        vm.doneButtonImage(subTodo.isDone)
+                        manager.doneButtonImage(subTodo.isDone)
                     }
                     .buttonStyle(.plain)
                     .foregroundStyle(subTodo.isDone ? appState.theme.accent : appState.theme.secondary)
@@ -115,8 +123,29 @@ struct TodoCellView: View {
                     Text(subTodo.title)
                         .foregroundStyle(appState.theme.primary)
                 }
-                
             }
         }
+    }
+    
+    private var TodayBadge: some View {
+        Text("Today")
+            .bold()
+            .foregroundStyle(.white)
+            .font(.caption2)
+            .padding(.horizontal, 5)
+            .padding(.vertical, 3)
+            .background(.blue.opacity(0.3))
+            .clipShape(.capsule)
+    }
+    
+    private var OverBadge: some View {
+        Text("Over")
+            .bold()
+            .foregroundStyle(.white)
+            .font(.caption2)
+            .padding(.horizontal, 5)
+            .padding(.vertical, 3)
+            .background(.red.opacity(0.3))
+            .clipShape(.capsule)
     }
 }

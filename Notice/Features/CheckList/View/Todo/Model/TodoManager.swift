@@ -8,20 +8,14 @@
 import SwiftData
 import SwiftUI
 
-final class TodoViewModel: ObservableObject {        
+final class TodoManager: ObservableObject {        
     @Published var todos: [Todo] = []
-    @Published var filter: TodoFilter = .all
-    @Published var isOpenEditorToCreate = false
+    @Published var shouldShowDone = true
+    @Published var shouldOpenEditor = false
     @Published var editingTodo: Todo?
     
     private let context: ModelContext
-    
-    let calendar: Calendar = {
-        var calendar = Calendar.current
-        calendar.locale = .current
-        calendar.timeZone = .current
-        return calendar
-    }()
+    private let calendar: Calendar = Calendar.shared
     
     init(context: ModelContext) {
         self.context = context
@@ -29,7 +23,11 @@ final class TodoViewModel: ObservableObject {
     }
     
     func fetchTodos() {
-        let sort = [SortDescriptor(\Todo.date)]
+        let sort = [
+            SortDescriptor(\Todo.isDone),
+            SortDescriptor(\Todo.flag, order: .reverse),
+            SortDescriptor(\Todo.date)
+        ]
         
         let fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: sort)
         
@@ -41,7 +39,7 @@ final class TodoViewModel: ObservableObject {
     }
     
     func onTapPlusButton() {
-        isOpenEditorToCreate = true        
+        shouldOpenEditor = true        
     }
     
     func onTapEditButton(todo: Todo) {
@@ -93,6 +91,16 @@ final class TodoViewModel: ObservableObject {
         }
     }
     
+    func todoState(_ todo: Todo) -> TodoState {
+        if calendar.isDate(todo.date, inSameDayAs: .now) {
+            return .today
+        } else if todo.date < .now && !todo.isDone {
+            return .over
+        } else {
+            return .none
+        }
+    }
+    
     func doneButtonImage(_ isDone: Bool) -> Image {
         if isDone {
             return Image(systemName: "circle.circle.fill")
@@ -102,24 +110,13 @@ final class TodoViewModel: ObservableObject {
     }
     
     private var predicate: Predicate<Todo> {
-        switch filter {
-        case .all:
+        if shouldShowDone {
+            return #Predicate<Todo> { todo in
+                true
+            }
+        } else {
             return #Predicate<Todo> { todo in
                 !todo.isDone
-            }
-        case .today:
-            let startOfDay = calendar.startOfDay(for: .now)
-            let endOfDay = calendar.date(bySettingHour: 23, minute: 59, second: 59, of: .now) ?? .distantFuture
-            return #Predicate<Todo> { todo in
-                startOfDay <= todo.date && todo.date <= endOfDay && !todo.isDone
-            }
-        case .done:
-            return #Predicate<Todo> { todo in
-                todo.isDone
-            }
-        case .archive:
-            return #Predicate<Todo> { todo in
-                false
             }
         }
     }
@@ -130,4 +127,3 @@ final class TodoViewModel: ObservableObject {
         }
     }
 }
-
