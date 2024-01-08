@@ -14,27 +14,34 @@ struct CheckListView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                NTPicker(
-                    $checkType,
-                    CheckType.allCases,
-                    theme: appState.theme
-                )
-                .padding(.horizontal)
-                .padding(.top)
-                switch checkType {
-                case .todo:
-                    TodoView()
-                case .routine:
-                    List {
-                        RoutineView()
-                    }
-                case .goal:
-                    List {
-                        GoalView()
-                    }                    
-                }
-            } 
+                TopPicker
+                CheckList
+            }
             .background(appState.theme.background)
+        }
+    }
+    
+    var TopPicker: some View {
+        NTPicker(
+            $checkType,
+            CheckType.allCases,
+            theme: appState.theme
+        )
+        .padding(.horizontal)
+        .padding(.top)
+    }
+    
+    @ViewBuilder
+    var CheckList: some View {
+        switch checkType {
+        case .todo:
+            TodoView()
+        case .routine:
+            RoutineView()            
+        case .goal:
+            List {
+                GoalView()
+            }
         }
     }
 }

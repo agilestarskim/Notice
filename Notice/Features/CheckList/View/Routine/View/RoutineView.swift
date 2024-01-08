@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct RoutineView: View {
+    @Environment(AppState.self) private var appState
+    @EnvironmentObject private var manager: RoutineManager
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(manager.routines) { routine in
+                RoutineCellView(routine: routine)
+            }
+        }
+        .animation(.default, value: manager.routines)
+        .listRowSpacing(10)
+        .scrollContentBackground(.hidden)
+        .safeAreaPadding(.bottom, 70)
+        .sheet(isPresented: $manager.shouldOpenEditor) {
+            RoutineFormView()
+        }
+        .onAppear {
+            appState.onTapPlusButton = manager.onTapPlusButton
+        }
     }
 }
 

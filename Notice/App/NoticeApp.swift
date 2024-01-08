@@ -13,6 +13,7 @@ struct NoticeApp: App {
     @State private var appState = AppState()
     @StateObject private var calendarViewModel: CalendarViewModel
     @StateObject private var todoManager: TodoManager
+    @StateObject private var routineManager: RoutineManager
     @StateObject private var goalViewModel: GoalViewModel
     
     init() {
@@ -20,10 +21,12 @@ struct NoticeApp: App {
         
         let calendarViewModel = CalendarViewModel(context: context)
         let todoManager = TodoManager(context: context)
+        let routineManager = RoutineManager(context: context)
         let goalViewModel = GoalViewModel(context: context)
         
         self._calendarViewModel = StateObject(wrappedValue: calendarViewModel)
         self._todoManager = StateObject(wrappedValue: todoManager)
+        self._routineManager = StateObject(wrappedValue: routineManager)
         self._goalViewModel = StateObject(wrappedValue: goalViewModel)
     }
     
@@ -35,6 +38,7 @@ struct NoticeApp: App {
         .environment(appState)
         .environmentObject(calendarViewModel)
         .environmentObject(todoManager)
+        .environmentObject(routineManager)
         .environmentObject(goalViewModel)
     }
 }

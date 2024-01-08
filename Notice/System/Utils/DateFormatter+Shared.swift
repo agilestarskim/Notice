@@ -29,5 +29,7 @@ extension DateFormatter {
         case yyyyMMddE = "yyyy.MM.dd (E)"
         case MdE = "M.d (E)"
         case hmma = "h:mm a"
+        
+        case performedDate = "yyMMdd"
     }
 }

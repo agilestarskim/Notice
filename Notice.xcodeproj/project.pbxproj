@@ -24,6 +24,9 @@
 		1F2566122B42F13A000CD6CA /* CollectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566112B42F13A000CD6CA /* CollectionCardView.swift */; };
 		1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566132B42F145000CD6CA /* LaneCardView.swift */; };
 		1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566192B42FA87000CD6CA /* PendingCardView.swift */; };
+		1F2D97152B4C193E0088F030 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97142B4C193E0088F030 /* RoutineFormView.swift */; };
+		1F2D97172B4C1F4A0088F030 /* RoutineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97162B4C1F4A0088F030 /* RoutineCellView.swift */; };
+		1F2D97192B4C24CC0088F030 /* GrassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97182B4C24CC0088F030 /* GrassView.swift */; };
 		1F3771612B49001A00334065 /* NTPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3771602B49001A00334065 /* NTPicker.swift */; };
 		1F3E08362B4AD51B0092F7AF /* Bool+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */; };
 		1F3E08382B4AD95B0092F7AF /* TodoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08372B4AD95B0092F7AF /* TodoState.swift */; };
@@ -110,6 +113,9 @@
 		1F2566112B42F13A000CD6CA /* CollectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCardView.swift; sourceTree = "<group>"; };
 		1F2566132B42F145000CD6CA /* LaneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaneCardView.swift; sourceTree = "<group>"; };
 		1F2566192B42FA87000CD6CA /* PendingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCardView.swift; sourceTree = "<group>"; };
+		1F2D97142B4C193E0088F030 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
+		1F2D97162B4C1F4A0088F030 /* RoutineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCellView.swift; sourceTree = "<group>"; };
+		1F2D97182B4C24CC0088F030 /* GrassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassView.swift; sourceTree = "<group>"; };
 		1F3771602B49001A00334065 /* NTPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPicker.swift; sourceTree = "<group>"; };
 		1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Comparable.swift"; sourceTree = "<group>"; };
 		1F3E08372B4AD95B0092F7AF /* TodoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoState.swift; sourceTree = "<group>"; };
@@ -281,6 +287,9 @@
 			isa = PBXGroup;
 			children = (
 				1F59FE792B483F520067BEA2 /* RoutineView.swift */,
+				1F2D97142B4C193E0088F030 /* RoutineFormView.swift */,
+				1F2D97162B4C1F4A0088F030 /* RoutineCellView.swift */,
+				1F2D97182B4C24CC0088F030 /* GrassView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -730,8 +739,10 @@
 				1F638A712B329275004D32C9 /* DateFormatter+Shared.swift in Sources */,
 				1F59FE9A2B484DE30067BEA2 /* Date+Forever.swift in Sources */,
 				1F3E08362B4AD51B0092F7AF /* Bool+Comparable.swift in Sources */,
+				1F2D97172B4C1F4A0088F030 /* RoutineCellView.swift in Sources */,
 				1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */,
 				1F638A8E2B3292D5004D32C9 /* MenuView.swift in Sources */,
+				1F2D97192B4C24CC0088F030 /* GrassView.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
 				1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */,
@@ -752,6 +763,7 @@
 				1F2566102B42EB98000CD6CA /* GoalPendingView.swift in Sources */,
 				1F59FE762B483F040067BEA2 /* RoutineManager.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
+				1F2D97152B4C193E0088F030 /* RoutineFormView.swift in Sources */,
 				1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */,
 				1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */,
 				1F59FE8F2B48440A0067BEA2 /* StatisticsView.swift in Sources */,

@@ -11,14 +11,18 @@ import SwiftData
 @Model
 final class Routine {
     var title: String
+    var startDate: Date
     
     @Relationship(deleteRule: .cascade)
     var performedDates: [PerformedDate]?
     
-    init(title: String = "", performedDates: [PerformedDate]? = nil) {
+    init(
+        title: String = "",
+        startDate: Date = .now,
+        performedDates: [PerformedDate]? = nil
+    ) {
         self.title = title
+        self.startDate = startDate
         self.performedDates = performedDates
     }
 }
-
-
