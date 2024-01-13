@@ -8,7 +8,6 @@
 import Foundation
 
 enum Tabs: CaseIterable {
-    
     case calendar, check, memo, stat
     
     var label: String {

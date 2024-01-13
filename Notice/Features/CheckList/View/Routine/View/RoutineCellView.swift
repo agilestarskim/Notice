@@ -26,7 +26,7 @@ struct RoutineCellView: View {
                         Text("루틴 시작: \(DateFormatter.string(routine.startDate, style: .yyyyMMdd))")
                             .font(.footnote)
                             .foregroundStyle(appState.theme.secondary)
-                        Text("\(manager.daysAgo(from: routine.startDate))일 경과")
+                        Text("\(manager.getDay(from: routine.startDate))일차")
                             .font(.footnote)
                             .fontWeight(.semibold)
                             .foregroundStyle(appState.theme.primary)

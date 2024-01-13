@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CustomTabView: View {
     @Environment(AppState.self) private var appState
-    
     let columns = Array(repeating: GridItem(spacing: 0, alignment: .bottom), count: 5)
+    
     var body: some View {
         LazyVGrid(columns: columns, spacing: 0) {
             TabIcon(tab: .calendar)
@@ -21,13 +21,13 @@ struct CustomTabView: View {
         }
         .padding(.horizontal, 10)
         .padding(.top, 10)
-        .frame(height: 56)
+        .frame(height: appState.tabHeight)
         .background(appState.theme.container)
     }
     
     func PlusButton() -> some View {
         Button {
-            appState.onTapPlusButton()
+            appState.onTapPlusButton?()
         } label: {
             Image(systemName: "plus")
                 .font(.system(size: 20, weight: .bold, design: .rounded))

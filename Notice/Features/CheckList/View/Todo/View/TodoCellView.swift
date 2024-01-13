@@ -40,7 +40,7 @@ struct TodoCellView: View {
             Button("Delete", role: .destructive) {
                 manager.delete(self.todo)
             }
-        }
+        }        
     }
     
     private var TodoDoneButton: some View {

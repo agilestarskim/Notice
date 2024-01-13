@@ -9,28 +9,27 @@ import SwiftUI
 
 struct CheckListView: View {
     @Environment(AppState.self) private var appState
-    @StateObject private var manager = PickerManager()
+    @StateObject private var manager = CheckPickerManger()
     
     var body: some View {
         NavigationStack {
             VStack {
                 CheckList
-                TopPicker
+                CheckPicker
             }
             .background(appState.theme.background)
             .safeAreaPadding(.bottom, appState.bottomSafeAreaPadding)
         }
     }
     
-    var TopPicker: some View {
+    var CheckPicker: some View {
         NTPicker(
-            $manager.checkTab,
+            $manager.checkTab.animation(.easeInOut),
             CheckTab.allCases,
             theme: appState.theme
         ) { oldValue, newValue in
             manager.setTabDirection(prevTab: oldValue, currentTab: newValue)
         }
-        
         .padding(.horizontal)
     }
         
@@ -45,16 +44,13 @@ struct CheckListView: View {
                 GoalView()
             }
         }
+        .animation(.easeInOut, value: manager.goingRight)
         .transition(
             .asymmetric(
                 insertion: .move(edge: manager.goingRight ? .trailing : .leading),
                 removal: .move(edge: manager.goingRight ? .leading : .trailing)
             )
         )
-        .animation(.bouncy, value: manager.goingRight)
+        
     }
-}
-
-#Preview {
-    CheckListView()
 }

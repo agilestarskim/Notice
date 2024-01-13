@@ -22,6 +22,4 @@ enum CheckTab: String, CaseIterable {
             3
         }
     }
-    
-    
 }

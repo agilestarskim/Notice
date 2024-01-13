@@ -35,23 +35,18 @@ struct NTPicker<SelectionValue, Data>: View where
             ForEach(data, id: \.self) { element in
                 if selection == element {
                     Button {
-                        withAnimation(.bouncy) {
-                            selection = element
-                        }
+                        selection = element
                     } label: {
                         Text(element.rawValue)
                             .foregroundStyle(theme.primary)
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(theme.container)
-                    .transition(.scale)
+                    .tint(theme.container)                    
                 } else {
                     Button {
                         onChange?(selection, element)
-                        withAnimation(.bouncy) {
-                            selection = element
-                        }                        
+                        selection = element
                     } label: {
                         Text(element.rawValue)
                             .foregroundStyle(theme.primary)

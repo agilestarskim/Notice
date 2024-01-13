@@ -81,8 +81,12 @@ final class RoutineManager: ObservableObject {
         }
     }
     
-    func daysAgo(from date: Date) -> Int {                      
-        return Calendar.shared.dateComponents([.day], from: date.stripTime(), to: .now.stripTime()).day ?? -1
+    func getDay(from date: Date) -> Int {                      
+        (Calendar.shared.dateComponents(
+            [.day],
+            from: date.stripTime(),
+            to: .now.stripTime()
+        ).day ?? -1) + 1
     }
     
     func getHexCode(color: Color) -> String {

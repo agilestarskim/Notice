@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class PickerManager: ObservableObject {
+final class CheckPickerManger: ObservableObject {
     @Published var checkTab: CheckTab = .todo
     @Published var goingRight: Bool = false
     

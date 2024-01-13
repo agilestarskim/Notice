@@ -14,7 +14,7 @@ final class AppState {
     var theme: Theme = Dawn()
     
     @ObservationIgnored
-    var onTapPlusButton: () -> Void = {}
+    var onTapPlusButton: (() -> Void)?
     
     @ObservationIgnored
     let tabHeight = 56.0

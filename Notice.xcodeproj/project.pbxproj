@@ -11,7 +11,8 @@
 		1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0722032B32D7C3008B80A0 /* EventCategory.swift */; };
 		1F12142F2B37106000DB04CD /* SubTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F12142E2B37106000DB04CD /* SubTodo.swift */; };
 		1F1214342B37110700DB04CD /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1214332B37110700DB04CD /* TodoManager.swift */; };
-		1F15DB692B52248A00ECDEC7 /* PickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F15DB682B52248A00ECDEC7 /* PickerManager.swift */; };
+		1F15DB692B52248A00ECDEC7 /* CheckPickerManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F15DB682B52248A00ECDEC7 /* CheckPickerManger.swift */; };
+		1F15DB6F2B523B4600ECDEC7 /* TodoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F15DB6E2B523B4600ECDEC7 /* TodoFilter.swift */; };
 		1F24EF382B3680C700FA6B25 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */; };
 		1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565F72B42B6CC000CD6CA /* Goal.swift */; };
 		1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */; };
@@ -102,7 +103,8 @@
 		1F0722032B32D7C3008B80A0 /* EventCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
 		1F12142E2B37106000DB04CD /* SubTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTodo.swift; sourceTree = "<group>"; };
 		1F1214332B37110700DB04CD /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
-		1F15DB682B52248A00ECDEC7 /* PickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerManager.swift; sourceTree = "<group>"; };
+		1F15DB682B52248A00ECDEC7 /* CheckPickerManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPickerManger.swift; sourceTree = "<group>"; };
+		1F15DB6E2B523B4600ECDEC7 /* TodoFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFilter.swift; sourceTree = "<group>"; };
 		1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		1F2565F72B42B6CC000CD6CA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFilter.swift; sourceTree = "<group>"; };
@@ -201,6 +203,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F15DB6A2B522DA600ECDEC7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1F15DB6C2B522DC800ECDEC7 /* Components */,
+				1F15DB6B2B522DAE00ECDEC7 /* Extensions */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1F15DB6B2B522DAE00ECDEC7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1F638A532B329275004D32C9 /* DateFormatter+Shared.swift */,
+				1F59FE972B484D3D0067BEA2 /* Calendar+Shared.swift */,
+				1F59FE992B484DE30067BEA2 /* Date+Forever.swift */,
+				1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */,
+				1F6018342B4D7B79001A716F /* Color+HexConversion.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1F15DB6C2B522DC800ECDEC7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1F15DB6D2B52307500ECDEC7 /* Picker */,
+				1F638A832B3292D5004D32C9 /* Tab */,
+				1F638A892B3292D5004D32C9 /* Menu */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1F15DB6D2B52307500ECDEC7 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				1F3771602B49001A00334065 /* NTPicker.swift */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
 		1F2565FE2B42C7D8000CD6CA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,14 +270,6 @@
 				1F2566192B42FA87000CD6CA /* PendingCardView.swift */,
 			);
 			path = Card;
-			sourceTree = "<group>";
-		};
-		1F37715F2B48FFFB00334065 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				1F3771602B49001A00334065 /* NTPicker.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		1F59FE802B48400A0067BEA2 /* Todo */ = {
@@ -282,6 +315,7 @@
 				1F0722012B32D42A008B80A0 /* Todo.swift */,
 				1F12142E2B37106000DB04CD /* SubTodo.swift */,
 				1F3E08372B4AD95B0092F7AF /* TodoState.swift */,
+				1F15DB6E2B523B4600ECDEC7 /* TodoFilter.swift */,
 				1F1214332B37110700DB04CD /* TodoManager.swift */,
 			);
 			path = Model;
@@ -344,7 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				1F59FE942B484A460067BEA2 /* CheckTab.swift */,
-				1F15DB682B52248A00ECDEC7 /* PickerManager.swift */,
+				1F15DB682B52248A00ECDEC7 /* CheckPickerManger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,7 +394,6 @@
 		1F59FE902B48459A0067BEA2 /* System */ = {
 			isa = PBXGroup;
 			children = (
-				1F59FE962B484D180067BEA2 /* Utils */,
 				1F59FE912B4846190067BEA2 /* DB */,
 			);
 			path = System;
@@ -372,18 +405,6 @@
 				1F59FE922B48463A0067BEA2 /* NTModelContainer.swift */,
 			);
 			path = DB;
-			sourceTree = "<group>";
-		};
-		1F59FE962B484D180067BEA2 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				1F638A532B329275004D32C9 /* DateFormatter+Shared.swift */,
-				1F59FE972B484D3D0067BEA2 /* Calendar+Shared.swift */,
-				1F59FE992B484DE30067BEA2 /* Date+Forever.swift */,
-				1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */,
-				1F6018342B4D7B79001A716F /* Color+HexConversion.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		1F59FE9B2B484EE70067BEA2 /* Utils */ = {
@@ -419,8 +440,9 @@
 		1F638A082B3291FA004D32C9 /* Notice */ = {
 			isa = PBXGroup;
 			children = (
-				1F59FE902B48459A0067BEA2 /* System */,
 				1F638A812B329287004D32C9 /* App */,
+				1F15DB6A2B522DA600ECDEC7 /* Shared */,
+				1F59FE902B48459A0067BEA2 /* System */,
 				1F638A7A2B32927E004D32C9 /* Theme */,
 				1F638A3B2B329275004D32C9 /* Features */,
 				1F638A0F2B3291FB004D32C9 /* Assets.xcassets */,
@@ -541,7 +563,6 @@
 		1F638A7A2B32927E004D32C9 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				1F37715F2B48FFFB00334065 /* Components */,
 				1F638A7D2B32927E004D32C9 /* Theme.swift */,
 				1F638A7B2B32927E004D32C9 /* Dawn.swift */,
 				1F638A7C2B32927E004D32C9 /* Forest.swift */,
@@ -552,21 +573,11 @@
 		1F638A812B329287004D32C9 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				1F638A822B3292D5004D32C9 /* Components */,
 				1F638A092B3291FA004D32C9 /* NoticeApp.swift */,
 				1F638A0B2B3291FA004D32C9 /* MainView.swift */,
 				1F638A8F2B3292DC004D32C9 /* AppState.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		1F638A822B3292D5004D32C9 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				1F638A832B3292D5004D32C9 /* Tab */,
-				1F638A892B3292D5004D32C9 /* Menu */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		1F638A832B3292D5004D32C9 /* Tab */ = {
@@ -753,7 +764,7 @@
 				1F2D97192B4C24CC0088F030 /* GrassView.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
-				1F15DB692B52248A00ECDEC7 /* PickerManager.swift in Sources */,
+				1F15DB692B52248A00ECDEC7 /* CheckPickerManger.swift in Sources */,
 				1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */,
 				1F2566002B42C7E3000CD6CA /* GoalViewList.swift in Sources */,
 				1F638A7E2B32927E004D32C9 /* Dawn.swift in Sources */,
@@ -769,6 +780,7 @@
 				1F59FE7C2B483F5C0067BEA2 /* GoalView.swift in Sources */,
 				1F638A6D2B329275004D32C9 /* MSInfinteMonthView.swift in Sources */,
 				1F59FE952B484A460067BEA2 /* CheckTab.swift in Sources */,
+				1F15DB6F2B523B4600ECDEC7 /* TodoFilter.swift in Sources */,
 				1F2566102B42EB98000CD6CA /* GoalPendingView.swift in Sources */,
 				1F59FE762B483F040067BEA2 /* RoutineManager.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,

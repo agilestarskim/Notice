@@ -10,12 +10,17 @@ import SwiftUI
 
 final class TodoManager: ObservableObject {        
     @Published var todos: [Todo] = []
-    @Published var shouldShowDone = true
+    @Published var todoFilter: TodoFilter = .today
+    @Published var goingRight: Bool = false
     @Published var shouldOpenEditor = false
     @Published var editingTodo: Todo?
     
     private let context: ModelContext
     private let calendar: Calendar = Calendar.shared
+    
+    var todayTodos: [Todo] {
+        todos.filter { calendar.isDateInToday($0.date) }
+    }
     
     init(context: ModelContext) {
         self.context = context
@@ -29,7 +34,7 @@ final class TodoManager: ObservableObject {
             SortDescriptor(\Todo.date)
         ]
         
-        let fetchDescriptor = FetchDescriptor(predicate: predicate, sortBy: sort)
+        let fetchDescriptor = FetchDescriptor(sortBy: sort)
         
         do {
             self.todos = try context.fetch(fetchDescriptor)
@@ -44,6 +49,14 @@ final class TodoManager: ObservableObject {
     
     func onTapEditButton(todo: Todo) {
         editingTodo = todo
+    }
+    
+    func setTabDirection(prevTab: TodoFilter, currentTab: TodoFilter) {
+        if prevTab.index - currentTab.index < 0 {
+            self.goingRight = true
+        } else {
+            self.goingRight = false
+        }
     }
     
     func create(_ todo: Todo) {
@@ -109,17 +122,7 @@ final class TodoManager: ObservableObject {
         }
     }
     
-    private var predicate: Predicate<Todo> {
-        if shouldShowDone {
-            return #Predicate<Todo> { todo in
-                true
-            }
-        } else {
-            return #Predicate<Todo> { todo in
-                !todo.isDone
-            }
-        }
-    }
+    
     
     private func slowMotion(_ excute: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
