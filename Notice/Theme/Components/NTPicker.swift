@@ -7,19 +7,27 @@
 
 import SwiftUI
 
-struct NTPicker<SelectionValue: Hashable, Data: RandomAccessCollection>: View where Data.Element == SelectionValue {
+struct NTPicker<SelectionValue, Data>: View where
+    SelectionValue: Hashable & RawRepresentable,
+    SelectionValue.RawValue: StringProtocol,
+    Data: RandomAccessCollection,
+    Data.Element == SelectionValue
+{
     @Binding var selection: SelectionValue
     let data: Data
     let theme: Theme
+    let onChange: ((SelectionValue, SelectionValue) -> Void)?
     
     init(
         _ selection: Binding<SelectionValue>,
         _ data: Data,
-        theme: Theme
+        theme: Theme,
+        onChange: ((SelectionValue, SelectionValue) -> Void)? = nil
     ) {
         self._selection = selection
         self.data = data
         self.theme = theme
+        self.onChange = onChange
     }
     
     var body: some View {
@@ -31,7 +39,7 @@ struct NTPicker<SelectionValue: Hashable, Data: RandomAccessCollection>: View wh
                             selection = element
                         }
                     } label: {
-                        Text(String(describing: element))
+                        Text(element.rawValue)
                             .foregroundStyle(theme.primary)
                             .frame(maxWidth: .infinity)
                     }
@@ -40,16 +48,16 @@ struct NTPicker<SelectionValue: Hashable, Data: RandomAccessCollection>: View wh
                     .transition(.scale)
                 } else {
                     Button {
+                        onChange?(selection, element)
                         withAnimation(.bouncy) {
                             selection = element
-                        }
+                        }                        
                     } label: {
-                        Text(String(describing: element))
+                        Text(element.rawValue)
                             .foregroundStyle(theme.primary)
                             .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(.bordered)
-                    
+                    .buttonStyle(.bordered)                    
                 }
             }
         }

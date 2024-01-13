@@ -9,40 +9,49 @@ import SwiftUI
 
 struct CheckListView: View {
     @Environment(AppState.self) private var appState
-    @State private var checkType: CheckType = .todo
+    @StateObject private var manager = PickerManager()
     
     var body: some View {
         NavigationStack {
             VStack {
-                TopPicker
                 CheckList
+                TopPicker
             }
             .background(appState.theme.background)
+            .safeAreaPadding(.bottom, appState.bottomSafeAreaPadding)
         }
     }
     
     var TopPicker: some View {
         NTPicker(
-            $checkType,
-            CheckType.allCases,
+            $manager.checkTab,
+            CheckTab.allCases,
             theme: appState.theme
-        )
+        ) { oldValue, newValue in
+            manager.setTabDirection(prevTab: oldValue, currentTab: newValue)
+        }
+        
         .padding(.horizontal)
-        .padding(.top)
     }
-    
-    @ViewBuilder
+        
     var CheckList: some View {
-        switch checkType {
-        case .todo:
-            TodoView()
-        case .routine:
-            RoutineView()            
-        case .goal:
-            List {
+        Group {
+            switch manager.checkTab {
+            case .todo:
+                TodoView()
+            case .routine:
+                RoutineView()
+            case .goal:
                 GoalView()
             }
         }
+        .transition(
+            .asymmetric(
+                insertion: .move(edge: manager.goingRight ? .trailing : .leading),
+                removal: .move(edge: manager.goingRight ? .leading : .trailing)
+            )
+        )
+        .animation(.bouncy, value: manager.goingRight)
     }
 }
 

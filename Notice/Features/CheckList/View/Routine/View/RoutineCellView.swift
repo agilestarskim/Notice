@@ -49,12 +49,12 @@ struct RoutineCellView: View {
                 .foregroundStyle(isChecked ? appState.theme.accent : appState.theme.secondary)
                 .id(routine.id)                
             }
-            GrassView(performedDates, row: 4, col: 15, cellColor: .green)
+            GrassView(performedDates, row: 4, col: 15, cellColor: manager.getColor(hex: routine.color))
         }
         .listRowSeparator(.hidden)
         .listRowBackground(appState.theme.container)
         .sheet(item: $manager.editingRoutine) { _ in
-            TodoFormView()
+            RoutineFormView()
         }
         .swipeActions(edge: .leading) {
             Button("Edit") {

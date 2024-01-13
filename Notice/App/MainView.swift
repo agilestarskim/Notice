@@ -22,7 +22,7 @@ struct MainView: View {
             case .stat:
                 StatisticsView()
             }
-        }
+        }        
         .safeAreaInset(edge: .bottom) {
             CustomTabView()
         }

@@ -63,13 +63,15 @@ struct RoutineFormView: View {
     private func setData() {
         if let routine = manager.editingRoutine {
             self.title = routine.title
+            self.color = manager.getColor(hex: routine.color)
         }
     }
     
     private func done() {
         if title.isEmpty { return }
-        
-        let newRoutine = Routine(title: title, startDate: .now, performedDates: [])
+        let hexCode = manager.getHexCode(color: color)
+        let performedDates = manager.editingRoutine?.performedDates ?? []
+        let newRoutine = Routine(title: title, startDate: .now, color: hexCode, performedDates: performedDates)
         
         if manager.editingRoutine == nil {
             manager.create(newRoutine)

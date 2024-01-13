@@ -20,8 +20,7 @@ struct TodoView: View {
         }
         .animation(.default, value: manager.todos)
         .listRowSpacing(10)
-        .scrollContentBackground(.hidden)
-        .safeAreaPadding(.bottom, 70)
+        .scrollContentBackground(.hidden)        
         .sheet(isPresented: $manager.shouldOpenEditor) {
             TodoFormView()
         }

@@ -42,8 +42,8 @@ struct CalendarDetailView: View {
         }
         .listRowSpacing(10)
         .listStyle(.grouped)
-        .scrollContentBackground(.hidden)        
-        .safeAreaPadding(.bottom, 70)
+        .scrollContentBackground(.hidden)          
+        .safeAreaPadding(.bottom, appState.bottomSafeAreaPadding)
     }
 }
 

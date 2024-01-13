@@ -21,6 +21,7 @@ struct CustomTabView: View {
         }
         .padding(.horizontal, 10)
         .padding(.top, 10)
+        .frame(height: 56)
         .background(appState.theme.container)
     }
     

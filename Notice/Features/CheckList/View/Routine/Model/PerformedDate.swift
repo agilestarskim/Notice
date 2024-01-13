@@ -10,9 +10,7 @@ import SwiftData
 
 @Model
 final class PerformedDate {
-    var date: String
-    
-    @Relationship(deleteRule: .cascade)
+    var date: String    
     var routine: Routine?
     
     init(date: String = "", routine: Routine? = nil) {

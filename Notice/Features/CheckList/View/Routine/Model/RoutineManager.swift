@@ -63,12 +63,14 @@ final class RoutineManager: ObservableObject {
     }
     
     func toggleDone(_ routine: Routine) {
+        guard let performedDates = routine.performedDates else { return }
+        
         let date = DateFormatter.string(.now, style: .performedDate)
         let performedDate = PerformedDate(date: date)
         
-        if let performedDates = routine.performedDates, !performedDates.contains(performedDate) {
+        if isNew(performedDate.date, in: performedDates) {
             routine.performedDates?.append(performedDate)
-        }        
+        }
     }
     
     func doneButtonImage(isChecked: Bool) -> Image {
@@ -79,15 +81,27 @@ final class RoutineManager: ObservableObject {
         }
     }
     
-    func daysAgo(from date: Date) -> Int {
-        let calendar = Calendar.current
-        let currentDate = Date()
-        
-        // 날짜 차이 계산
-        if let difference = calendar.dateComponents([.day], from: date, to: currentDate).day {
-            return difference
-        } else {
-            return 0
+    func daysAgo(from date: Date) -> Int {                      
+        return Calendar.shared.dateComponents([.day], from: date.stripTime(), to: .now.stripTime()).day ?? -1
+    }
+    
+    func getHexCode(color: Color) -> String {
+        UIColor(color).toHex()
+    }
+    
+    func getColor(hex: String) -> Color {
+        Color(uiColor: UIColor(hex: hex) ?? .green)        
+    }
+    
+    private func isNew(
+        _ performedDate: String,
+        in performedDates: [PerformedDate]
+    ) -> Bool {
+        for pd in performedDates {
+            if pd.date == performedDate {
+                return false
+            }
         }
+        return true
     }
 }

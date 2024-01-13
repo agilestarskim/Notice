@@ -12,6 +12,7 @@ import SwiftData
 final class Routine {
     var title: String
     var startDate: Date
+    var color: String = ""
     
     @Relationship(deleteRule: .cascade)
     var performedDates: [PerformedDate]?
@@ -19,10 +20,12 @@ final class Routine {
     init(
         title: String = "",
         startDate: Date = .now,
+        color: String = "",
         performedDates: [PerformedDate]? = nil
     ) {
         self.title = title
         self.startDate = startDate
+        self.color = color
         self.performedDates = performedDates
     }
 }

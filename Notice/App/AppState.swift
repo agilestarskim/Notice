@@ -6,6 +6,7 @@
 //
 
 import Observation
+import CoreFoundation
 
 @Observable
 final class AppState {
@@ -14,4 +15,12 @@ final class AppState {
     
     @ObservationIgnored
     var onTapPlusButton: () -> Void = {}
+    
+    @ObservationIgnored
+    let tabHeight = 56.0
+    
+    @ObservationIgnored
+    var bottomSafeAreaPadding: CGFloat {
+        tabHeight + 14.0
+    }
 }

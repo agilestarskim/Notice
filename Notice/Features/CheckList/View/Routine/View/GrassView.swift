@@ -38,7 +38,7 @@ struct GrassView: View {
                     }
                 }
             }
-        }
+        }        
     }
     
     func isPerformed(cellDate: String) -> Bool {
@@ -63,7 +63,7 @@ struct GrassCellView: View {
            RoundedRectangle (
                cornerSize: CGSize(width: geo.size.width / 5, height: geo.size.height / 5), style: .continuous
            )
-           .fill(isPerformed ? cellColor : cellColor.opacity(0.1))           
+           .fill(isPerformed ? cellColor : cellColor.opacity(0.2))
        }
        .aspectRatio(1.0, contentMode: .fit)       
     }
