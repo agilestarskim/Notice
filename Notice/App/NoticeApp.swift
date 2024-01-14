@@ -14,7 +14,7 @@ struct NoticeApp: App {
     @StateObject private var calendarViewModel: CalendarViewModel
     @StateObject private var todoManager: TodoManager
     @StateObject private var routineManager: RoutineManager
-    @StateObject private var goalViewModel: GoalViewModel
+    @StateObject private var goalViewModel: GoalManager
     
     init() {
         let context = NTModelContainer.shared.mainContext
@@ -22,7 +22,7 @@ struct NoticeApp: App {
         let calendarViewModel = CalendarViewModel(context: context)
         let todoManager = TodoManager(context: context)
         let routineManager = RoutineManager(context: context)
-        let goalViewModel = GoalViewModel(context: context)
+        let goalViewModel = GoalManager(context: context)
         
         self._calendarViewModel = StateObject(wrappedValue: calendarViewModel)
         self._todoManager = StateObject(wrappedValue: todoManager)

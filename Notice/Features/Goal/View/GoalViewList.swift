@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoalViewList: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: GoalViewModel
+    @EnvironmentObject private var vm: GoalManager
     
     var body: some View {
         NavigationStack {
@@ -17,12 +17,10 @@ struct GoalViewList: View {
                 FilterPicker
                 ScrollView {
                     switch vm.filter {
-                    case .onProgress:
+                    case .underway:
                         GoalOnProgressView()
                     case .success, .failure:
                         GoalSuccessFailureView()
-                    case .pending:
-                        GoalPendingView()
                     }
                 }     
                 .scrollBounceBehavior(.basedOnSize)
@@ -35,11 +33,11 @@ struct GoalViewList: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("v") {
-                        if vm.viewMode == .collection {
-                            vm.viewMode = .lane
-                        } else {
-                            vm.viewMode = .collection
-                        }                        
+//                        if vm.viewMode == .collection {
+//                            vm.viewMode = .lane
+//                        } else {
+//                            vm.viewMode = .collection
+//                        }                        
                     }
                     .tint(appState.theme.accent)
                     .buttonStyle(.bordered)
@@ -49,9 +47,9 @@ struct GoalViewList: View {
         .onAppear {
             appState.onTapPlusButton = vm.onTapPlusButton
         }
-        .sheet(isPresented: $vm.isOpenEditorToCreate) {
-            GoalFormView()
-        }        
+//        .sheet(isPresented: $vm.isOpenEditorToCreate) {
+//            GoalFormView()
+//        }        
     }
     
     var FilterPicker: some View {

@@ -9,17 +9,17 @@ import SwiftUI
 
 struct GoalSuccessFailureView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: GoalViewModel
+    @EnvironmentObject private var vm: GoalManager
     
     let columns = Array(repeating: GridItem(.flexible(maximum: .infinity),spacing: 10), count: 2)
     
     var body: some View {
         Group {
-            if vm.viewMode == .lane {
-                LaneView
-            } else {
-                CollectionView
-            }
+//            if vm.viewMode == .lane {
+//                LaneView
+//            } else {
+//                CollectionView
+//            }
         }
     }
     

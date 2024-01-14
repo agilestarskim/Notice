@@ -51,6 +51,5 @@ struct CheckListView: View {
                 removal: .move(edge: manager.goingRight ? .leading : .trailing)
             )
         )
-        
     }
 }

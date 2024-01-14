@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoalPendingView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: GoalViewModel
+    @EnvironmentObject private var vm: GoalManager
     
     var body: some View {
         VStack {

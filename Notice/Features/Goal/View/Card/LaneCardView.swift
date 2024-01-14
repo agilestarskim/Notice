@@ -17,8 +17,7 @@ struct LaneCardView: View {
             .frame(width: 200, height: 150)   
             .overlay {
                 VStack {
-                    Text(goal.title)
-                    Text(goal.memo)
+                    Text(goal.title)                    
                 }
                 .foregroundStyle(appState.theme.primary)
             }

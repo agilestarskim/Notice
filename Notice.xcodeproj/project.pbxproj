@@ -16,9 +16,8 @@
 		1F24EF382B3680C700FA6B25 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */; };
 		1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565F72B42B6CC000CD6CA /* Goal.swift */; };
 		1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */; };
-		1F2565FD2B42BD39000CD6CA /* GoalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FC2B42BD39000CD6CA /* GoalViewModel.swift */; };
+		1F2565FD2B42BD39000CD6CA /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FC2B42BD39000CD6CA /* GoalManager.swift */; };
 		1F2566002B42C7E3000CD6CA /* GoalViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FF2B42C7E3000CD6CA /* GoalViewList.swift */; };
-		1F2566022B42C9E3000CD6CA /* GoalViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566012B42C9E3000CD6CA /* GoalViewMode.swift */; };
 		1F2566082B42D9A0000CD6CA /* GoalDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566072B42D9A0000CD6CA /* GoalDuration.swift */; };
 		1F25660C2B42EB40000CD6CA /* GoalOnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */; };
 		1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */; };
@@ -79,6 +78,10 @@
 		1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A882B3292D5004D32C9 /* CustomTabView.swift */; };
 		1F638A8E2B3292D5004D32C9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A8A2B3292D5004D32C9 /* MenuView.swift */; };
 		1F638A902B3292DC004D32C9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A8F2B3292DC004D32C9 /* AppState.swift */; };
+		1F93D5A72B53841E002FA726 /* UnderwayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */; };
+		1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */; };
+		1F93D5AD2B53850C002FA726 /* SuccessListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AC2B53850C002FA726 /* SuccessListView.swift */; };
+		1F93D5AF2B538518002FA726 /* FailureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AE2B538518002FA726 /* FailureListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,9 +111,8 @@
 		1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		1F2565F72B42B6CC000CD6CA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFilter.swift; sourceTree = "<group>"; };
-		1F2565FC2B42BD39000CD6CA /* GoalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewModel.swift; sourceTree = "<group>"; };
+		1F2565FC2B42BD39000CD6CA /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
 		1F2565FF2B42C7E3000CD6CA /* GoalViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewList.swift; sourceTree = "<group>"; };
-		1F2566012B42C9E3000CD6CA /* GoalViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewMode.swift; sourceTree = "<group>"; };
 		1F2566072B42D9A0000CD6CA /* GoalDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDuration.swift; sourceTree = "<group>"; };
 		1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalOnProgressView.swift; sourceTree = "<group>"; };
 		1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSuccessFailureView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,10 @@
 		1F638A882B3292D5004D32C9 /* CustomTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		1F638A8A2B3292D5004D32C9 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1F638A8F2B3292DC004D32C9 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayCellView.swift; sourceTree = "<group>"; };
+		1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayListView.swift; sourceTree = "<group>"; };
+		1F93D5AC2B53850C002FA726 /* SuccessListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessListView.swift; sourceTree = "<group>"; };
+		1F93D5AE2B538518002FA726 /* FailureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +353,10 @@
 			children = (
 				1F59FE7B2B483F5C0067BEA2 /* GoalView.swift */,
 				1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */,
+				1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */,
+				1F93D5AC2B53850C002FA726 /* SuccessListView.swift */,
+				1F93D5AE2B538518002FA726 /* FailureListView.swift */,
+				1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -356,9 +366,8 @@
 			children = (
 				1F2565F72B42B6CC000CD6CA /* Goal.swift */,
 				1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */,
-				1F2566012B42C9E3000CD6CA /* GoalViewMode.swift */,
 				1F2566072B42D9A0000CD6CA /* GoalDuration.swift */,
-				1F2565FC2B42BD39000CD6CA /* GoalViewModel.swift */,
+				1F2565FC2B42BD39000CD6CA /* GoalManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -768,12 +777,13 @@
 				1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */,
 				1F2566002B42C7E3000CD6CA /* GoalViewList.swift in Sources */,
 				1F638A7E2B32927E004D32C9 /* Dawn.swift in Sources */,
-				1F2565FD2B42BD39000CD6CA /* GoalViewModel.swift in Sources */,
+				1F2565FD2B42BD39000CD6CA /* GoalManager.swift in Sources */,
 				1F3E083A2B4ADFA60092F7AF /* Routine.swift in Sources */,
 				1F638A6F2B329275004D32C9 /* CalendarView.swift in Sources */,
 				1F638A8B2B3292D5004D32C9 /* Tabs.swift in Sources */,
 				1F638A0C2B3291FA004D32C9 /* MainView.swift in Sources */,
 				1F59FE8C2B4841600067BEA2 /* CheckListView.swift in Sources */,
+				1F93D5AD2B53850C002FA726 /* SuccessListView.swift in Sources */,
 				1F638A662B329275004D32C9 /* CalendarDetailView.swift in Sources */,
 				1F638A902B3292DC004D32C9 /* AppState.swift in Sources */,
 				1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */,
@@ -786,6 +796,7 @@
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
 				1F2D97152B4C193E0088F030 /* RoutineFormView.swift in Sources */,
 				1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */,
+				1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */,
 				1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */,
 				1F59FE8F2B48440A0067BEA2 /* StatisticsView.swift in Sources */,
 				1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */,
@@ -803,14 +814,15 @@
 				1F3771612B49001A00334065 /* NTPicker.swift in Sources */,
 				1F3E083C2B4AEE360092F7AF /* PerformedDate.swift in Sources */,
 				1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */,
-				1F2566022B42C9E3000CD6CA /* GoalViewMode.swift in Sources */,
 				1F1214342B37110700DB04CD /* TodoManager.swift in Sources */,
 				1F0722022B32D42A008B80A0 /* Todo.swift in Sources */,
 				1F638A752B329275004D32C9 /* TodoFormView.swift in Sources */,
 				1F59FE7A2B483F520067BEA2 /* RoutineView.swift in Sources */,
 				1F638A6B2B329275004D32C9 /* MSDayView.swift in Sources */,
+				1F93D5A72B53841E002FA726 /* UnderwayCellView.swift in Sources */,
 				1F638A6A2B329275004D32C9 /* MSWeekTitleView.swift in Sources */,
 				1F638A802B32927E004D32C9 /* Theme.swift in Sources */,
+				1F93D5AF2B538518002FA726 /* FailureListView.swift in Sources */,
 				1F638A642B329275004D32C9 /* Event.swift in Sources */,
 				1F638A632B329275004D32C9 /* CalendarViewModel.swift in Sources */,
 			);

@@ -9,12 +9,12 @@ import SwiftUI
 
 struct CollectionCardView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: GoalViewModel
+    @EnvironmentObject private var vm: GoalManager
     let goal: Goal
     
     var body: some View {
         VStack {
-            if vm.filter == .onProgress {
+            if vm.filter == .underway {
                 OnProgress
             } else {
                 SuccessAndFailure
@@ -34,8 +34,6 @@ struct CollectionCardView: View {
                 Text(goal.title)
                     .font(.title3)
                     .bold()
-                Text(goal.memo)
-                    .lineLimit(2)
                 Spacer()
                 Text("시작한지 \("") 일")
                 Text("종료까지 \("") 일")
@@ -57,8 +55,6 @@ struct CollectionCardView: View {
                 Text(goal.title)
                     .font(.title2)
                     .bold()
-                Text(goal.memo)
-                    .lineLimit(3)
                 Spacer()
                 Text("기간: \("")일")
             }

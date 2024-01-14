@@ -21,9 +21,7 @@ struct PendingCardView: View {
                 VStack(alignment: .leading) {
                     Text(goal.title)
                         .font(.title3)
-                        .bold()
-                    Text(goal.memo)
-                        .lineLimit(1)
+                        .bold()                    
                     Spacer()
                     Text("종료: \(DateFormatter.string(goal.endDate, style: .yyyyMMdd))")
                 }

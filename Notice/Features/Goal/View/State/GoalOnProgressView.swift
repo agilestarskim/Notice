@@ -9,15 +9,15 @@ import SwiftUI
 
 struct GoalOnProgressView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: GoalViewModel
+    @EnvironmentObject private var vm: GoalManager
     
     var body: some View {
         Group {
-            if vm.viewMode == .lane {
-                LaneView
-            } else {
-                CollectionView
-            }
+//            if vm.viewMode == .lane {
+//                LaneView
+//            } else {
+//                CollectionView
+//            }
         }
     }
     

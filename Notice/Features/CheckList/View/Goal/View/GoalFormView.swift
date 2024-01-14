@@ -10,10 +10,9 @@ import SwiftUI
 struct GoalFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: GoalViewModel
+    @EnvironmentObject private var vm: GoalManager
     
     @State private var title: String = ""
-    @State private var memo: String = ""
     @State private var startDate: Date = .now
     @State private var endDate: Date = .now
     @State private var duration: GoalDuration = .week
@@ -25,7 +24,6 @@ struct GoalFormView: View {
             List {
                 Section {
                     TitleTextField
-                    MemoTextField
                     StartDatePicker
                     DurationPicker
                     EndDatePicker
@@ -73,16 +71,6 @@ struct GoalFormView: View {
             "title",
             text: $title,
             prompt: Text("제목을 입력하세요")
-                .foregroundStyle(appState.theme.secondary)
-        )
-        .autocorrectionDisabled()
-    }
-    
-    private var MemoTextField: some View {
-        TextField(
-            "memo",
-            text: $memo,
-            prompt: Text("메모를 입력하세요")
                 .foregroundStyle(appState.theme.secondary)
         )
         .autocorrectionDisabled()
@@ -146,7 +134,14 @@ struct GoalFormView: View {
     private func done() {
         if title.isEmpty { return }
         
-        let newGoal = Goal(title: title, memo: memo, startDate: startDate, endDate: endDate, duration: duration.rawValue, image: image, state: 0)
+        let newGoal = Goal(
+            title: title,
+            startDate: startDate,
+            endDate: endDate,
+            duration: duration.rawValue,
+            image: image,
+            state: 0
+        )
         
         if vm.editingGoal == nil {
             vm.create(newGoal)
@@ -171,8 +166,7 @@ struct GoalFormView: View {
     
     private func setData() {
         if let goal = vm.editingGoal {
-            self.title = goal.title
-            self.memo = goal.memo
+            self.title = goal.title            
             self.startDate = goal.startDate
             self.endDate = goal.endDate
             self.duration = GoalDuration(rawValue: goal.duration) ?? .week

@@ -38,8 +38,11 @@ struct NTPicker<SelectionValue, Data>: View where
                         selection = element
                     } label: {
                         Text(element.rawValue)
+                            .minimumScaleFactor(0.3)
+                            .lineLimit(1)
                             .foregroundStyle(theme.primary)
                             .frame(maxWidth: .infinity)
+                            
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(theme.container)                    
@@ -49,12 +52,15 @@ struct NTPicker<SelectionValue, Data>: View where
                         selection = element
                     } label: {
                         Text(element.rawValue)
+                            .minimumScaleFactor(0.3)
+                            .lineLimit(1)
                             .foregroundStyle(theme.primary)
                             .frame(maxWidth: .infinity)
+                            
                     }
                     .buttonStyle(.bordered)                    
                 }
             }
-        }
+        }        
     }
 }

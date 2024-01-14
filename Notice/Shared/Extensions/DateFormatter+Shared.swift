@@ -26,6 +26,7 @@ extension DateFormatter {
     enum NTFormatStyle: String {
         case yyyyMM = "yyyy.MM"
         case yyyyMMdd = "yyyy.MM.dd"
+        case yyyyMd = "yyyy.M.d"
         case yyyyMMddE = "yyyy.MM.dd (E)"
         case MdE = "M.d (E)"
         case hmma = "h:mm a"
