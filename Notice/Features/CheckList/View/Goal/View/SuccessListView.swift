@@ -12,14 +12,15 @@ struct SuccessListView: View {
     @EnvironmentObject private var manager: GoalManager
     
     var body: some View {
-        List {
-            ForEach(manager.goals.filter { $0.state == 1} ) { goal in
-                UnderwayCellView(goal: goal)
+        ScrollView {
+            LazyVGrid(columns: [.init(), .init()]) {
+                ForEach(manager.goals.filter { $0.state == 1} ) { goal in
+                    SuccessCellView(goal: goal)
+                }
             }
         }
         .animation(.default, value: manager.goals)
-        .listRowSpacing(10)
-        .scrollContentBackground(.hidden)
+        .padding()
     }
 }
 

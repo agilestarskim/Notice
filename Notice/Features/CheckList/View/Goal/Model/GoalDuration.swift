@@ -12,7 +12,6 @@ enum GoalDuration: Int, CaseIterable {
     case oneMonth
     case threeMonth
     case year
-    case forever
     case custom
     
     var title: String {
@@ -24,9 +23,7 @@ enum GoalDuration: Int, CaseIterable {
         case .threeMonth:
             "3 Months"
         case .year:
-            "A Year"
-        case .forever:
-            "Forever"
+            "A Year"        
         case .custom:
             "Custom"
         }

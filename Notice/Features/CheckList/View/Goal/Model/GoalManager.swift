@@ -18,6 +18,18 @@ final class GoalManager: ObservableObject {
     private let context: ModelContext
     private let calendar: Calendar = Calendar.shared
     
+    var underways: [Goal] {
+        goals.filter { $0.state == 0 }
+    }
+    
+    var successes: [Goal] {
+        goals.filter { $0.state == 1 }
+    }
+    
+    var failures: [Goal] {
+        goals.filter { $0.state == 2 }
+    }
+    
     init(context: ModelContext) {
         self.context = context
         fetchGoals()
@@ -73,31 +85,10 @@ final class GoalManager: ObservableObject {
         case .threeMonth:
             return calendar.date(byAdding: .month, value: 3, to: startDate)
         case .year:
-            return calendar.date(byAdding: .year, value: 1, to: startDate)
-        case .forever:
-            return forever
+            return calendar.date(byAdding: .year, value: 1, to: startDate)        
         case .custom:
             return nil
         }        
-    }
-    
-    var forever: Date {
-        var dateComponents = DateComponents()
-        dateComponents.year = 4000
-        
-        return calendar.date(from: dateComponents) ?? .distantFuture
-    }
-    
-    func isForever(_ date: Date) -> Bool {
-        calendar.isDate(date, inSameDayAs: forever)
-    }
-    
-    func day(_ goal: Goal) -> Int {
-        (Calendar.shared.dateComponents(
-            [.day],
-            from: goal.startDate.stripTime(),
-            to: .now.stripTime()
-        ).day ?? -1) + 1
     }
     
     func deadline(_ goal: Goal) -> Int? {

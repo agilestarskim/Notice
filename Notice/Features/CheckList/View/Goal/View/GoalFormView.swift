@@ -57,13 +57,7 @@ struct GoalFormView: View {
         }
         .onAppear(perform: setData)
         .onChange(of: startDate, setEndDate)
-        .onChange(of: duration) { oldValue, newValue in
-            if oldValue == .forever && newValue == .custom {
-                setCustomEndDateFromForever()
-            } else {
-                setEndDate()
-            }
-        }
+        .onChange(of: duration, setEndDate)
     }
     
     private var TitleTextField: some View {
@@ -121,6 +115,7 @@ struct GoalFormView: View {
                 DatePicker(
                     "endDate",
                     selection: $endDate,
+                    in: startDate...,
                     displayedComponents: [.date]
                 )
                 .labelsHidden()
@@ -149,13 +144,6 @@ struct GoalFormView: View {
             vm.update(newGoal)
         }
         dismiss()
-    }
-    
-    /* Forever에서 Custom으로 변경 시 DatePicker가 4000년이 세팅되는 것을 방지 */
-    private func setCustomEndDateFromForever() {
-        if let endDate = vm.calculateEndDate(.week, after: startDate) {
-            self.endDate = endDate
-        }
     }
     
     private func setEndDate() {

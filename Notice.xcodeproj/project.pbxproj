@@ -82,6 +82,8 @@
 		1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */; };
 		1F93D5AD2B53850C002FA726 /* SuccessListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AC2B53850C002FA726 /* SuccessListView.swift */; };
 		1F93D5AF2B538518002FA726 /* FailureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AE2B538518002FA726 /* FailureListView.swift */; };
+		1F93EEA12B555E7500A5C757 /* SuccessCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */; };
+		1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA22B55680E00A5C757 /* FailureCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +184,8 @@
 		1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayListView.swift; sourceTree = "<group>"; };
 		1F93D5AC2B53850C002FA726 /* SuccessListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessListView.swift; sourceTree = "<group>"; };
 		1F93D5AE2B538518002FA726 /* FailureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureListView.swift; sourceTree = "<group>"; };
+		1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCellView.swift; sourceTree = "<group>"; };
+		1F93EEA22B55680E00A5C757 /* FailureCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +361,8 @@
 				1F93D5AC2B53850C002FA726 /* SuccessListView.swift */,
 				1F93D5AE2B538518002FA726 /* FailureListView.swift */,
 				1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */,
+				1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */,
+				1F93EEA22B55680E00A5C757 /* FailureCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -798,6 +804,7 @@
 				1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */,
 				1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */,
 				1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */,
+				1F93EEA12B555E7500A5C757 /* SuccessCellView.swift in Sources */,
 				1F59FE8F2B48440A0067BEA2 /* StatisticsView.swift in Sources */,
 				1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */,
 				1F638A772B329275004D32C9 /* TodoCellView.swift in Sources */,
@@ -812,6 +819,7 @@
 				1F638A6E2B329275004D32C9 /* CalendarFormView.swift in Sources */,
 				1F638A682B329275004D32C9 /* MSCalendar.swift in Sources */,
 				1F3771612B49001A00334065 /* NTPicker.swift in Sources */,
+				1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */,
 				1F3E083C2B4AEE360092F7AF /* PerformedDate.swift in Sources */,
 				1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */,
 				1F1214342B37110700DB04CD /* TodoManager.swift in Sources */,
