@@ -39,13 +39,6 @@ struct CalendarView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(appState.theme.accent)
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: vm.gotoToday) {
-                        Image(systemName: "clock.arrow.circlepath")
-                    }
-                    .tint(appState.theme.accent)
-                    .buttonStyle(.bordered)
-                }
             }
         }        
         .sheet(isPresented: $vm.isOpenEditorToCreate) {

@@ -37,7 +37,8 @@ final class GoalManager: ObservableObject {
     
     func fetchGoals() {
         do {
-            self.goals = try context.fetch(FetchDescriptor<Goal>())
+            let sorts = [SortDescriptor(\Goal.endDate)]
+            self.goals = try context.fetch(FetchDescriptor<Goal>(sortBy: sorts))
         } catch {
             print("failed to load goals")
         }
@@ -47,7 +48,7 @@ final class GoalManager: ObservableObject {
         shouldOpenEditor = true
     }
     
-    func onTapEditButton(goal: Goal) {        
+    func onTapEditButton(goal: Goal) {
         editingGoal = goal
     }
     
@@ -67,7 +68,11 @@ final class GoalManager: ObservableObject {
     func update(_ newGoal: Goal) {
         if let origin = editingGoal {
             origin.title = newGoal.title            
-            origin.image = newGoal.image       
+            origin.image = newGoal.image
+            origin.startDate = newGoal.startDate
+            origin.endDate = newGoal.endDate
+                        
+            if origin.state == 2 { origin.state = 0 }
             
             fetchGoals()
         }
@@ -90,6 +95,18 @@ final class GoalManager: ObservableObject {
             return nil
         }        
     }
+    
+    func editState(_ state: Int) -> EditState {
+        if editingGoal == nil {
+            return .create
+        } else if editingGoal != nil && state != 2 {
+            return .edit
+        } else {
+            return .retry
+        }
+    }
+    
+    enum EditState { case create, edit, retry }
     
     func deadline(_ goal: Goal) -> Int? {
         let deadline = Calendar.shared.dateComponents(

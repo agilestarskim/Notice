@@ -10,9 +10,9 @@ import SwiftData
 
 @Model
 final class Event {
-    var title: String
-    var memo: String
-    var category: String
+    var title: String = ""
+    var memo: String = ""
+    var category: String = "Meeting"
     var startDate: Date
     
     init(

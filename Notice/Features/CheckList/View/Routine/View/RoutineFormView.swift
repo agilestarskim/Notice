@@ -13,7 +13,8 @@ struct RoutineFormView: View {
     @EnvironmentObject private var manager: RoutineManager
     
     @State private var title: String = ""
-    @State private var color: Color = .green
+    @State private var startDate: Date = .now
+    @State private var color: Color = .red
     
     var body: some View {
         NavigationStack {
@@ -31,7 +32,7 @@ struct RoutineFormView: View {
             .listRowSpacing(10)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("루틴 추가")
+                    Text(manager.editingRoutine == nil ? "루틴 추가" : "루틴 편집")
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundStyle(appState.theme.accent)
@@ -57,21 +58,26 @@ struct RoutineFormView: View {
     }
     
     private var CellColorPicker: some View {
-        ColorPicker("Color", selection: $color, supportsOpacity: false)        
+        NTColorPicker(color: $color)
     }
     
     private func setData() {
         if let routine = manager.editingRoutine {
             self.title = routine.title
-            self.color = manager.getColor(hex: routine.color)
+            self.startDate = routine.startDate
+            self.color = manager.getColor(colorDescription: routine.color)
         }
     }
     
     private func done() {
-        if title.isEmpty { return }
-        let hexCode = manager.getHexCode(color: color)
+        if self.title.isEmpty { return }
         let performedDates = manager.editingRoutine?.performedDates ?? []
-        let newRoutine = Routine(title: title, startDate: .now, color: hexCode, performedDates: performedDates)
+        let newRoutine = Routine(
+            title: self.title,
+            startDate: self.startDate,
+            color: self.color.description,
+            performedDates: performedDates
+        )
         
         if manager.editingRoutine == nil {
             manager.create(newRoutine)

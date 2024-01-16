@@ -8,38 +8,38 @@
 import SwiftUI
 
 enum EventCategory: String, CaseIterable {
-    case meeting = "meeting"
-    case anniversary = "anniversary"
-    case vacation = "vacation"
-    case study = "study"
-    case `class` = "class"
-    case task = "task"
-    case workout = "workout"
-    case none = "none"
+    case meeting = "Meeting"
+    case date = "Date"
+    case business = "Business"
+    case anniversary = "Anniversary"
+    case vacation = "Vacation"
+    case `class` = "Class"
+    case workout = "Workout"
+    case none = "None"
     
     static func color(_ category: String) -> Color {
-        guard let eventCategory = EventCategory(rawValue: category) else { return .clear }
+        guard let eventCategory = EventCategory(rawValue: category) else { return .gray }
         return eventCategory.color        
     }
     
     var color: Color {
         switch self {
         case .meeting:
-            return .red
+            Color.orange
+        case .date:
+            Color.red
+        case .business:
+            Color.green
         case .anniversary:
-            return .pink
+            Color.blue
         case .vacation:
-            return .green
-        case .study:
-            return .blue
+            Color.cyan
         case .class:
-            return .purple
-        case .task:
-            return .black
+            Color.yellow
         case .workout:
-            return .orange
+            Color.teal
         case .none:
-            return .gray
+            Color.gray
         }
     }
 }

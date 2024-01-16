@@ -14,9 +14,7 @@ struct PendingCardView: View {
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 20) {
-                GoalImage
-                    .frame(height: 130)
-                    .aspectRatio(3/4, contentMode: .fit)
+                
                 
                 VStack(alignment: .leading) {
                     Text(goal.title)
@@ -60,20 +58,5 @@ struct PendingCardView: View {
         }
         .background(appState.theme.container)
         .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-    
-    var GoalImage: some View {
-        ZStack {
-            if let imageData = goal.image {
-                Image(uiImage: UIImage(data: imageData) ?? .init())
-                    .resizable()
-                    .aspectRatio(3/4, contentMode: .fill)
-            } else {
-                Image(uiImage: UIImage(resource: .test))
-                    .resizable()
-                    .aspectRatio(3/4, contentMode: .fill)
-            }
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }

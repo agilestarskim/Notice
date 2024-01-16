@@ -18,9 +18,9 @@ struct SuccessListView: View {
                     SuccessCellView(goal: goal)
                 }
             }
+            .padding()
         }
         .animation(.default, value: manager.goals)
-        .padding()
     }
 }
 

@@ -12,11 +12,14 @@ struct GoalView: View {
     @EnvironmentObject private var manager: GoalManager
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             GoalFilterPicker
             GoalList
         }
         .sheet(isPresented: $manager.shouldOpenEditor) {
+            GoalFormView()
+        }
+        .sheet(item: $manager.editingGoal) { _ in
             GoalFormView()
         }
         .onAppear {

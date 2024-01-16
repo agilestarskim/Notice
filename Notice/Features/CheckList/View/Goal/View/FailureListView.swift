@@ -18,9 +18,9 @@ struct FailureListView: View {
                     FailureCellView(goal: goal)
                 }
             }
+            .padding()
         }
-        .animation(.default, value: manager.goals)
-        .padding()
+        .animation(.default, value: manager.goals)        
     }
 }
 

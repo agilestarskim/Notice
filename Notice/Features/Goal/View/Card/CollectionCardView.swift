@@ -26,9 +26,7 @@ struct CollectionCardView: View {
     
     var OnProgress: some View {
         HStack(alignment: .top, spacing: 20) {
-            GoalImage
-                .frame(height: 130)
-                .aspectRatio(3/4, contentMode: .fit)
+            
             
             VStack(alignment: .leading) {
                 Text(goal.title)
@@ -46,9 +44,8 @@ struct CollectionCardView: View {
     
     var SuccessAndFailure: some View {
         ZStack {
-            GoalImage
-                .blur(radius: 2)
-            appState.theme.container.opacity(0.6)
+
+
             
             VStack {
                 Spacer()
@@ -63,19 +60,19 @@ struct CollectionCardView: View {
         }
         .aspectRatio(3/4, contentMode: .fit)
     }
-    
-    var GoalImage: some View {
-        ZStack {
-            if let imageData = goal.image {
-                Image(uiImage: UIImage(data: imageData) ?? .init())
-                    .resizable()
-                    .aspectRatio(3/4, contentMode: .fill)
-            } else {
-                Image(uiImage: UIImage(resource: .test))
-                    .resizable()
-                    .aspectRatio(3/4, contentMode: .fill)
-            }
-        }
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-    }
+//    
+//    var GoalImage: some View {
+//        ZStack {
+//            if let imageData = goal.image {
+//                Image(uiImage: UIImage(data: imageData) ?? .init())
+//                    .resizable()
+//                    .aspectRatio(3/4, contentMode: .fill)
+//            } else {
+//                Image(uiImage: UIImage(resource: .test))
+//                    .resizable()
+//                    .aspectRatio(3/4, contentMode: .fill)
+//            }
+//        }
+//        .clipShape(RoundedRectangle(cornerRadius: 8))
+//    }
 }

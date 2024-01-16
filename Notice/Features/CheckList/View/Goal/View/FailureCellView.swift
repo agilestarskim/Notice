@@ -42,8 +42,8 @@ struct FailureCellView: View {
                 .font(.callout)
                 .foregroundStyle(appState.theme.secondary)
                 
-                Button {
-                    goal.state = 0
+                Button {                    
+                    manager.onTapEditButton(goal: goal)
                 } label: {
                     Text("Retry")
                         .frame(maxWidth: .infinity)

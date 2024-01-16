@@ -12,7 +12,7 @@ import SwiftData
 final class Routine {
     var title: String
     var startDate: Date
-    var color: String = ""
+    var color: String = "#000000"
     
     @Relationship(deleteRule: .cascade)
     var performedDates: [PerformedDate]?

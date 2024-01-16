@@ -28,6 +28,7 @@
 		1F2D97152B4C193E0088F030 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97142B4C193E0088F030 /* RoutineFormView.swift */; };
 		1F2D97172B4C1F4A0088F030 /* RoutineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97162B4C1F4A0088F030 /* RoutineCellView.swift */; };
 		1F2D97192B4C24CC0088F030 /* GrassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97182B4C24CC0088F030 /* GrassView.swift */; };
+		1F376E822B569ED000DA43AD /* NTColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F376E812B569ED000DA43AD /* NTColorPicker.swift */; };
 		1F3771612B49001A00334065 /* NTPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3771602B49001A00334065 /* NTPicker.swift */; };
 		1F3E08362B4AD51B0092F7AF /* Bool+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */; };
 		1F3E08382B4AD95B0092F7AF /* TodoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08372B4AD95B0092F7AF /* TodoState.swift */; };
@@ -125,6 +126,7 @@
 		1F2D97142B4C193E0088F030 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
 		1F2D97162B4C1F4A0088F030 /* RoutineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCellView.swift; sourceTree = "<group>"; };
 		1F2D97182B4C24CC0088F030 /* GrassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassView.swift; sourceTree = "<group>"; };
+		1F376E812B569ED000DA43AD /* NTColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTColorPicker.swift; sourceTree = "<group>"; };
 		1F3771602B49001A00334065 /* NTPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTPicker.swift; sourceTree = "<group>"; };
 		1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Comparable.swift"; sourceTree = "<group>"; };
 		1F3E08372B4AD95B0092F7AF /* TodoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoState.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				1F3771602B49001A00334065 /* NTPicker.swift */,
+				1F376E812B569ED000DA43AD /* NTColorPicker.swift */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
@@ -815,6 +818,7 @@
 				1F12142F2B37106000DB04CD /* SubTodo.swift in Sources */,
 				1F638A0A2B3291FA004D32C9 /* NoticeApp.swift in Sources */,
 				1F2566082B42D9A0000CD6CA /* GoalDuration.swift in Sources */,
+				1F376E822B569ED000DA43AD /* NTColorPicker.swift in Sources */,
 				1F59FE932B48463A0067BEA2 /* NTModelContainer.swift in Sources */,
 				1F638A6E2B329275004D32C9 /* CalendarFormView.swift in Sources */,
 				1F638A682B329275004D32C9 /* MSCalendar.swift in Sources */,

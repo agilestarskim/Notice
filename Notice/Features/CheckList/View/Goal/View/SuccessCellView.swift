@@ -13,8 +13,7 @@ struct SuccessCellView: View {
     let goal: Goal
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            
+        ZStack(alignment: .topTrailing) {            
             VStack(spacing: 20) {
                 Text("🏆")
                     .font(.largeTitle)
@@ -47,8 +46,12 @@ struct SuccessCellView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             Menu {
-                Button("Edit") {}
-                Button("Delete") {}
+                Button("Edit") {                    
+                    manager.onTapEditButton(goal: goal)
+                }
+                Button("Delete") {
+                    
+                }
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundStyle(appState.theme.primary)

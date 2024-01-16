@@ -10,13 +10,14 @@ import SwiftUI
 struct GoalFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: GoalManager
+    @EnvironmentObject private var manager: GoalManager
     
     @State private var title: String = ""
     @State private var startDate: Date = .now
     @State private var endDate: Date = .now
     @State private var duration: GoalDuration = .week
     @State private var image: Data? = nil
+    @State private var state: Int = 0
     
 
     var body: some View {
@@ -43,10 +44,19 @@ struct GoalFormView: View {
             .listRowSpacing(10)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("목표 추가")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundStyle(appState.theme.accent)
+                    Group {
+                        switch manager.editState(state) {
+                        case .create:
+                            Text("목표 추가")
+                        case .edit:
+                            Text("목표 편집")
+                        case .retry:
+                            Text("목표 재도전")
+                        }
+                    }
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundStyle(appState.theme.accent)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("완료", action: done)
@@ -75,9 +85,19 @@ struct GoalFormView: View {
         HStack {
             Text("시작일")
             Spacer()
-            if let goal = vm.editingGoal {
-                Text(DateFormatter.string(goal.startDate, style: .yyyyMMdd))
-            } else {
+            switch manager.editState(state) {
+            case .create:
+                DatePicker(
+                    "startDate",
+                    selection: $startDate,
+                    in: .now...,
+                    displayedComponents: [.date]
+                )
+                .labelsHidden()
+                .colorInvert()
+            case .edit:
+                Text(DateFormatter.string(startDate, style: .yyyyMMdd))
+            case .retry:
                 DatePicker(
                     "startDate",
                     selection: $startDate,
@@ -92,7 +112,8 @@ struct GoalFormView: View {
     
     @ViewBuilder
     var DurationPicker: some View {
-        if vm.editingGoal == nil {
+        let editState = manager.editState(state)
+        if editState == .create || editState == .retry {
             Picker("목표기간", selection: $duration) {
                 ForEach(GoalDuration.allCases, id: \.rawValue) { duration in
                     Text(duration.title)
@@ -101,7 +122,7 @@ struct GoalFormView: View {
                 }
             }
             .tint(appState.theme.accent)
-        }
+        }        
     }
     
     @ViewBuilder
@@ -109,9 +130,8 @@ struct GoalFormView: View {
         HStack {
             Text("종료일")
             Spacer()
-            if let goal = vm.editingGoal {
-                Text(DateFormatter.string(goal.endDate, style: .yyyyMMdd))
-            } else if duration == .custom {
+            let editState = manager.editState(state)
+            if duration == .custom && (editState == .create || editState == .retry) {
                 DatePicker(
                     "endDate",
                     selection: $endDate,
@@ -135,33 +155,46 @@ struct GoalFormView: View {
             endDate: endDate,
             duration: duration.rawValue,
             image: image,
-            state: 0
+            state: state
         )
         
-        if vm.editingGoal == nil {
-            vm.create(newGoal)
+        if manager.editingGoal == nil {
+            manager.create(newGoal)
         } else {
-            vm.update(newGoal)
+            manager.update(newGoal)
         }
         dismiss()
     }
     
     private func setEndDate() {
-        if let endDate = vm.calculateEndDate(duration, after: startDate) {
+        if let endDate = manager.calculateEndDate(duration, after: startDate) {
             self.endDate = endDate
         }
     }
     
     private func setData() {
-        if let goal = vm.editingGoal {
-            self.title = goal.title            
-            self.startDate = goal.startDate
-            self.endDate = goal.endDate
-            self.duration = GoalDuration(rawValue: goal.duration) ?? .week
-            self.image = goal.image
-        } else {
-            setEndDate()
+        let state = manager.editingGoal?.state ?? 0
+        switch manager.editState(state) {
+        case .create:
+            break
+        case .edit:
+            if let goal = manager.editingGoal{
+                self.title = goal.title
+                self.duration = GoalDuration(rawValue: goal.duration) ?? .week
+                self.startDate = goal.startDate
+                self.endDate = goal.endDate
+                self.state = goal.state
+                self.image = goal.image
+            }
+        case .retry:
+            if let goal = manager.editingGoal{
+                self.title = goal.title
+                self.duration = .week
+                self.state = goal.state
+                self.image = goal.image
+            }
         }
+        setEndDate()
     }
 }
 

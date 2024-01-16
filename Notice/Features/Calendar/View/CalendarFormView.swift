@@ -36,7 +36,7 @@ struct CalendarFormView: View {
             .listRowSpacing(10)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("이벤트 추가")
+                    Text(vm.editingEvent == nil ? "이벤트 추가" : "이벤트 편집")
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundStyle(appState.theme.accent)
@@ -55,7 +55,7 @@ struct CalendarFormView: View {
         TextField(
             "title",
             text: $title,
-            prompt: Text("제목을 입력하세요")
+            prompt: Text("제목을 입력하세요 (필수)")
                 .foregroundStyle(appState.theme.secondary)
         )
         .autocorrectionDisabled()
@@ -65,7 +65,7 @@ struct CalendarFormView: View {
         TextField(
             "memo",
             text: $memo,
-            prompt: Text("메모를 입력하세요")
+            prompt: Text("메모를 입력하세요 (선택)")
                 .foregroundStyle(appState.theme.secondary)
         )
         .autocorrectionDisabled()

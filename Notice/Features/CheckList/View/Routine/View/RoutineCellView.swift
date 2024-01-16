@@ -49,7 +49,7 @@ struct RoutineCellView: View {
                 .foregroundStyle(isChecked ? appState.theme.accent : appState.theme.secondary)
                 .id(routine.id)                
             }
-            GrassView(performedDates, row: 4, col: 15, cellColor: manager.getColor(hex: routine.color))
+            GrassView(performedDates, row: 4, col: 15, cellColor: manager.getColor(colorDescription: routine.color))
         }
         .listRowSeparator(.hidden)
         .listRowBackground(appState.theme.container)

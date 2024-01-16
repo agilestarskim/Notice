@@ -45,7 +45,7 @@ struct TodoFormView: View {
             .listRowSpacing(10)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text("할 일 추가")
+                    Text(manager.editingTodo == nil ? "할 일 추가" : "할 일 편집")
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundStyle(appState.theme.accent)

@@ -18,7 +18,7 @@ struct CalendarDetailView: View {
         List {
             Section {
                 if events.isEmpty {
-                    Text("이벤트가 없습니다")
+                    Text("일정이 없습니다")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding()
                         .font(.title3)
@@ -32,8 +32,13 @@ struct CalendarDetailView: View {
             } header: {
                 HStack {
                     Text(DateFormatter.string(vm.selectedDate, style: .yyyyMMddE))
-                    Spacer()
                     Text(vm.calendar.isDateInToday(vm.selectedDate) ? "Today" : "")
+                    Spacer()
+                    Button(action: vm.gotoToday) {
+                        Image(systemName: "clock.arrow.circlepath")
+                    }
+                    .tint(appState.theme.container)
+                    .buttonStyle(.borderedProminent)
                 }
                 .foregroundStyle(appState.theme.secondary)
                 

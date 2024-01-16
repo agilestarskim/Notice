@@ -89,13 +89,26 @@ final class RoutineManager: ObservableObject {
         ).day ?? -1) + 1
     }
     
-    func getHexCode(color: Color) -> String {
-        UIColor(color).toHex()
-    }
-    
-    func getColor(hex: String) -> Color {
-        Color(uiColor: UIColor(hex: hex) ?? .green)        
-    }
+    func getColor(colorDescription: String) -> Color {
+        switch colorDescription {
+        case Color.red.description:
+            Color.red
+        case Color.orange.description:
+            Color.orange
+        case Color.yellow.description:
+            Color.yellow
+        case Color.green.description:
+            Color.green
+        case Color.cyan.description:
+            Color.cyan
+        case Color.blue.description:
+            Color.blue
+        case Color.indigo.description:
+            Color.indigo
+        default:
+            Color.red
+        }
+    }    
     
     private func isNew(
         _ performedDate: String,
