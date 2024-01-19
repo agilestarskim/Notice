@@ -15,7 +15,7 @@ struct SuccessCellView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {            
             VStack(spacing: 20) {
-                Text("🏆")
+                Text(goal.emoji.emoji)
                     .font(.largeTitle)
                 Text(goal.title)
                     .font(.title3)
@@ -36,7 +36,7 @@ struct SuccessCellView: View {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 8, height: 8)
-                        Text(DateFormatter.string(goal.endDate, style: .yyyyMd))
+                        Text(DateFormatter.string(goal.realEndDate, style: .yyyyMd))
                     }
                 }
                 .font(.callout)
@@ -50,11 +50,17 @@ struct SuccessCellView: View {
                     manager.onTapEditButton(goal: goal)
                 }
                 Button("Delete") {
-                    
+                    manager.delete(goal)
+                }
+                
+                Button("Cancel Success") {
+                    withAnimation {
+                        goal.state = 0
+                    }
                 }
             } label: {
                 Image(systemName: "ellipsis")
-                    .foregroundStyle(appState.theme.primary)
+                    .foregroundStyle(appState.theme.secondary)
                     .padding()
                     .contentShape(Rectangle())
             }

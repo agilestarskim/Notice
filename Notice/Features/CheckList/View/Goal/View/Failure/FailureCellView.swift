@@ -15,7 +15,7 @@ struct FailureCellView: View {
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack(spacing: 20) {
-                Text("🏆")
+                Text(goal.emoji.emoji)
                     .font(.largeTitle)
                 Text(goal.title)
                     .font(.title3)
@@ -55,11 +55,12 @@ struct FailureCellView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
             Menu {
-                Button("Edit") {}
-                Button("Delete") {}
+                Button("Delete") {
+                    manager.delete(goal)
+                }
             } label: {
                 Image(systemName: "ellipsis")
-                    .foregroundStyle(appState.theme.primary)
+                    .foregroundStyle(appState.theme.secondary)
                     .padding()
                     .contentShape(Rectangle())
             }

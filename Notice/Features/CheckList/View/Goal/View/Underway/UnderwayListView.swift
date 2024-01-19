@@ -13,11 +13,10 @@ struct UnderwayListView: View {
     
     var body: some View {
         List {
-            ForEach(manager.goals.filter { $0.state == 0} ) { goal in
+            ForEach(manager.underways) { goal in
                 UnderwayCellView(goal: goal)
             }
-        }
-        .animation(.default, value: manager.goals)
+        }                  
         .listRowSpacing(10)
         .scrollContentBackground(.hidden)
     }

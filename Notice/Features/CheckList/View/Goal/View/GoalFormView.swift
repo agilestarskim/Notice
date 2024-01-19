@@ -13,6 +13,7 @@ struct GoalFormView: View {
     @EnvironmentObject private var manager: GoalManager
     
     @State private var title: String = ""
+    @State private var emoji: Int = 0x1F3C6
     @State private var startDate: Date = .now
     @State private var endDate: Date = .now
     @State private var duration: GoalDuration = .week
@@ -28,12 +29,7 @@ struct GoalFormView: View {
                     StartDatePicker
                     DurationPicker
                     EndDatePicker
-                }
-                .foregroundStyle(appState.theme.primary)
-                .listRowBackground(appState.theme.container.opacity(0.8))
-                
-                Section {
-                   
+                    NTEmojiPicker(emoji: $emoji, selectColor: appState.theme.primary)
                 }
                 .foregroundStyle(appState.theme.primary)
                 .listRowBackground(appState.theme.container.opacity(0.8))
@@ -151,10 +147,11 @@ struct GoalFormView: View {
         
         let newGoal = Goal(
             title: title,
+            emoji: emoji,
             startDate: startDate,
             endDate: endDate,
+            realEndDate: .now,
             duration: duration.rawValue,
-            image: image,
             state: state
         )
         
@@ -180,18 +177,18 @@ struct GoalFormView: View {
         case .edit:
             if let goal = manager.editingGoal{
                 self.title = goal.title
-                self.duration = GoalDuration(rawValue: goal.duration) ?? .week
+                self.emoji = goal.emoji
                 self.startDate = goal.startDate
                 self.endDate = goal.endDate
+                self.duration = GoalDuration(rawValue: goal.duration) ?? .week
                 self.state = goal.state
-                self.image = goal.image
             }
         case .retry:
             if let goal = manager.editingGoal{
                 self.title = goal.title
+                self.emoji = goal.emoji
                 self.duration = .week
                 self.state = goal.state
-                self.image = goal.image
             }
         }
         setEndDate()

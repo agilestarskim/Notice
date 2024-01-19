@@ -13,7 +13,8 @@ final class GoalManager: ObservableObject {
     @Published var filter: GoalFilter = .underway
     @Published var goingRight: Bool = false
     @Published var shouldOpenEditor = false
-    @Published var editingGoal: Goal? = nil
+    @Published var editingGoal: Goal? = nil    
+    @Published var alert: GoalAlert? = nil
     
     private let context: ModelContext
     private let calendar: Calendar = Calendar.shared
@@ -68,15 +69,24 @@ final class GoalManager: ObservableObject {
     func update(_ newGoal: Goal) {
         if let origin = editingGoal {
             origin.title = newGoal.title            
-            origin.image = newGoal.image
+            origin.emoji = newGoal.emoji
             origin.startDate = newGoal.startDate
             origin.endDate = newGoal.endDate
+            origin.duration = newGoal.duration
                         
-            if origin.state == 2 { origin.state = 0 }
+            if origin.state == 2 {
+                origin.state = 0
+            }
             
             fetchGoals()
         }
     }
+    
+    func delete(_ goal: Goal) {
+        context.delete(goal)
+        fetchGoals()
+    }
+    
     
     func calculateEndDate(
         _ duration: GoalDuration,

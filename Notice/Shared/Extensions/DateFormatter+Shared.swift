@@ -17,8 +17,7 @@ extension DateFormatter {
         return formatter
     }()
     
-    static func string(_ date: Date, style formatStyle: NTFormatStyle) -> String {
-        if date.isForever { return "-" }
+    static func string(_ date: Date, style formatStyle: NTFormatStyle) -> String {        
         shared.dateFormat = formatStyle.rawValue
         return shared.string(from: date)
     }

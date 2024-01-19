@@ -17,12 +17,25 @@ struct UnderwayCellView: View {
             GoalContent
             DecisionButtons
         }
+        //TODO: Alert
         .listRowBackground(appState.theme.container)
+        .swipeActions(edge: .leading) {
+            Button("Edit") {
+                manager.onTapEditButton(goal: self.goal)
+            }
+            .tint(appState.theme.accent)
+        }
+        .swipeActions(edge: .trailing) {
+            Button("Delete") {
+                manager.alert = GoalAlert(id: .delete, title: "삭제", message: "\(goal.title) 목표를 삭제하시겠습니까?")
+            }
+            .tint(.red)
+        }
     }
     
     var GoalContent: some View {
         HStack(spacing: 20) {
-            Text("🏆")
+            Text(goal.emoji.emoji)
                 .font(.largeTitle)
             
             VStack(alignment: .leading, spacing: 10) {
@@ -62,7 +75,9 @@ struct UnderwayCellView: View {
     var DecisionButtons: some View {
         HStack(spacing: 10) {
             Button {
-                goal.state = 2
+                withAnimation {
+                    goal.state = 2
+                }
             } label: {
                 Text("Failure")
                     .font(.caption)
@@ -72,7 +87,10 @@ struct UnderwayCellView: View {
             .buttonStyle(.bordered)
             
             Button {
-                goal.state = 1
+                withAnimation {
+                    goal.state = 1
+                    goal.realEndDate = .now
+                }
             } label: {
                 Text("Success")
                     .font(.caption)
