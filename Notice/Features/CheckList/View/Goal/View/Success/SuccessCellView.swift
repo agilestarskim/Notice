@@ -10,6 +10,8 @@ import SwiftUI
 struct SuccessCellView: View {
     @Environment(AppState.self) private var appState
     @EnvironmentObject private var manager: GoalManager
+    @State private var shouldDeleteDialogOpen = false
+    @State private var shouldCancelSuccesDialogOpen = false
     let goal: Goal
     
     var body: some View {
@@ -31,12 +33,24 @@ struct SuccessCellView: View {
                             .frame(width: 8, height: 8)
                         Text(DateFormatter.string(goal.startDate, style: .yyyyMd))
                     }
+                    .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
+                        Button("Delete", role: .destructive) {
+                            manager.delete(goal)
+                        }
+                    }
                     
                     HStack {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 8, height: 8)
                         Text(DateFormatter.string(goal.realEndDate, style: .yyyyMd))
+                    }
+                    .confirmationDialog("성공을 취소하시겠습니까?", isPresented: $shouldCancelSuccesDialogOpen) {
+                        Button("Cancel Success") {
+                            withAnimation {
+                                goal.state = 0
+                            }
+                        }
                     }
                 }
                 .font(.callout)
@@ -50,13 +64,12 @@ struct SuccessCellView: View {
                     manager.onTapEditButton(goal: goal)
                 }
                 Button("Delete") {
-                    manager.delete(goal)
+                    shouldDeleteDialogOpen = true
                 }
                 
+                
                 Button("Cancel Success") {
-                    withAnimation {
-                        goal.state = 0
-                    }
+                    shouldCancelSuccesDialogOpen = true
                 }
             } label: {
                 Image(systemName: "ellipsis")

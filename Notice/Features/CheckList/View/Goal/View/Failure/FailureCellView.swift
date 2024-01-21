@@ -10,6 +10,9 @@ import SwiftUI
 struct FailureCellView: View {
     @Environment(AppState.self) private var appState
     @EnvironmentObject private var manager: GoalManager
+    
+    @State private var shouldDeleteDialogOpen = false
+    
     let goal: Goal
     
     var body: some View {
@@ -56,13 +59,18 @@ struct FailureCellView: View {
             
             Menu {
                 Button("Delete") {
-                    manager.delete(goal)
+                    shouldDeleteDialogOpen = true
                 }
             } label: {
                 Image(systemName: "ellipsis")
                     .foregroundStyle(appState.theme.secondary)
                     .padding()
                     .contentShape(Rectangle())
+            }
+            .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
+                Button("Delete", role: .destructive) {
+                    manager.delete(goal)
+                }
             }
         }
         .frame(height: 240)

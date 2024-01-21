@@ -45,7 +45,7 @@ struct TodoView: View {
                         TodoCellView(todo: todo)
                     }
                 }
-                .animation(.default, value: manager.todos)
+//                .animation(.default, value: manager.todos)
                 .listRowSpacing(10)
                 .scrollContentBackground(.hidden)
             case .today:
@@ -54,7 +54,7 @@ struct TodoView: View {
                         TodoCellView(todo: todo)
                     }
                 }
-                .animation(.default, value: manager.todos)
+//                .animation(.default, value: manager.todos)
                 .listRowSpacing(10)
                 .scrollContentBackground(.hidden)
             }

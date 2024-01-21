@@ -10,14 +10,19 @@ import SwiftData
 
 @Model
 final class Todo {
-    var title: String
-    var memo: String
-    var date: Date
-    var isDone: Bool
-    var flag: Bool
+    var title: String = ""
+    var memo: String = ""
+    var date: Date = Date.now
+    var isDone: Bool = false
+    var flag: Bool = false
     
-    @Relationship(deleteRule: .cascade)
-    var subTodos: [SubTodo]?
+    @Relationship(deleteRule: .cascade, inverse: \SubTodo.todo)
+    var subTodos: [SubTodo] = []
+    
+    @Transient
+    var sortedSubTodos: [SubTodo] {
+        return subTodos.sorted { $0.date < $1.date }
+    }
     
     init(
         title: String = "",
@@ -25,7 +30,7 @@ final class Todo {
         date: Date = .now,
         isDone: Bool = false,
         flag: Bool = false,
-        subTodos: [SubTodo]? = nil
+        subTodos: [SubTodo] = []
     ) {
         self.title = title
         self.memo = memo
@@ -35,4 +40,3 @@ final class Todo {
         self.subTodos = subTodos
     }
 }
-

@@ -68,8 +68,8 @@ final class TodoManager: ObservableObject {
         if let origin = editingTodo {
             context.delete(origin)
             context.insert(newTodo)
-            fetchTodos()
         }
+        fetchTodos()
     }
     
     func delete(_ todo: Todo) {
@@ -80,7 +80,7 @@ final class TodoManager: ObservableObject {
     func toggleDone(_ todo: Todo) {
         todo.isDone.toggle()
         
-        todo.subTodos?.forEach {
+        todo.subTodos.forEach {
             $0.isDone = todo.isDone
         }
         slowMotion {
@@ -95,7 +95,7 @@ final class TodoManager: ObservableObject {
             todo.isDone = false
         }
         
-        if let subTodos = todo.subTodos, subTodos.allSatisfy({$0.isDone}) {
+        if todo.subTodos.allSatisfy({$0.isDone}) {
             todo.isDone = true
         }
         
@@ -121,8 +121,6 @@ final class TodoManager: ObservableObject {
             return Image(systemName: "circle")
         }
     }
-    
-    
     
     private func slowMotion(_ excute: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {

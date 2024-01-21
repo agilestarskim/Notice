@@ -19,14 +19,7 @@
 		1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565F72B42B6CC000CD6CA /* Goal.swift */; };
 		1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */; };
 		1F2565FD2B42BD39000CD6CA /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FC2B42BD39000CD6CA /* GoalManager.swift */; };
-		1F2566002B42C7E3000CD6CA /* GoalViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FF2B42C7E3000CD6CA /* GoalViewList.swift */; };
 		1F2566082B42D9A0000CD6CA /* GoalDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566072B42D9A0000CD6CA /* GoalDuration.swift */; };
-		1F25660C2B42EB40000CD6CA /* GoalOnProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */; };
-		1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */; };
-		1F2566102B42EB98000CD6CA /* GoalPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F25660F2B42EB98000CD6CA /* GoalPendingView.swift */; };
-		1F2566122B42F13A000CD6CA /* CollectionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566112B42F13A000CD6CA /* CollectionCardView.swift */; };
-		1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566132B42F145000CD6CA /* LaneCardView.swift */; };
-		1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566192B42FA87000CD6CA /* PendingCardView.swift */; };
 		1F2D97152B4C193E0088F030 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97142B4C193E0088F030 /* RoutineFormView.swift */; };
 		1F2D97172B4C1F4A0088F030 /* RoutineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97162B4C1F4A0088F030 /* RoutineCellView.swift */; };
 		1F2D97192B4C24CC0088F030 /* GrassView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2D97182B4C24CC0088F030 /* GrassView.swift */; };
@@ -36,6 +29,7 @@
 		1F3E08382B4AD95B0092F7AF /* TodoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08372B4AD95B0092F7AF /* TodoState.swift */; };
 		1F3E083A2B4ADFA60092F7AF /* Routine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E08392B4ADFA60092F7AF /* Routine.swift */; };
 		1F3E083C2B4AEE360092F7AF /* PerformedDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E083B2B4AEE360092F7AF /* PerformedDate.swift */; };
+		1F42CFF92B5B5D9800008787 /* String+toColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F42CFF82B5B5D9800008787 /* String+toColor.swift */; };
 		1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */; };
 		1F59FE762B483F040067BEA2 /* RoutineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE752B483F040067BEA2 /* RoutineManager.swift */; };
 		1F59FE7A2B483F520067BEA2 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE792B483F520067BEA2 /* RoutineView.swift */; };
@@ -86,6 +80,7 @@
 		1F93D5AF2B538518002FA726 /* FailureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AE2B538518002FA726 /* FailureListView.swift */; };
 		1F93EEA12B555E7500A5C757 /* SuccessCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */; };
 		1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA22B55680E00A5C757 /* FailureCellView.swift */; };
+		1FA4560C2B5D49A4001A853F /* FormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4560B2B5D49A4001A853F /* FormContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,14 +113,7 @@
 		1F2565F72B42B6CC000CD6CA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFilter.swift; sourceTree = "<group>"; };
 		1F2565FC2B42BD39000CD6CA /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
-		1F2565FF2B42C7E3000CD6CA /* GoalViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewList.swift; sourceTree = "<group>"; };
 		1F2566072B42D9A0000CD6CA /* GoalDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDuration.swift; sourceTree = "<group>"; };
-		1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalOnProgressView.swift; sourceTree = "<group>"; };
-		1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalSuccessFailureView.swift; sourceTree = "<group>"; };
-		1F25660F2B42EB98000CD6CA /* GoalPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalPendingView.swift; sourceTree = "<group>"; };
-		1F2566112B42F13A000CD6CA /* CollectionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCardView.swift; sourceTree = "<group>"; };
-		1F2566132B42F145000CD6CA /* LaneCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaneCardView.swift; sourceTree = "<group>"; };
-		1F2566192B42FA87000CD6CA /* PendingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingCardView.swift; sourceTree = "<group>"; };
 		1F2D97142B4C193E0088F030 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
 		1F2D97162B4C1F4A0088F030 /* RoutineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCellView.swift; sourceTree = "<group>"; };
 		1F2D97182B4C24CC0088F030 /* GrassView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrassView.swift; sourceTree = "<group>"; };
@@ -135,6 +123,7 @@
 		1F3E08372B4AD95B0092F7AF /* TodoState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoState.swift; sourceTree = "<group>"; };
 		1F3E08392B4ADFA60092F7AF /* Routine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routine.swift; sourceTree = "<group>"; };
 		1F3E083B2B4AEE360092F7AF /* PerformedDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformedDate.swift; sourceTree = "<group>"; };
+		1F42CFF82B5B5D9800008787 /* String+toColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+toColor.swift"; sourceTree = "<group>"; };
 		1F4631FC2B4436AE007B89C5 /* GoalFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFormView.swift; sourceTree = "<group>"; };
 		1F59FE752B483F040067BEA2 /* RoutineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineManager.swift; sourceTree = "<group>"; };
 		1F59FE792B483F520067BEA2 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
@@ -190,6 +179,7 @@
 		1F93D5AE2B538518002FA726 /* FailureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureListView.swift; sourceTree = "<group>"; };
 		1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCellView.swift; sourceTree = "<group>"; };
 		1F93EEA22B55680E00A5C757 /* FailureCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureCellView.swift; sourceTree = "<group>"; };
+		1FA4560B2B5D49A4001A853F /* FormContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +223,7 @@
 				1F59FE972B484D3D0067BEA2 /* Calendar+Shared.swift */,
 				1F3E08352B4AD51B0092F7AF /* Bool+Comparable.swift */,
 				1F10AF5B2B5AD057001EE0A3 /* Int+toEmoji.swift */,
+				1F42CFF82B5B5D9800008787 /* String+toColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,6 +231,7 @@
 		1F15DB6C2B522DC800ECDEC7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				1FA4560A2B5D4987001A853F /* FormContainer */,
 				1F15DB6D2B52307500ECDEC7 /* Picker */,
 				1F638A832B3292D5004D32C9 /* Tab */,
 				1F638A892B3292D5004D32C9 /* Menu */,
@@ -255,36 +247,6 @@
 				1F10AF592B5A9AF2001EE0A3 /* NTEmojiPicker.swift */,
 			);
 			path = Picker;
-			sourceTree = "<group>";
-		};
-		1F2565FE2B42C7D8000CD6CA /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1F2565FF2B42C7E3000CD6CA /* GoalViewList.swift */,
-				1F2566182B42F448000CD6CA /* Card */,
-				1F2566172B42F432000CD6CA /* State */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1F2566172B42F432000CD6CA /* State */ = {
-			isa = PBXGroup;
-			children = (
-				1F25660B2B42EB40000CD6CA /* GoalOnProgressView.swift */,
-				1F25660D2B42EB84000CD6CA /* GoalSuccessFailureView.swift */,
-				1F25660F2B42EB98000CD6CA /* GoalPendingView.swift */,
-			);
-			path = State;
-			sourceTree = "<group>";
-		};
-		1F2566182B42F448000CD6CA /* Card */ = {
-			isa = PBXGroup;
-			children = (
-				1F2566132B42F145000CD6CA /* LaneCardView.swift */,
-				1F2566112B42F13A000CD6CA /* CollectionCardView.swift */,
-				1F2566192B42FA87000CD6CA /* PendingCardView.swift */,
-			);
-			path = Card;
 			sourceTree = "<group>";
 		};
 		1F59FE802B48400A0067BEA2 /* Todo */ = {
@@ -503,7 +465,6 @@
 				1F638A5E2B329275004D32C9 /* Memo */,
 				1F638A3C2B329275004D32C9 /* Calendar */,
 				1F638A542B329275004D32C9 /* CheckList */,
-				1F638A602B329275004D32C9 /* Goal */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -568,14 +529,6 @@
 				1F638A5F2B329275004D32C9 /* MemoView.swift */,
 			);
 			path = Memo;
-			sourceTree = "<group>";
-		};
-		1F638A602B329275004D32C9 /* Goal */ = {
-			isa = PBXGroup;
-			children = (
-				1F2565FE2B42C7D8000CD6CA /* View */,
-			);
-			path = Goal;
 			sourceTree = "<group>";
 		};
 		1F638A7A2B32927E004D32C9 /* Theme */ = {
@@ -659,6 +612,14 @@
 			path = Failure;
 			sourceTree = "<group>";
 		};
+		1FA4560A2B5D4987001A853F /* FormContainer */ = {
+			isa = PBXGroup;
+			children = (
+				1FA4560B2B5D49A4001A853F /* FormContainer.swift */,
+			);
+			path = FormContainer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -723,7 +684,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					1F638A052B3291FA004D32C9 = {
 						CreatedOnToolsVersion = 15.1;
@@ -792,17 +753,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA4560C2B5D49A4001A853F /* FormContainer.swift in Sources */,
 				1F59FE982B484D3D0067BEA2 /* Calendar+Shared.swift in Sources */,
 				1F638A762B329275004D32C9 /* TodoView.swift in Sources */,
 				1F638A652B329275004D32C9 /* EventView.swift in Sources */,
 				1F638A782B329275004D32C9 /* MemoView.swift in Sources */,
 				1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */,
-				1F2566122B42F13A000CD6CA /* CollectionCardView.swift in Sources */,
 				1F638A7F2B32927E004D32C9 /* Forest.swift in Sources */,
 				1F3E08382B4AD95B0092F7AF /* TodoState.swift in Sources */,
 				1F638A712B329275004D32C9 /* DateFormatter+Shared.swift in Sources */,
 				1F3E08362B4AD51B0092F7AF /* Bool+Comparable.swift in Sources */,
 				1F2D97172B4C1F4A0088F030 /* RoutineCellView.swift in Sources */,
+				1F42CFF92B5B5D9800008787 /* String+toColor.swift in Sources */,
 				1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */,
 				1F638A8E2B3292D5004D32C9 /* MenuView.swift in Sources */,
 				1F2D97192B4C24CC0088F030 /* GrassView.swift in Sources */,
@@ -810,7 +772,6 @@
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
 				1F15DB692B52248A00ECDEC7 /* CheckPickerManger.swift in Sources */,
 				1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */,
-				1F2566002B42C7E3000CD6CA /* GoalViewList.swift in Sources */,
 				1F638A7E2B32927E004D32C9 /* Dawn.swift in Sources */,
 				1F2565FD2B42BD39000CD6CA /* GoalManager.swift in Sources */,
 				1F3E083A2B4ADFA60092F7AF /* Routine.swift in Sources */,
@@ -827,20 +788,16 @@
 				1F638A6D2B329275004D32C9 /* MSInfinteMonthView.swift in Sources */,
 				1F59FE952B484A460067BEA2 /* CheckTab.swift in Sources */,
 				1F15DB6F2B523B4600ECDEC7 /* TodoFilter.swift in Sources */,
-				1F2566102B42EB98000CD6CA /* GoalPendingView.swift in Sources */,
 				1F59FE762B483F040067BEA2 /* RoutineManager.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
 				1F2D97152B4C193E0088F030 /* RoutineFormView.swift in Sources */,
-				1F2566142B42F145000CD6CA /* LaneCardView.swift in Sources */,
 				1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */,
-				1F25661A2B42FA87000CD6CA /* PendingCardView.swift in Sources */,
 				1F10AF5C2B5AD057001EE0A3 /* Int+toEmoji.swift in Sources */,
 				1F93EEA12B555E7500A5C757 /* SuccessCellView.swift in Sources */,
 				1F59FE8F2B48440A0067BEA2 /* StatisticsView.swift in Sources */,
 				1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */,
 				1F638A772B329275004D32C9 /* TodoCellView.swift in Sources */,
 				1F638A6C2B329275004D32C9 /* Date+.swift in Sources */,
-				1F25660C2B42EB40000CD6CA /* GoalOnProgressView.swift in Sources */,
 				1F24EF382B3680C700FA6B25 /* CalendarDayView.swift in Sources */,
 				1F12142F2B37106000DB04CD /* SubTodo.swift in Sources */,
 				1F638A0A2B3291FA004D32C9 /* NoticeApp.swift in Sources */,
@@ -853,7 +810,6 @@
 				1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */,
 				1F10AF5A2B5A9AF2001EE0A3 /* NTEmojiPicker.swift in Sources */,
 				1F3E083C2B4AEE360092F7AF /* PerformedDate.swift in Sources */,
-				1F25660E2B42EB84000CD6CA /* GoalSuccessFailureView.swift in Sources */,
 				1F1214342B37110700DB04CD /* TodoManager.swift in Sources */,
 				1F0722022B32D42A008B80A0 /* Todo.swift in Sources */,
 				1F638A752B329275004D32C9 /* TodoFormView.swift in Sources */,
@@ -906,6 +862,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -935,6 +892,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -967,6 +925,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -996,6 +955,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1023,6 +983,7 @@
 				CODE_SIGN_ENTITLEMENTS = Notice/Notice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Notice/Preview Content\"";
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1062,6 +1023,7 @@
 				CODE_SIGN_ENTITLEMENTS = Notice/Notice.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Notice/Preview Content\"";
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1100,6 +1062,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -1123,6 +1086,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -1145,6 +1109,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
@@ -1167,6 +1132,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = G3RC7ALRKZ;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;

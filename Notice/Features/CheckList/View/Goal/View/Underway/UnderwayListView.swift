@@ -16,7 +16,7 @@ struct UnderwayListView: View {
             ForEach(manager.underways) { goal in
                 UnderwayCellView(goal: goal)
             }
-        }                  
+        }        
         .listRowSpacing(10)
         .scrollContentBackground(.hidden)
     }

@@ -10,14 +10,25 @@ import SwiftUI
 struct UnderwayCellView: View {
     @Environment(AppState.self) private var appState
     @EnvironmentObject private var manager: GoalManager
+    
+    @State private var shouldDeleteDialogOpen = false
+    @State private var shouldFailureDialogOpen = false
+    @State private var shouldSuccessDialogOpen = false
     let goal: Goal
+    
     
     var body: some View {
         VStack(spacing: 20) {
             GoalContent
             DecisionButtons
         }
-        //TODO: Alert
+        .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
+            Button("Delete", role: .destructive) {
+                withAnimation {
+                    manager.delete(goal)
+                }
+            }
+        }
         .listRowBackground(appState.theme.container)
         .swipeActions(edge: .leading) {
             Button("Edit") {
@@ -27,7 +38,7 @@ struct UnderwayCellView: View {
         }
         .swipeActions(edge: .trailing) {
             Button("Delete") {
-                manager.alert = GoalAlert(id: .delete, title: "삭제", message: "\(goal.title) 목표를 삭제하시겠습니까?")
+                shouldDeleteDialogOpen = true                
             }
             .tint(.red)
         }
@@ -75,9 +86,7 @@ struct UnderwayCellView: View {
     var DecisionButtons: some View {
         HStack(spacing: 10) {
             Button {
-                withAnimation {
-                    goal.state = 2
-                }
+                shouldFailureDialogOpen = true
             } label: {
                 Text("Failure")
                     .font(.caption)
@@ -85,12 +94,17 @@ struct UnderwayCellView: View {
             }
             .tint(.red)
             .buttonStyle(.bordered)
+            .confirmationDialog("실패하셨습니까?", isPresented: $shouldFailureDialogOpen) {
+                Button("Failure") {
+                    withAnimation {
+                        goal.state = 2
+                    }
+                }
+                .tint(.red)
+            }
             
             Button {
-                withAnimation {
-                    goal.state = 1
-                    goal.realEndDate = .now
-                }
+                shouldSuccessDialogOpen = true
             } label: {
                 Text("Success")
                     .font(.caption)
@@ -98,6 +112,15 @@ struct UnderwayCellView: View {
             }
             .tint(.green)
             .buttonStyle(.bordered)
-        }        
+            .confirmationDialog("성공하셨습니까?", isPresented: $shouldSuccessDialogOpen) {
+                Button("Success") {
+                    withAnimation {
+                        goal.state = 1
+                        goal.realEndDate = .now
+                    }
+                }
+                .tint(.red)
+            }
+        }
     }
 }

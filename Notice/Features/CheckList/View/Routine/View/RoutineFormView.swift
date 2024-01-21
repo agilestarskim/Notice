@@ -17,34 +17,29 @@ struct RoutineFormView: View {
     @State private var color: Color = .red
     
     var body: some View {
-        NavigationStack {
-            List { 
-                Section{
-                    TitleTextField
-                    CellColorPicker
+        FormContainer(
+            title: manager.editingRoutine == nil ? "루틴 추가" : "루틴 편집",
+            theme: appState.theme,
+            button: {
+                Button("완료", action: done)
+                    .tint(appState.theme.accent)
+                    .opacity(title.isEmpty ? 0.5 : 1)
+            },
+            content: {
+                List {
+                    Section{
+                        TitleTextField
+                        CellColorPicker
+                    }
+                    .foregroundStyle(appState.theme.primary)
+                    .listRowBackground(appState.theme.container.opacity(0.8))
                 }
-                .foregroundStyle(appState.theme.primary)
-                .listRowBackground(appState.theme.container.opacity(0.8))
+                .scrollBounceBehavior(.basedOnSize)
+                .scrollContentBackground(.hidden)                
+                .listRowSpacing(10)
             }
-            .scrollBounceBehavior(.basedOnSize)
-            .scrollContentBackground(.hidden)
-            .background(appState.theme.background)
-            .listRowSpacing(10)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(manager.editingRoutine == nil ? "루틴 추가" : "루틴 편집")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundStyle(appState.theme.accent)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("완료", action: done)
-                        .tint(appState.theme.accent)
-                        .opacity(title.isEmpty ? 0.5 : 1)
-                }
-            }
-        }
-        .onAppear(perform: setData)
+        )
+        .onAppear(perform: setData)        
     }
     
     private var TitleTextField: some View {
@@ -65,7 +60,7 @@ struct RoutineFormView: View {
         if let routine = manager.editingRoutine {
             self.title = routine.title
             self.startDate = routine.startDate
-            self.color = manager.getColor(colorDescription: routine.color)
+            self.color = routine.color.toColor
         }
     }
     

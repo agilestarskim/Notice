@@ -12,6 +12,9 @@ struct RoutineCellView: View {
     @EnvironmentObject private var manager: RoutineManager
     
     @State private var isChecked = false
+    @State private var shouldGrassExtend = false
+    @State private var shouldDialogOpen = false
+    
     let routine: Routine
     
     var body: some View {
@@ -46,10 +49,22 @@ struct RoutineCellView: View {
                         .font(.title)
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(isChecked ? appState.theme.accent : appState.theme.secondary)
-                .id(routine.id)                
+                .foregroundStyle(isChecked ? routine.color.toColor : appState.theme.secondary)
+                .id(routine.id)
             }
-            GrassView(performedDates, row: 4, col: 15, cellColor: manager.getColor(colorDescription: routine.color))
+            
+            VStack {
+                GrassViewComponent
+            }
+            .animation(.easeInOut, value: shouldGrassExtend)
+            .onTapGesture {
+                shouldGrassExtend.toggle()
+            }
+        }
+        .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDialogOpen) {
+            Button("Delete", role: .destructive) {
+                manager.delete(self.routine)
+            }
         }
         .listRowSeparator(.hidden)
         .listRowBackground(appState.theme.container)
@@ -63,9 +78,31 @@ struct RoutineCellView: View {
             .tint(appState.theme.accent)
         }
         .swipeActions(edge: .trailing) {
-            Button("Delete", role: .destructive) {
-                manager.delete(self.routine)
+            Button("Delete") {
+                shouldDialogOpen = true
             }
+            .tint(.red)
+        }
+    }
+    
+    @ViewBuilder
+    var GrassViewComponent: some View {
+        if shouldGrassExtend {
+            GrassView(
+                performedDates,
+                row: 8,
+                col: 20,
+                cellColor: routine.color.toColor
+            )
+            .transition(.scale)
+        } else {
+            GrassView(
+                performedDates,
+                row: 4,
+                col: 15,
+                cellColor: routine.color.toColor
+            )
+            .transition(.scale)
         }
     }
     

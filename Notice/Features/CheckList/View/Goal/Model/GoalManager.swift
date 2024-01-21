@@ -13,8 +13,7 @@ final class GoalManager: ObservableObject {
     @Published var filter: GoalFilter = .underway
     @Published var goingRight: Bool = false
     @Published var shouldOpenEditor = false
-    @Published var editingGoal: Goal? = nil    
-    @Published var alert: GoalAlert? = nil
+    @Published var editingGoal: Goal? = nil        
     
     private let context: ModelContext
     private let calendar: Calendar = Calendar.shared
@@ -24,7 +23,11 @@ final class GoalManager: ObservableObject {
     }
     
     var successes: [Goal] {
-        goals.filter { $0.state == 1 }
+        goals
+            .filter { $0.state == 1 }
+            .sorted {
+                $0.realEndDate > $1.realEndDate
+            }
     }
     
     var failures: [Goal] {
@@ -118,6 +121,17 @@ final class GoalManager: ObservableObject {
     
     enum EditState { case create, edit, retry }
     
+    func formTitle(_ state: Int) -> String {
+        switch editState(state) {            
+        case .create:
+            return "목표 추가"
+        case .edit:
+            return "목표 편집"
+        case .retry:
+            return "목표 재도전"
+        }
+    }
+    
     func deadline(_ goal: Goal) -> Int? {
         let deadline = Calendar.shared.dateComponents(
             [.day],
@@ -131,5 +145,7 @@ final class GoalManager: ObservableObject {
             return nil
         }
     }
+    
+    
 }
 

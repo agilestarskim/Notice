@@ -22,45 +22,31 @@ struct GoalFormView: View {
     
 
     var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    TitleTextField
-                    StartDatePicker
-                    DurationPicker
-                    EndDatePicker
-                    NTEmojiPicker(emoji: $emoji, selectColor: appState.theme.primary)
-                }
-                .foregroundStyle(appState.theme.primary)
-                .listRowBackground(appState.theme.container.opacity(0.8))
-            }
-            .scrollBounceBehavior(.basedOnSize)
-            .scrollContentBackground(.hidden)
-            .background(appState.theme.background)
-            .listRowSpacing(10)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Group {
-                        switch manager.editState(state) {
-                        case .create:
-                            Text("목표 추가")
-                        case .edit:
-                            Text("목표 편집")
-                        case .retry:
-                            Text("목표 재도전")
-                        }
+        FormContainer(
+            title: manager.formTitle(state),
+            theme: appState.theme,
+            button: {
+                Button("완료", action: done)
+                    .tint(appState.theme.accent)
+                    .opacity(title.isEmpty ? 0.5 : 1)
+            },
+            content: {
+                List {
+                    Section {
+                        TitleTextField
+                        StartDatePicker
+                        DurationPicker
+                        EndDatePicker
+                        NTEmojiPicker(emoji: $emoji, selectColor: appState.theme.primary)
                     }
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .foregroundStyle(appState.theme.accent)
+                    .foregroundStyle(appState.theme.primary)
+                    .listRowBackground(appState.theme.container.opacity(0.8))
                 }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("완료", action: done)
-                        .tint(appState.theme.accent)
-                        .opacity(title.isEmpty ? 0.5 : 1)
-                }
+                .scrollBounceBehavior(.basedOnSize)
+                .scrollContentBackground(.hidden)                
+                .listRowSpacing(10)
             }
-        }
+        )        
         .onAppear(perform: setData)
         .onChange(of: startDate, setEndDate)
         .onChange(of: duration, setEndDate)

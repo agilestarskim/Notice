@@ -92,7 +92,7 @@ struct TodoCellView: View {
     
     @ViewBuilder
     private var SubTodoToggle: some View {
-        if let subTodos = todo.subTodos, !subTodos.isEmpty {
+        if !todo.subTodos.isEmpty {
             Button {
                 isOpenSubTodoToggle.toggle()
             } label: {
@@ -101,14 +101,13 @@ struct TodoCellView: View {
                     .rotationEffect(isOpenSubTodoToggle ? .degrees(90) : .zero)
             }
             .buttonStyle(.plain)
-            
         }
     }
     
     @ViewBuilder
     private var SubTodos: some View {
-        if let subTodos = todo.subTodos, !subTodos.isEmpty, isOpenSubTodoToggle {
-            ForEach(subTodos) { subTodo in
+        if !todo.subTodos.isEmpty, isOpenSubTodoToggle {
+            ForEach(todo.sortedSubTodos) { subTodo in
                 HStack {
                     Button {
                         manager.toggleSubTodoDone(subTodo, of: self.todo)

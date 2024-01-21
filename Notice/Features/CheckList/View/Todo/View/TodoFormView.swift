@@ -21,42 +21,37 @@ struct TodoFormView: View {
     @State private var subTodoTitle: String = ""
     
     var body: some View {
-        NavigationStack {
-            List {
-                Section {
-                    TitleTextField
-                    MemoTextField
-                    FlagToggle
-                    StartDatePicker
+        FormContainer(
+            title: manager.editingTodo == nil ? "할 일 추가" : "할 일 편집",
+            theme: appState.theme,
+            button: {
+                Button("완료", action: done)
+                    .tint(appState.theme.accent)
+                    .opacity(title.isEmpty ? 0.5 : 1)
+            },
+            content: {
+                List {
+                    Section {
+                        TitleTextField
+                        MemoTextField
+                        FlagToggle
+                        StartDatePicker
+                    }
+                    .foregroundStyle(appState.theme.primary)
+                    .listRowBackground(appState.theme.container.opacity(0.8))
+                    
+                    Section {
+                        SubTodoTextField
+                        SubTodosList
+                    }
+                    .foregroundStyle(appState.theme.primary)
+                    .listRowBackground(appState.theme.container.opacity(0.8))
                 }
-                .foregroundStyle(appState.theme.primary)
-                .listRowBackground(appState.theme.container.opacity(0.8))
-                
-                Section {
-                    SubTodoTextField
-                    SubTodosList
-                }
-                .foregroundStyle(appState.theme.primary)
-                .listRowBackground(appState.theme.container.opacity(0.8))
+                .scrollBounceBehavior(.basedOnSize)
+                .scrollContentBackground(.hidden)
+                .listRowSpacing(10)
             }
-            .scrollBounceBehavior(.basedOnSize)
-            .scrollContentBackground(.hidden)            
-            .background(appState.theme.background)
-            .listRowSpacing(10)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(manager.editingTodo == nil ? "할 일 추가" : "할 일 편집")
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundStyle(appState.theme.accent)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("완료", action: done)
-                        .tint(appState.theme.accent)
-                        .opacity(title.isEmpty ? 0.5 : 1)
-                }
-            }
-        }
+        )
         .onAppear(perform: setData)
     }
     
@@ -131,17 +126,17 @@ struct TodoFormView: View {
     }
     
     private func setData() {
-        if let todo = manager.editingTodo, let subTodos = todo.subTodos {
+        if let todo = manager.editingTodo {
             self.title = todo.title
             self.memo = todo.memo
             self.date = todo.date
             self.flag = todo.flag
-            self.subTodos = subTodos
+            self.subTodos = todo.sortedSubTodos
         }
     }
     
     private func addSubTodo() {
-        let subTodo = SubTodo(title: self.subTodoTitle, isDone: false)
+        let subTodo = SubTodo(title: self.subTodoTitle, isDone: false, date: .now)
         self.subTodos.append(subTodo)
         self.subTodoTitle = ""
     }
