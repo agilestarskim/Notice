@@ -12,19 +12,15 @@ struct CheckListView: View {
     @StateObject private var manager = CheckPickerManger()
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                CheckList
-                CheckPicker
-            }
-            .background(appState.theme.background)
-            .safeAreaPadding(.bottom, appState.bottomSafeAreaPadding)
+        VStack {
+            CheckList
+            CheckPicker
         }
     }
     
     var CheckPicker: some View {
         NTPicker(
-            $manager.checkTab.animation(.easeInOut),
+            $manager.checkTab.animation(.easeInOut(duration: 0.2)),
             CheckTab.allCases,
             theme: appState.theme
         ) { oldValue, newValue in
@@ -44,7 +40,6 @@ struct CheckListView: View {
                 GoalView()
             }
         }
-        .animation(.easeInOut, value: manager.goingRight)
         .transition(
             .asymmetric(
                 insertion: .move(edge: manager.goingRight ? .trailing : .leading),

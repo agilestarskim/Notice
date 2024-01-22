@@ -70,6 +70,7 @@ struct FailureCellView: View {
             .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
                 Button("Delete", role: .destructive) {
                     manager.delete(goal)
+                    appState.showToast("삭제되었습니다")
                 }
             }
         }

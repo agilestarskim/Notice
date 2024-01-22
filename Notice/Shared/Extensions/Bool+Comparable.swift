@@ -7,7 +7,7 @@
 
 extension Bool: Comparable {
     public static func <(lhs: Self, rhs: Self) -> Bool {
-        // the only true inequality is false < true
+        // false < true 일 때만 true
         !lhs && rhs
     }
 }

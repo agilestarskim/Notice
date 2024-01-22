@@ -21,11 +21,12 @@ struct UnderwayCellView: View {
         VStack(spacing: 20) {
             GoalContent
             DecisionButtons
-        }
+        }        
         .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
             Button("Delete", role: .destructive) {
                 withAnimation {
                     manager.delete(goal)
+                    appState.showToast("삭제되었습니다")
                 }
             }
         }
@@ -99,6 +100,7 @@ struct UnderwayCellView: View {
                     withAnimation {
                         goal.state = 2
                     }
+                    appState.showToast("실패하였습니다")
                 }
                 .tint(.red)
             }
@@ -118,6 +120,7 @@ struct UnderwayCellView: View {
                         goal.state = 1
                         goal.realEndDate = .now
                     }
+                    appState.showToast("성공했습니다")
                 }
                 .tint(.red)
             }

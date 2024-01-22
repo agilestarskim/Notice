@@ -12,6 +12,8 @@ import CoreFoundation
 final class AppState {
     var tab: Tabs = .calendar
     var theme: Theme = Dawn()
+    var toastMessage: String = ""
+    var shouldToastOn: Bool = false
     
     @ObservationIgnored
     var onTapPlusButton: (() -> Void)?
@@ -22,5 +24,10 @@ final class AppState {
     @ObservationIgnored
     var bottomSafeAreaPadding: CGFloat {
         tabHeight + 14.0
+    }
+    
+    func showToast(_ message: String) {
+        toastMessage = message
+        shouldToastOn = true
     }
 }

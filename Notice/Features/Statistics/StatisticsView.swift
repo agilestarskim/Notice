@@ -12,8 +12,7 @@ struct StatisticsView: View {
         VStack {
             Spacer()
             Text("Statistics")
-        }
-        
+        }        
     }
 }
 

@@ -71,7 +71,6 @@
 		1F638A8B2B3292D5004D32C9 /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A852B3292D5004D32C9 /* Tabs.swift */; };
 		1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A872B3292D5004D32C9 /* TabIcon.swift */; };
 		1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A882B3292D5004D32C9 /* CustomTabView.swift */; };
-		1F638A8E2B3292D5004D32C9 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A8A2B3292D5004D32C9 /* MenuView.swift */; };
 		1F638A902B3292DC004D32C9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A8F2B3292DC004D32C9 /* AppState.swift */; };
 		1F7CE3BA2B59612F00C23FF1 /* GoalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CE3B92B59612F00C23FF1 /* GoalAlert.swift */; };
 		1F93D5A72B53841E002FA726 /* UnderwayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */; };
@@ -81,6 +80,7 @@
 		1F93EEA12B555E7500A5C757 /* SuccessCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */; };
 		1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA22B55680E00A5C757 /* FailureCellView.swift */; };
 		1FA4560C2B5D49A4001A853F /* FormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4560B2B5D49A4001A853F /* FormContainer.swift */; };
+		1FA456142B5E997B001A853F /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 1FA456132B5E997B001A853F /* AlertToast */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,7 +170,6 @@
 		1F638A852B3292D5004D32C9 /* Tabs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		1F638A872B3292D5004D32C9 /* TabIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabIcon.swift; sourceTree = "<group>"; };
 		1F638A882B3292D5004D32C9 /* CustomTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
-		1F638A8A2B3292D5004D32C9 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		1F638A8F2B3292DC004D32C9 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		1F7CE3B92B59612F00C23FF1 /* GoalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAlert.swift; sourceTree = "<group>"; };
 		1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayCellView.swift; sourceTree = "<group>"; };
@@ -187,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FA456142B5E997B001A853F /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +234,6 @@
 				1FA4560A2B5D4987001A853F /* FormContainer */,
 				1F15DB6D2B52307500ECDEC7 /* Picker */,
 				1F638A832B3292D5004D32C9 /* Tab */,
-				1F638A892B3292D5004D32C9 /* Menu */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -252,7 +251,7 @@
 		1F59FE802B48400A0067BEA2 /* Todo */ = {
 			isa = PBXGroup;
 			children = (
-				1F59FE842B4840280067BEA2 /* Model */,
+				1F59FE842B4840280067BEA2 /* Entities */,
 				1F59FE832B4840220067BEA2 /* View */,
 			);
 			path = Todo;
@@ -286,7 +285,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1F59FE842B4840280067BEA2 /* Model */ = {
+		1F59FE842B4840280067BEA2 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				1F0722012B32D42A008B80A0 /* Todo.swift */,
@@ -295,7 +294,7 @@
 				1F15DB6E2B523B4600ECDEC7 /* TodoFilter.swift */,
 				1F1214332B37110700DB04CD /* TodoManager.swift */,
 			);
-			path = Model;
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		1F59FE852B48402E0067BEA2 /* View */ = {
@@ -577,14 +576,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		1F638A892B3292D5004D32C9 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				1F638A8A2B3292D5004D32C9 /* MenuView.swift */,
-			);
-			path = Menu;
-			sourceTree = "<group>";
-		};
 		1F7CE3B62B59538500C23FF1 /* Underway */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +627,9 @@
 			dependencies = (
 			);
 			name = Notice;
+			packageProductDependencies = (
+				1FA456132B5E997B001A853F /* AlertToast */,
+			);
 			productName = Notice;
 			productReference = 1F638A062B3291FA004D32C9 /* Notice.app */;
 			productType = "com.apple.product-type.application";
@@ -710,6 +704,9 @@
 				ja,
 			);
 			mainGroup = 1F6389FD2B3291F9004D32C9;
+			packageReferences = (
+				1FA456122B5E997B001A853F /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 1F638A072B3291FA004D32C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -766,7 +763,6 @@
 				1F2D97172B4C1F4A0088F030 /* RoutineCellView.swift in Sources */,
 				1F42CFF92B5B5D9800008787 /* String+toColor.swift in Sources */,
 				1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */,
-				1F638A8E2B3292D5004D32C9 /* MenuView.swift in Sources */,
 				1F2D97192B4C24CC0088F030 /* GrassView.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
@@ -1189,6 +1185,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1FA456122B5E997B001A853F /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FA456132B5E997B001A853F /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FA456122B5E997B001A853F /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1F6389FE2B3291F9004D32C9 /* Project object */;
 }

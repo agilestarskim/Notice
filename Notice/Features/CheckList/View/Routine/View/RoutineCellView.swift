@@ -41,7 +41,8 @@ struct RoutineCellView: View {
                 Button {
                     if !isChecked {
                         doneEffect()
-                        manager.toggleDone(routine)
+                        manager.toggleDone(routine)          
+                        appState.showToast("\(DateFormatter.string(.now, style: .MdE)) 완료했습니다.")
                     }
                 } label: {
                     manager.doneButtonImage(isChecked: isChecked)

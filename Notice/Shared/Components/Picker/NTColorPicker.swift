@@ -25,18 +25,17 @@ struct NTColorPicker: View {
                 ZStack {
                     Circle()
                         .fill(color)
+                        .padding(3)
                         .onTapGesture {
                             self.color = color
                         }
-                    if self.color == color {
-                        Group {
-                            Circle()
-                                .fill(.white)
-                                .padding(4)
-                            Circle()
-                                .fill(color)
-                                .padding(7)
-                        }
+                    if self.color == color {                        
+                        Circle()
+                            .fill(.white)
+                            .padding(5)
+                        Circle()
+                            .fill(color)
+                            .padding(8)
                     }
                 }
             }

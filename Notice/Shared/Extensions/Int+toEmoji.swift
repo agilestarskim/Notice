@@ -9,7 +9,10 @@ import Foundation
 
 extension Int {
     var emoji: String {
-        let scalar = UnicodeScalar(self)!
-        return String(scalar)
+        if let scalar = UnicodeScalar(self) {
+            return String(scalar)
+        } else {
+            return ""
+        }
     }
 }

@@ -13,8 +13,9 @@ struct TodoFormView: View {
     @EnvironmentObject private var manager: TodoManager
     
     @State private var title: String = ""
-    @State private var memo: String = ""
+    @State private var memo: String = ""    
     @State private var flag: Bool = false
+    @State private var isDone: Bool = false
     @State private var date: Date = .now
     @State private var subTodos: [SubTodo] = []
     
@@ -121,8 +122,7 @@ struct TodoFormView: View {
                     Image(systemName: "x.circle.fill")
                 }
             }
-        }
-        .animation(.bouncy, value: subTodos)
+        }        
     }
     
     private func setData() {
@@ -130,6 +130,7 @@ struct TodoFormView: View {
             self.title = todo.title
             self.memo = todo.memo
             self.date = todo.date
+            self.isDone = todo.isDone
             self.flag = todo.flag
             self.subTodos = todo.sortedSubTodos
         }
@@ -137,24 +138,35 @@ struct TodoFormView: View {
     
     private func addSubTodo() {
         let subTodo = SubTodo(title: self.subTodoTitle, isDone: false, date: .now)
-        self.subTodos.append(subTodo)
+        withAnimation {
+            self.subTodos.append(subTodo)
+        }
         self.subTodoTitle = ""
     }
     
     private func removeSubTodo(subTodo: SubTodo) {
-        if let index = self.subTodos.firstIndex(of: subTodo) {
-            self.subTodos.remove(at: index)
+        withAnimation {
+            if let index = self.subTodos.firstIndex(of: subTodo) {
+                self.subTodos.remove(at: index)
+            }
         }
     }
     
     private func done() {
         if title.isEmpty { return }
         
-        let newTodo = Todo(title: title, memo: memo, date: date, flag: flag, subTodos: subTodos)
+        let newTodo = Todo(
+            title: title,
+            memo: memo,
+            date: date,
+            isDone: isDone,
+            flag: flag,
+            subTodos: subTodos
+        )
         
         if manager.editingTodo == nil {
             manager.create(newTodo)
-        } else {
+        } else {            
             manager.update(newTodo)
         }
         dismiss()        

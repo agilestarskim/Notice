@@ -13,7 +13,7 @@ struct TodoView: View {
     @EnvironmentObject private var manager: TodoManager
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             TodoFilterPicker
             TodoList
         }
@@ -27,7 +27,7 @@ struct TodoView: View {
     
     var TodoFilterPicker: some View {
         NTPicker(
-            $manager.todoFilter.animation(.easeInOut),
+            $manager.todoFilter.animation(.easeInOut(duration: 0.2)),
             TodoFilter.allCases,
             theme: appState.theme
         ) { oldValue, newValue in
@@ -45,7 +45,6 @@ struct TodoView: View {
                         TodoCellView(todo: todo)
                     }
                 }
-//                .animation(.default, value: manager.todos)
                 .listRowSpacing(10)
                 .scrollContentBackground(.hidden)
             case .today:
@@ -53,13 +52,12 @@ struct TodoView: View {
                     ForEach(manager.todayTodos) { todo in
                         TodoCellView(todo: todo)
                     }
-                }
-//                .animation(.default, value: manager.todos)
+                }                
                 .listRowSpacing(10)
                 .scrollContentBackground(.hidden)
             }
         }
-        .animation(.easeInOut, value: manager.goingRight)
+        .animation(.easeInOut, value: manager.todos)
         .transition(
             .asymmetric(
                 insertion: .move(edge: manager.goingRight ? .trailing : .leading),

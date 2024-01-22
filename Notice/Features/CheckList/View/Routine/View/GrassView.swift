@@ -17,8 +17,8 @@ struct GrassView: View {
     
     public init (
         _ performedDate:[String] = [],
-        row: Int = 5, col: Int = 10,
-        cellColor: Color = .green
+        row: Int, col: Int,
+        cellColor: Color
     ) {
         self.performedDate = Set(performedDate)
         self.rowCount = row
@@ -52,7 +52,6 @@ struct GrassView: View {
         return dateString
     }
 }
-
 
 struct GrassCellView: View {
     let isPerformed: Bool

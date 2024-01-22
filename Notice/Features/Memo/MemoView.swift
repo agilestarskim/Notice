@@ -9,9 +9,10 @@ import SwiftUI
 
 struct MemoView: View {
     var body: some View {
-        ZStack(alignment: .bottom) {
-            Color.indigo
+        List {
+            
         }
+        .scrollContentBackground(.hidden)
     }
 }
 

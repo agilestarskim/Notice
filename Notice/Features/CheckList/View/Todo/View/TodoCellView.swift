@@ -44,7 +44,7 @@ struct TodoCellView: View {
     }
     
     private var TodoDoneButton: some View {
-        Button {
+        Button {            
             manager.toggleDone(todo)
         } label: {
             manager.doneButtonImage(todo.isDone)
@@ -116,8 +116,8 @@ struct TodoCellView: View {
                     }
                     .buttonStyle(.plain)
                     .foregroundStyle(subTodo.isDone ? appState.theme.accent : appState.theme.secondary)
-                    .saturation(0.6)
                     .symbolEffect(.bounce, value: subTodo.isDone)
+                    .id(subTodo.id)
                     
                     Text(subTodo.title)
                         .foregroundStyle(appState.theme.primary)

@@ -68,8 +68,13 @@ final class TodoManager: ObservableObject {
         if let origin = editingTodo {
             context.delete(origin)
             context.insert(newTodo)
+            
+            if !newTodo.subTodos.allSatisfy({ $0.isDone }) {
+                newTodo.isDone = false
+            }
+            
+            fetchTodos()
         }
-        fetchTodos()
     }
     
     func delete(_ todo: Todo) {

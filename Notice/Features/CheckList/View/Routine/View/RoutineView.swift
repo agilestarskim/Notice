@@ -20,7 +20,6 @@ struct RoutineView: View {
         .animation(.default, value: manager.routines)
         .listRowSpacing(10)
         .scrollContentBackground(.hidden)
-        .safeAreaPadding(.bottom, 70)
         .sheet(isPresented: $manager.shouldOpenEditor) {
             RoutineFormView()
         }
