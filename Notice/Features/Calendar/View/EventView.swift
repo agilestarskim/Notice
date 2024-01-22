@@ -16,7 +16,7 @@ struct EventView: View {
         HStack(alignment: .top, spacing: 20) {
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing: 20) {
-                    Text(DateFormatter.string(event.startDate, style: .hmma))
+                    Text(NTFormatter.shared.string(event.startDate, style: .hmma))
                         .font(.subheadline)
                         .foregroundStyle(appState.theme.primary)
                     

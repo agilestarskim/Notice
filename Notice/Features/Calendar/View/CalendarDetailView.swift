@@ -31,7 +31,7 @@ struct CalendarDetailView: View {
                 }
             } header: {
                 HStack {
-                    Text(DateFormatter.string(vm.selectedDate, style: .yyyyMMddE))
+                    Text(NTFormatter.shared.string(vm.selectedDate, style: .yyyyMMddE))
                     Text(vm.calendar.isDateInToday(vm.selectedDate) ? "Today" : "")
                     Spacer()
                     Button(action: vm.gotoToday) {

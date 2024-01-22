@@ -20,6 +20,7 @@ struct RoutineView: View {
         .animation(.default, value: manager.routines)
         .listRowSpacing(10)
         .scrollContentBackground(.hidden)
+        .safeAreaPadding(.bottom, 70)
         .sheet(isPresented: $manager.shouldOpenEditor) {
             RoutineFormView()
         }
@@ -27,8 +28,4 @@ struct RoutineView: View {
             appState.onTapPlusButton = manager.onTapPlusButton
         }
     }
-}
-
-#Preview {
-    RoutineView()
 }

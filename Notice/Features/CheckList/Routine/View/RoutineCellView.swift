@@ -26,7 +26,7 @@ struct RoutineCellView: View {
                         .fontWeight(.semibold)
                     
                     HStack {
-                        Text("루틴 시작: \(DateFormatter.string(routine.startDate, style: .yyyyMMdd))")
+                        Text("루틴 시작: \(NTFormatter.shared.string(routine.startDate, style: .yyyyMMdd))")
                             .font(.footnote)
                             .foregroundStyle(appState.theme.secondary)
                         Text("\(manager.getDay(from: routine.startDate))일차")
@@ -41,8 +41,7 @@ struct RoutineCellView: View {
                 Button {
                     if !isChecked {
                         doneEffect()
-                        manager.toggleDone(routine)          
-                        appState.showToast("\(DateFormatter.string(.now, style: .MdE)) 완료했습니다.")
+                        manager.toggleDone(routine)
                     }
                 } label: {
                     manager.doneButtonImage(isChecked: isChecked)

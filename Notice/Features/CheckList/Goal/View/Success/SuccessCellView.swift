@@ -31,7 +31,7 @@ struct SuccessCellView: View {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 8, height: 8)
-                        Text(DateFormatter.string(goal.startDate, style: .yyyyMd))
+                        Text(NTFormatter.shared.string(goal.startDate, style: .yyyyMd))
                     }
                     .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
                         Button("Delete", role: .destructive) {
@@ -44,7 +44,7 @@ struct SuccessCellView: View {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 8, height: 8)
-                        Text(DateFormatter.string(goal.realEndDate, style: .yyyyMd))
+                        Text(NTFormatter.shared.string(goal.realEndDate, style: .yyyyMd))
                     }
                     .confirmationDialog("성공을 취소하시겠습니까?", isPresented: $shouldCancelSuccesDialogOpen) {
                         Button("Cancel Success") {

@@ -1,14 +1,18 @@
 //
-//  Format.swift
+//  Formatter.swift
 //  Notice
 //
-//  Created by 김민성 on 12/4/23.
+//  Created by 김민성 on 1/23/24.
 //
 
 import Foundation
 
-extension DateFormatter {
-    static private let shared: DateFormatter = {
+final class NTFormatter {
+    static let shared = NTFormatter()
+    
+    private init() {}
+    
+    let formatter: DateFormatter = {
         let formatter = DateFormatter()
         
         formatter.locale = Locale.current
@@ -17,9 +21,9 @@ extension DateFormatter {
         return formatter
     }()
     
-    static func string(_ date: Date, style formatStyle: NTFormatStyle) -> String {        
-        shared.dateFormat = formatStyle.rawValue
-        return shared.string(from: date)
+    func string(_ date: Date, style formatStyle: NTFormatStyle) -> String {
+        formatter.dateFormat = formatStyle.rawValue
+        return formatter.string(from: date)
     }
     
     enum NTFormatStyle: String {

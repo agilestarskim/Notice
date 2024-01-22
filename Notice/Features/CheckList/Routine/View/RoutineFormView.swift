@@ -35,11 +35,11 @@ struct RoutineFormView: View {
                     .listRowBackground(appState.theme.container.opacity(0.8))
                 }
                 .scrollBounceBehavior(.basedOnSize)
-                .scrollContentBackground(.hidden)                
+                .scrollContentBackground(.hidden)
                 .listRowSpacing(10)
             }
         )
-        .onAppear(perform: setData)        
+        .onAppear(perform: setData)
     }
     
     private var TitleTextField: some View {

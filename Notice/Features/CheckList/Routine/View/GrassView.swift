@@ -13,12 +13,12 @@ struct GrassView: View {
     private let colCount: Int
     private let cellColor: Color
     
-    private let calendar = Calendar.shared
+    private let calendar = Calendar.autoupdatingCurrent
     
     public init (
         _ performedDate:[String] = [],
-        row: Int, col: Int,
-        cellColor: Color
+        row: Int = 5, col: Int = 10,
+        cellColor: Color = .green
     ) {
         self.performedDate = Set(performedDate)
         self.rowCount = row
@@ -38,7 +38,7 @@ struct GrassView: View {
                     }
                 }
             }
-        }        
+        }
     }
     
     func isPerformed(cellDate: String) -> Bool {
@@ -48,10 +48,11 @@ struct GrassView: View {
     func getDate(row:Int, col: Int) -> String {
         let diff = -1 * ( (rowCount - row - 1) + (colCount - col - 1) * rowCount )
         let date = calendar.date(byAdding: .day, value: diff, to: .now) ?? .now
-        let dateString = DateFormatter.string(date, style: .performedDate)
+        let dateString = NTFormatter.shared.string(date, style: .performedDate)
         return dateString
     }
 }
+
 
 struct GrassCellView: View {
     let isPerformed: Bool
@@ -64,6 +65,6 @@ struct GrassCellView: View {
            )
            .fill(isPerformed ? cellColor : cellColor.opacity(0.2))
        }
-       .aspectRatio(1.0, contentMode: .fit)       
+       .aspectRatio(1.0, contentMode: .fit)
     }
 }

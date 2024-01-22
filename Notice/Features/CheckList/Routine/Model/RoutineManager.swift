@@ -15,7 +15,7 @@ final class RoutineManager: ObservableObject {
     @Published var editingRoutine: Routine? = nil
     
     private let context: ModelContext
-    private let calendar: Calendar = Calendar.shared
+    private let calendar: Calendar = Calendar.autoupdatingCurrent
     
     init(context: ModelContext) {
         self.context = context
@@ -65,7 +65,7 @@ final class RoutineManager: ObservableObject {
     func toggleDone(_ routine: Routine) {
         guard let performedDates = routine.performedDates else { return }
         
-        let date = DateFormatter.string(.now, style: .performedDate)
+        let date = NTFormatter.shared.string(.now, style: .performedDate)
         let performedDate = PerformedDate(date: date)
         
         if isNew(performedDate.date, in: performedDates) {
@@ -81,8 +81,8 @@ final class RoutineManager: ObservableObject {
         }
     }
     
-    func getDay(from date: Date) -> Int {                      
-        (Calendar.shared.dateComponents(
+    func getDay(from date: Date) -> Int {
+        (calendar.dateComponents(
             [.day],
             from: date.stripTime(),
             to: .now.stripTime()

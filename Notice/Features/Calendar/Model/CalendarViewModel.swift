@@ -18,7 +18,7 @@ final class CalendarViewModel: ObservableObject {
     
     private let context: ModelContext
     
-    let calendar: Calendar = Calendar.shared
+    let calendar: Calendar = Calendar.autoupdatingCurrent
     
     init(context: ModelContext) {
         self.context = context

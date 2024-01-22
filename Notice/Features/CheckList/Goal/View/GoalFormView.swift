@@ -78,7 +78,7 @@ struct GoalFormView: View {
                 .labelsHidden()
                 .colorInvert()
             case .edit:
-                Text(DateFormatter.string(startDate, style: .yyyyMMdd))
+                Text(NTFormatter.shared.string(startDate, style: .yyyyMMdd))
             case .retry:
                 DatePicker(
                     "startDate",
@@ -123,7 +123,7 @@ struct GoalFormView: View {
                 .labelsHidden()
                 .colorInvert()
             } else {
-                Text(DateFormatter.string(endDate, style: .yyyyMMdd))
+                Text(NTFormatter.shared.string(endDate, style: .yyyyMMdd))
             }
         }
     }

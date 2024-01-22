@@ -11,7 +11,6 @@ enum TodoFilter: String, CaseIterable {
     case today = "Today"
     case all = "All"
     
-    
     var index: Int {
         switch self {
         case .today:

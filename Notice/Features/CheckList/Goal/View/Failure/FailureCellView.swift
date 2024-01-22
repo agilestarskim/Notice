@@ -32,14 +32,14 @@ struct FailureCellView: View {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 8, height: 8)
-                        Text(DateFormatter.string(goal.startDate, style: .yyyyMd))
+                        Text(NTFormatter.shared.string(goal.startDate, style: .yyyyMd))
                     }
                     
                     HStack {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 8, height: 8)
-                        Text(DateFormatter.string(goal.endDate, style: .yyyyMd))
+                        Text(NTFormatter.shared.string(goal.endDate, style: .yyyyMd))
                     }
                 }
                 .font(.callout)

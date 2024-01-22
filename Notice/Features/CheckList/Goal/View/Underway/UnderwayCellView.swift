@@ -57,9 +57,9 @@ struct UnderwayCellView: View {
                     .foregroundStyle(appState.theme.primary)
                 
                 HStack {
-                    Text(DateFormatter.string(goal.startDate, style: .yyyyMd))
+                    Text(NTFormatter.shared.string(goal.startDate, style: .yyyyMd))
                     Text("~")
-                    Text(DateFormatter.string(goal.endDate, style: .yyyyMd))
+                    Text(NTFormatter.shared.string(goal.endDate, style: .yyyyMd))
                 }
                 .font(.callout)
                 .foregroundStyle(appState.theme.secondary)

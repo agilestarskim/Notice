@@ -34,7 +34,7 @@ struct CalendarView: View {
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(DateFormatter.string(vm.pageDate, style: .yyyyMM))
+                    Text(NTFormatter.shared.string(vm.pageDate, style: .yyyyMM))
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundStyle(appState.theme.accent)

@@ -16,7 +16,7 @@ final class GoalManager: ObservableObject {
     @Published var editingGoal: Goal? = nil        
     
     private let context: ModelContext
-    private let calendar: Calendar = Calendar.shared
+    private let calendar: Calendar = Calendar.autoupdatingCurrent
     
     var underways: [Goal] {
         goals.filter { $0.state == 0 }
@@ -133,7 +133,7 @@ final class GoalManager: ObservableObject {
     }
     
     func deadline(_ goal: Goal) -> Int? {
-        let deadline = Calendar.shared.dateComponents(
+        let deadline = Calendar.autoupdatingCurrent.dateComponents(
             [.day],
             from: .now.stripTime(),
             to: goal.endDate.stripTime()

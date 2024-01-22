@@ -10,38 +10,44 @@ import SwiftData
 
 struct TodoView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: TodoManager
+    @Environment(TodoManager.self) private var todoManager
     
     var body: some View {
+        @Bindable var editManager = todoManager.editManager
         VStack {
             TodoFilterPicker
             TodoList
         }
-        .sheet(isPresented: $manager.shouldOpenEditor) {
+        .sheet(isPresented: $editManager.shouldOpenEditor) {
             TodoFormView()
         }
         .onAppear {
-            appState.onTapPlusButton = manager.onTapPlusButton
+            todoManager.onAppear()
+            appState.onTapPlusButton = todoManager.onTapPlusButton
         }
     }
     
     var TodoFilterPicker: some View {
-        NTPicker(
-            $manager.todoFilter.animation(.easeInOut(duration: 0.2)),
+        @Bindable var filterManager = todoManager.filterManager
+        
+        return NTPicker(
+            $filterManager.todoFilter.animation(.easeInOut(duration: 0.2)),
             TodoFilter.allCases,
             theme: appState.theme
         ) { oldValue, newValue in
-            manager.setTabDirection(prevTab: oldValue, currentTab: newValue)
+            todoManager.onChangeFilter(prev: oldValue, current: newValue)
         }
         .padding(.horizontal)
     }
     
     var TodoList: some View {
-        Group {
-            switch manager.todoFilter {
+        let filterManager = todoManager.filterManager
+        
+        return Group {
+            switch filterManager.todoFilter {
             case .all:
                 List {
-                    ForEach(manager.todos) { todo in
+                    ForEach(todoManager.todos) { todo in
                         TodoCellView(todo: todo)
                     }
                 }
@@ -49,7 +55,7 @@ struct TodoView: View {
                 .scrollContentBackground(.hidden)
             case .today:
                 List {
-                    ForEach(manager.todayTodos) { todo in
+                    ForEach(todoManager.todayTodos) { todo in
                         TodoCellView(todo: todo)
                     }
                 }                
@@ -57,11 +63,11 @@ struct TodoView: View {
                 .scrollContentBackground(.hidden)
             }
         }
-        .animation(.easeInOut, value: manager.todos)
+        .animation(.easeInOut, value: todoManager.todos)
         .transition(
             .asymmetric(
-                insertion: .move(edge: manager.goingRight ? .trailing : .leading),
-                removal: .move(edge: manager.goingRight ? .leading : .trailing)
+                insertion: .move(edge: filterManager.goingRight ? .trailing : .leading),
+                removal: .move(edge: filterManager.goingRight ? .leading : .trailing)
             )
         )        
         
