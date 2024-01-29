@@ -72,9 +72,9 @@
 		1F838C9C2B5EBDAD00C17A99 /* RoutineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C9B2B5EBDAD00C17A99 /* RoutineManager.swift */; };
 		1F838C9F2B5EBE4600C17A99 /* TodoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C9E2B5EBE4600C17A99 /* TodoManager.swift */; };
 		1F838CA22B5EBFBE00C17A99 /* NTFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA12B5EBFBE00C17A99 /* NTFormatter.swift */; };
-		1F838CA72B5EC2D500C17A99 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA62B5EC2D500C17A99 /* DBManager.swift */; };
-		1F838CA92B5EC46E00C17A99 /* EditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA82B5EC46E00C17A99 /* EditManager.swift */; };
-		1F838CAD2B5EC51300C17A99 /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CAC2B5EC51300C17A99 /* FilterManager.swift */; };
+		1F838CA72B5EC2D500C17A99 /* TodoDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA62B5EC2D500C17A99 /* TodoDBManager.swift */; };
+		1F838CA92B5EC46E00C17A99 /* TodoEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA82B5EC46E00C17A99 /* TodoEditManager.swift */; };
+		1F838CAD2B5EC51300C17A99 /* TodoFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CAC2B5EC51300C17A99 /* TodoFilterManager.swift */; };
 		1F93D5A72B53841E002FA726 /* UnderwayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */; };
 		1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */; };
 		1F93D5AD2B53850C002FA726 /* SuccessListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AC2B53850C002FA726 /* SuccessListView.swift */; };
@@ -83,6 +83,8 @@
 		1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA22B55680E00A5C757 /* FailureCellView.swift */; };
 		1FA4560C2B5D49A4001A853F /* FormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4560B2B5D49A4001A853F /* FormContainer.swift */; };
 		1FA456142B5E997B001A853F /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 1FA456132B5E997B001A853F /* AlertToast */; };
+		1FFC483E2B67EC6900B0D77A /* RoutineDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC483D2B67EC6800B0D77A /* RoutineDBManager.swift */; };
+		1FFC48402B67EC7A00B0D77A /* RoutineEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFC483F2B67EC7A00B0D77A /* RoutineEditManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,9 +175,9 @@
 		1F838C9B2B5EBDAD00C17A99 /* RoutineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineManager.swift; sourceTree = "<group>"; };
 		1F838C9E2B5EBE4600C17A99 /* TodoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoManager.swift; sourceTree = "<group>"; };
 		1F838CA12B5EBFBE00C17A99 /* NTFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTFormatter.swift; sourceTree = "<group>"; };
-		1F838CA62B5EC2D500C17A99 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
-		1F838CA82B5EC46E00C17A99 /* EditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditManager.swift; sourceTree = "<group>"; };
-		1F838CAC2B5EC51300C17A99 /* FilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
+		1F838CA62B5EC2D500C17A99 /* TodoDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDBManager.swift; sourceTree = "<group>"; };
+		1F838CA82B5EC46E00C17A99 /* TodoEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEditManager.swift; sourceTree = "<group>"; };
+		1F838CAC2B5EC51300C17A99 /* TodoFilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFilterManager.swift; sourceTree = "<group>"; };
 		1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayCellView.swift; sourceTree = "<group>"; };
 		1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayListView.swift; sourceTree = "<group>"; };
 		1F93D5AC2B53850C002FA726 /* SuccessListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessListView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,8 @@
 		1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCellView.swift; sourceTree = "<group>"; };
 		1F93EEA22B55680E00A5C757 /* FailureCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureCellView.swift; sourceTree = "<group>"; };
 		1FA4560B2B5D49A4001A853F /* FormContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormContainer.swift; sourceTree = "<group>"; };
+		1FFC483D2B67EC6800B0D77A /* RoutineDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineDBManager.swift; sourceTree = "<group>"; };
+		1FFC483F2B67EC7A00B0D77A /* RoutineEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEditManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -618,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				1F838C9B2B5EBDAD00C17A99 /* RoutineManager.swift */,
+				1FFC483C2B67EC1A00B0D77A /* SubManagers */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -626,7 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				1F838C9E2B5EBE4600C17A99 /* TodoManager.swift */,
-				1F838CA52B5EC2C400C17A99 /* Components */,
+				1F838CA52B5EC2C400C17A99 /* SubManagers */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -639,14 +644,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		1F838CA52B5EC2C400C17A99 /* Components */ = {
+		1F838CA52B5EC2C400C17A99 /* SubManagers */ = {
 			isa = PBXGroup;
 			children = (
-				1F838CA62B5EC2D500C17A99 /* DBManager.swift */,
-				1F838CA82B5EC46E00C17A99 /* EditManager.swift */,
-				1F838CAC2B5EC51300C17A99 /* FilterManager.swift */,
+				1F838CA62B5EC2D500C17A99 /* TodoDBManager.swift */,
+				1F838CA82B5EC46E00C17A99 /* TodoEditManager.swift */,
+				1F838CAC2B5EC51300C17A99 /* TodoFilterManager.swift */,
 			);
-			path = Components;
+			path = SubManagers;
 			sourceTree = "<group>";
 		};
 		1FA4560A2B5D4987001A853F /* FormContainer */ = {
@@ -655,6 +660,15 @@
 				1FA4560B2B5D49A4001A853F /* FormContainer.swift */,
 			);
 			path = FormContainer;
+			sourceTree = "<group>";
+		};
+		1FFC483C2B67EC1A00B0D77A /* SubManagers */ = {
+			isa = PBXGroup;
+			children = (
+				1FFC483D2B67EC6800B0D77A /* RoutineDBManager.swift */,
+				1FFC483F2B67EC7A00B0D77A /* RoutineEditManager.swift */,
+			);
+			path = SubManagers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -798,6 +812,7 @@
 			files = (
 				1FA4560C2B5D49A4001A853F /* FormContainer.swift in Sources */,
 				1F638A762B329275004D32C9 /* TodoView.swift in Sources */,
+				1FFC48402B67EC7A00B0D77A /* RoutineEditManager.swift in Sources */,
 				1F638A652B329275004D32C9 /* EventView.swift in Sources */,
 				1F638A782B329275004D32C9 /* MemoView.swift in Sources */,
 				1F838C872B5EBADC00C17A99 /* TodoFilter.swift in Sources */,
@@ -807,14 +822,15 @@
 				1F838CA22B5EBFBE00C17A99 /* NTFormatter.swift in Sources */,
 				1F3E08382B4AD95B0092F7AF /* TodoState.swift in Sources */,
 				1F3E08362B4AD51B0092F7AF /* Bool+Comparable.swift in Sources */,
-				1F838CA72B5EC2D500C17A99 /* DBManager.swift in Sources */,
+				1F838CA72B5EC2D500C17A99 /* TodoDBManager.swift in Sources */,
+				1FFC483E2B67EC6900B0D77A /* RoutineDBManager.swift in Sources */,
 				1F42CFF92B5B5D9800008787 /* String+toColor.swift in Sources */,
 				1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
 				1F15DB692B52248A00ECDEC7 /* CheckPickerManger.swift in Sources */,
 				1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */,
-				1F838CA92B5EC46E00C17A99 /* EditManager.swift in Sources */,
+				1F838CA92B5EC46E00C17A99 /* TodoEditManager.swift in Sources */,
 				1F638A7E2B32927E004D32C9 /* Dawn.swift in Sources */,
 				1F2565FD2B42BD39000CD6CA /* GoalManager.swift in Sources */,
 				1F638A6F2B329275004D32C9 /* CalendarView.swift in Sources */,
@@ -837,7 +853,7 @@
 				1F10AF5C2B5AD057001EE0A3 /* Int+toEmoji.swift in Sources */,
 				1F93EEA12B555E7500A5C757 /* SuccessCellView.swift in Sources */,
 				1F59FE8F2B48440A0067BEA2 /* StatisticsView.swift in Sources */,
-				1F838CAD2B5EC51300C17A99 /* FilterManager.swift in Sources */,
+				1F838CAD2B5EC51300C17A99 /* TodoFilterManager.swift in Sources */,
 				1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */,
 				1F638A772B329275004D32C9 /* TodoCellView.swift in Sources */,
 				1F838C972B5EBD3000C17A99 /* Routine.swift in Sources */,

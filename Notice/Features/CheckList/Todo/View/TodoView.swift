@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 struct TodoView: View {
     @Environment(AppState.self) private var appState
@@ -21,10 +20,7 @@ struct TodoView: View {
         .sheet(isPresented: $editManager.shouldOpenEditor) {
             TodoFormView()
         }
-        .onAppear {
-            todoManager.onAppear()
-            appState.onTapPlusButton = todoManager.onTapPlusButton
-        }
+        .onAppear(perform: todoManager.onAppear)
     }
     
     var TodoFilterPicker: some View {

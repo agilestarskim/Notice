@@ -5,80 +5,73 @@
 //  Created by 김민성 on 1/5/24.
 //
 
+import Foundation
+import Observation
 import SwiftData
-import SwiftUI
 
-
-final class RoutineManager: ObservableObject {
-    @Published var routines: [Routine] = []
-    @Published var shouldOpenEditor = false
-    @Published var editingRoutine: Routine? = nil
+@Observable
+final class RoutineManager {
+    let appState: AppState
+    let context: ModelContext
+    let formatter: NTFormatter
+    let calendar: Calendar
     
-    private let context: ModelContext
-    private let calendar: Calendar = Calendar.autoupdatingCurrent
+    let dbManager: DBManager
+    let editManager: EditManager
     
-    init(context: ModelContext) {
+    init(
+        appState: AppState,
+        context: ModelContext,
+        formatter: NTFormatter = NTFormatter.shared,
+        calendar: Calendar = Calendar.autoupdatingCurrent
+    ) {
+        self.appState = appState
         self.context = context
-        fetchRoutines()
+        self.formatter = formatter
+        self.calendar = calendar
+        
+        self.dbManager = RoutineManager.DBManager(context: context)
+        self.editManager = RoutineManager.EditManager()
+        
     }
     
-    func fetchRoutines() {
-        let sort = [
-            SortDescriptor(\Routine.startDate)
-        ]
-        
-        let fetchDescriptor = FetchDescriptor(sortBy: sort)
-        
-        do {
-            self.routines = try context.fetch(fetchDescriptor)
-        } catch {
-            print("Fail to fetch Routines")
-        }
+    var routines: [Routine] {
+        dbManager.routines
     }
     
-    func onTapPlusButton() {
-        shouldOpenEditor = true
+    func onAppear() {
+        appState.onTapPlusButton = self.onTapPlusButton
+        dbManager.fetch()
+    }
+    
+    private func onTapPlusButton() {
+        editManager.shouldOpenEditor = true
     }
     
     func onTapEditButton(routine: Routine) {
-        editingRoutine = routine
+        editManager.editingRoutine = routine
+        editManager.setData()
     }
     
-    func create(_ routine: Routine) {
-        context.insert(routine)
-        fetchRoutines()
+    func onTapDoneButton(of routine: Routine) {
+        dbManager.done(routine)
+        appState.showToast("\(formatter.string(.now, style: .MdE)) 완료했습니다")
     }
     
-    func update(_ newRoutine: Routine) {
-        if let origin = editingRoutine {
-            context.delete(origin)
-            context.insert(newRoutine)
-            fetchRoutines()
-        }
+    func onTapDeleteButton(_ routine: Routine) {
+        dbManager.delete(routine)
     }
     
-    func delete(_ routine: Routine) {
-        context.delete(routine)
-        fetchRoutines()
-    }
-    
-    func toggleDone(_ routine: Routine) {
-        guard let performedDates = routine.performedDates else { return }
+    func onTapEditDoneButton() {
+        let newRoutine = editManager.createNewRoutine()
         
-        let date = NTFormatter.shared.string(.now, style: .performedDate)
-        let performedDate = PerformedDate(date: date)
-        
-        if isNew(performedDate.date, in: performedDates) {
-            routine.performedDates?.append(performedDate)
-        }
-    }
-    
-    func doneButtonImage(isChecked: Bool) -> Image {
-        if isChecked {
-            return Image(systemName: "circle.circle.fill")
+        if let origin = editManager.editingRoutine {
+            dbManager.update(origin: origin, newRoutine)
         } else {
-            return Image(systemName: "circle")
+            dbManager.create(newRoutine)
         }
+        
+        editManager.resetData()
     }
     
     func getDay(from date: Date) -> Int {
@@ -89,15 +82,11 @@ final class RoutineManager: ObservableObject {
         ).day ?? -1) + 1
     }
     
-    private func isNew(
-        _ performedDate: String,
-        in performedDates: [PerformedDate]
-    ) -> Bool {
-        for pd in performedDates {
-            if pd.date == performedDate {
-                return false
-            }
+    func getPerformedDates(of routine: Routine) -> [String] {
+        if let performedDates = routine.performedDates {
+            return performedDates.map { $0.date }
+        } else {
+            return []
         }
-        return true
     }
 }

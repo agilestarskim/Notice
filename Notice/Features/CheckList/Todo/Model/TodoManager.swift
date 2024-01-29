@@ -11,6 +11,7 @@ import SwiftData
 
 @Observable
 final class TodoManager {
+    let appState: AppState
     let context: ModelContext
     let formatter: NTFormatter
     let calendar: Calendar
@@ -19,13 +20,17 @@ final class TodoManager {
     let editManager: EditManager
     let filterManager: FilterManager
     
-    init(context: ModelContext,
-         formatter: NTFormatter = NTFormatter.shared,
-         calendar: Calendar = Calendar.autoupdatingCurrent
+    init(
+        appState: AppState,
+        context: ModelContext,
+        formatter: NTFormatter = NTFormatter.shared,
+        calendar: Calendar = Calendar.autoupdatingCurrent
     ) {
+        self.appState = appState
         self.context = context
         self.formatter = formatter
         self.calendar = calendar
+        
         self.dbManager = TodoManager.DBManager(context: context)
         self.editManager = TodoManager.EditManager()
         self.filterManager = TodoManager.FilterManager()
@@ -40,11 +45,8 @@ final class TodoManager {
     }
     
     func onAppear() {
+        appState.onTapPlusButton = self.onTapPlusButton
         dbManager.fetch()
-    }
-    
-    func onTapPlusButton() {
-        editManager.shouldOpenEditor = true
     }
     
     func onTapEditButton(todo: Todo) {
@@ -97,6 +99,12 @@ final class TodoManager {
         } else {
             return .none
         }
+    }
+    
+    // MARK: - Private functions
+    
+    private func onTapPlusButton() {
+        editManager.shouldOpenEditor = true
     }
 }
 

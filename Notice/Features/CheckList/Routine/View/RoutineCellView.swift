@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RoutineCellView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: RoutineManager
+    @Environment(RoutineManager.self) private var routineManager
     
     @State private var isChecked = false
     @State private var shouldGrassExtend = false
@@ -18,6 +18,8 @@ struct RoutineCellView: View {
     let routine: Routine
     
     var body: some View {
+        @Bindable var editManager = routineManager.editManager
+        
         VStack(spacing: 10) {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
@@ -29,7 +31,7 @@ struct RoutineCellView: View {
                         Text("루틴 시작: \(NTFormatter.shared.string(routine.startDate, style: .yyyyMMdd))")
                             .font(.footnote)
                             .foregroundStyle(appState.theme.secondary)
-                        Text("\(manager.getDay(from: routine.startDate))일차")
+                        Text("\(routineManager.getDay(from: routine.startDate))일차")
                             .font(.footnote)
                             .fontWeight(.semibold)
                             .foregroundStyle(appState.theme.primary)
@@ -41,10 +43,10 @@ struct RoutineCellView: View {
                 Button {
                     if !isChecked {
                         doneEffect()
-                        manager.toggleDone(routine)
+                        routineManager.onTapDoneButton(of: routine)                        
                     }
                 } label: {
-                    manager.doneButtonImage(isChecked: isChecked)
+                    Image(systemName: isChecked ? "circle.circle.fill" : "circle")
                         .symbolEffect(.bounce, value: isChecked)
                         .font(.title)
                 }
@@ -56,24 +58,23 @@ struct RoutineCellView: View {
             VStack {
                 GrassViewComponent
             }
-            .animation(.easeInOut, value: shouldGrassExtend)
             .onTapGesture {
                 shouldGrassExtend.toggle()
             }
         }
         .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDialogOpen) {
             Button("Delete", role: .destructive) {
-                manager.delete(self.routine)
+                routineManager.onTapDeleteButton(routine)
             }
         }
         .listRowSeparator(.hidden)
         .listRowBackground(appState.theme.container)
-        .sheet(item: $manager.editingRoutine) { _ in
+        .sheet(item: $editManager.editingRoutine) { _ in
             RoutineFormView()
         }
         .swipeActions(edge: .leading) {
             Button("Edit") {
-                manager.onTapEditButton(routine: self.routine)
+                routineManager.onTapEditButton(routine: routine)
             }
             .tint(appState.theme.accent)
         }
@@ -89,28 +90,18 @@ struct RoutineCellView: View {
     var GrassViewComponent: some View {
         if shouldGrassExtend {
             GrassView(
-                performedDates,
+                routineManager.getPerformedDates(of: routine),
                 row: 8,
                 col: 20,
                 cellColor: routine.color.toColor
             )
-            .transition(.scale)
         } else {
             GrassView(
-                performedDates,
+                routineManager.getPerformedDates(of: routine),
                 row: 4,
                 col: 15,
                 cellColor: routine.color.toColor
             )
-            .transition(.scale)
-        }
-    }
-    
-    var performedDates: [String] {
-        if let performedDates = routine.performedDates {
-            return performedDates.map { $0.date }
-        } else {
-            return []
         }
     }
     

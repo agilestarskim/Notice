@@ -9,23 +9,22 @@ import SwiftUI
 
 struct RoutineView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: RoutineManager
+    @Environment(RoutineManager.self) private var routineManager
     
     var body: some View {
+        @Bindable var editManager = routineManager.editManager
         List {
-            ForEach(manager.routines) { routine in
+            ForEach(routineManager.routines) { routine in
                 RoutineCellView(routine: routine)
             }
         }
-        .animation(.default, value: manager.routines)
+        .animation(.default, value: routineManager.routines)
         .listRowSpacing(10)
         .scrollContentBackground(.hidden)
         .safeAreaPadding(.bottom, 70)
-        .sheet(isPresented: $manager.shouldOpenEditor) {
+        .sheet(isPresented: $editManager.shouldOpenEditor) {
             RoutineFormView()
         }
-        .onAppear {
-            appState.onTapPlusButton = manager.onTapPlusButton
-        }
+        .onAppear(perform: routineManager.onAppear)
     }
 }

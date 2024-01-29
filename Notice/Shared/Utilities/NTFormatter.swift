@@ -12,7 +12,7 @@ final class NTFormatter {
     
     private init() {}
     
-    let formatter: DateFormatter = {
+    private let formatter: DateFormatter = {
         let formatter = DateFormatter()
         
         formatter.locale = Locale.current

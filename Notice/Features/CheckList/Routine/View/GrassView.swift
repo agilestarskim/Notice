@@ -53,7 +53,6 @@ struct GrassView: View {
     }
 }
 
-
 struct GrassCellView: View {
     let isPerformed: Bool
     let cellColor: Color

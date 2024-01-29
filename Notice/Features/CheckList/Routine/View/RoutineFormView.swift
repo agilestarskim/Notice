@@ -10,20 +10,21 @@ import SwiftUI
 struct RoutineFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: RoutineManager
-    
-    @State private var title: String = ""
-    @State private var startDate: Date = .now
-    @State private var color: Color = .red
+    @Environment(RoutineManager.self) private var routineManager
     
     var body: some View {
+        @Bindable var editManager = routineManager.editManager
+        
         FormContainer(
-            title: manager.editingRoutine == nil ? "루틴 추가" : "루틴 편집",
+            title: editManager.formContainerTitle,
             theme: appState.theme,
             button: {
-                Button("완료", action: done)
-                    .tint(appState.theme.accent)
-                    .opacity(title.isEmpty ? 0.5 : 1)
+                Button("완료") {
+                    routineManager.onTapEditDoneButton()
+                    dismiss()
+                }
+                .tint(appState.theme.accent)
+                .disabled(editManager.isTitleEmpty)
             },
             content: {
                 List {
@@ -39,13 +40,13 @@ struct RoutineFormView: View {
                 .listRowSpacing(10)
             }
         )
-        .onAppear(perform: setData)
     }
     
     private var TitleTextField: some View {
-        TextField(
+        @Bindable var editManager = routineManager.editManager
+        return TextField(
             "title",
-            text: $title,
+            text: $editManager.title,
             prompt: Text("제목을 입력하세요")
                 .foregroundStyle(appState.theme.secondary)
         )
@@ -53,32 +54,7 @@ struct RoutineFormView: View {
     }
     
     private var CellColorPicker: some View {
-        NTColorPicker(color: $color)
-    }
-    
-    private func setData() {
-        if let routine = manager.editingRoutine {
-            self.title = routine.title
-            self.startDate = routine.startDate
-            self.color = routine.color.toColor
-        }
-    }
-    
-    private func done() {
-        if self.title.isEmpty { return }
-        let performedDates = manager.editingRoutine?.performedDates ?? []
-        let newRoutine = Routine(
-            title: self.title,
-            startDate: self.startDate,
-            color: self.color.description,
-            performedDates: performedDates
-        )
-        
-        if manager.editingRoutine == nil {
-            manager.create(newRoutine)
-        } else {
-            manager.update(newRoutine)
-        }
-        dismiss()
-    }
+        @Bindable var editManager = routineManager.editManager
+        return NTColorPicker(color: $editManager.color)
+    }    
 }
