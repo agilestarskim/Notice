@@ -9,38 +9,39 @@ import SwiftUI
 
 struct GoalView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
+    @Environment(GoalManager.self) private var goalManager
     
     var body: some View {
+        @Bindable var editManager = goalManager.editManager
         VStack {
             GoalFilterPicker
             GoalList
         }
-        .sheet(isPresented: $manager.shouldOpenEditor) {
+        .sheet(isPresented: $editManager.shouldOpenEditor) {
             GoalFormView()
         }
-        .sheet(item: $manager.editingGoal) { _ in
+        .sheet(item: $editManager.editingGoal) { _ in
             GoalFormView()
         }
-        .onAppear {
-            appState.onTapPlusButton = manager.onTapPlusButton
-        }
+        .onAppear(perform: goalManager.onAppear)
     }
     
     var GoalFilterPicker: some View {
-        NTPicker(
-            $manager.filter.animation(.easeInOut),
+        @Bindable var filterManager = goalManager.filterManager
+        return NTPicker(
+            $filterManager.filter.animation(.easeInOut),
             GoalFilter.allCases,
             theme: appState.theme
         ) { oldValue, newValue in
-            manager.setTabDirection(prevTab: oldValue, currentTab: newValue)
+            filterManager.setTabDirection(prevTab: oldValue, currentTab: newValue)
         }
         .padding(.horizontal)
     }
     
     var GoalList: some View {
-        Group {
-            switch manager.filter {
+        let filterManager = goalManager.filterManager
+        return Group {
+            switch filterManager.filter {
             case .underway:
                 UnderwayListView()
             case .success:
@@ -49,11 +50,11 @@ struct GoalView: View {
                 FailureListView()
             }
         }
-        .animation(.easeInOut, value: manager.goingRight)
+        .animation(.easeInOut, value: filterManager.goingRight)
         .transition(
             .asymmetric(
-                insertion: .move(edge: manager.goingRight ? .trailing : .leading),
-                removal: .move(edge: manager.goingRight ? .leading : .trailing)
+                insertion: .move(edge: filterManager.goingRight ? .trailing : .leading),
+                removal: .move(edge: filterManager.goingRight ? .leading : .trailing)
             )
         )
     }

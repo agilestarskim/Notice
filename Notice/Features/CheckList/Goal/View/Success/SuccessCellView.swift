@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SuccessCellView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
+    @Environment(GoalManager.self) private var goalManager
     @State private var shouldDeleteDialogOpen = false
     @State private var shouldCancelSuccesDialogOpen = false
     let goal: Goal
@@ -35,7 +35,7 @@ struct SuccessCellView: View {
                     }
                     .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
                         Button("Delete", role: .destructive) {
-                            manager.delete(goal)
+                            goalManager.onTapDeleteButton(goal: goal)
                             appState.showToast("삭제되었습니다")
                         }
                     }
@@ -62,13 +62,11 @@ struct SuccessCellView: View {
             
             Menu {
                 Button("Edit") {                    
-                    manager.onTapEditButton(goal: goal)
+                    goalManager.onTapEditButton(goal: goal)
                 }
                 Button("Delete") {
                     shouldDeleteDialogOpen = true
                 }
-                
-                
                 Button("Cancel Success") {
                     shouldCancelSuccesDialogOpen = true
                 }

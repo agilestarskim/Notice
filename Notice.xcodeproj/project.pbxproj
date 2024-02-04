@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1F0722022B32D42A008B80A0 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0722012B32D42A008B80A0 /* Todo.swift */; };
 		1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0722032B32D7C3008B80A0 /* EventCategory.swift */; };
+		1F1074AC2B6BC6ED002AADEF /* GoalDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1074AB2B6BC6ED002AADEF /* GoalDBManager.swift */; };
+		1F1074AE2B6BC6F7002AADEF /* GoalEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1074AD2B6BC6F7002AADEF /* GoalEditManager.swift */; };
+		1F1074B02B6BC700002AADEF /* GoalFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1074AF2B6BC700002AADEF /* GoalFilterManager.swift */; };
 		1F10AF5A2B5A9AF2001EE0A3 /* NTEmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10AF592B5A9AF2001EE0A3 /* NTEmojiPicker.swift */; };
 		1F10AF5C2B5AD057001EE0A3 /* Int+toEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10AF5B2B5AD057001EE0A3 /* Int+toEmoji.swift */; };
 		1F12142F2B37106000DB04CD /* SubTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F12142E2B37106000DB04CD /* SubTodo.swift */; };
@@ -61,7 +64,6 @@
 		1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A872B3292D5004D32C9 /* TabIcon.swift */; };
 		1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A882B3292D5004D32C9 /* CustomTabView.swift */; };
 		1F638A902B3292DC004D32C9 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A8F2B3292DC004D32C9 /* AppState.swift */; };
-		1F7CE3BA2B59612F00C23FF1 /* GoalAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CE3B92B59612F00C23FF1 /* GoalAlert.swift */; };
 		1F838C872B5EBADC00C17A99 /* TodoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C862B5EBADC00C17A99 /* TodoFilter.swift */; };
 		1F838C8D2B5EBC7700C17A99 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C8C2B5EBC7700C17A99 /* RoutineView.swift */; };
 		1F838C8F2B5EBC8F00C17A99 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C8E2B5EBC8F00C17A99 /* RoutineFormView.swift */; };
@@ -107,6 +109,9 @@
 /* Begin PBXFileReference section */
 		1F0722012B32D42A008B80A0 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		1F0722032B32D7C3008B80A0 /* EventCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
+		1F1074AB2B6BC6ED002AADEF /* GoalDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDBManager.swift; sourceTree = "<group>"; };
+		1F1074AD2B6BC6F7002AADEF /* GoalEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditManager.swift; sourceTree = "<group>"; };
+		1F1074AF2B6BC700002AADEF /* GoalFilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFilterManager.swift; sourceTree = "<group>"; };
 		1F10AF592B5A9AF2001EE0A3 /* NTEmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTEmojiPicker.swift; sourceTree = "<group>"; };
 		1F10AF5B2B5AD057001EE0A3 /* Int+toEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+toEmoji.swift"; sourceTree = "<group>"; };
 		1F12142E2B37106000DB04CD /* SubTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTodo.swift; sourceTree = "<group>"; };
@@ -164,7 +169,6 @@
 		1F638A872B3292D5004D32C9 /* TabIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabIcon.swift; sourceTree = "<group>"; };
 		1F638A882B3292D5004D32C9 /* CustomTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabView.swift; sourceTree = "<group>"; };
 		1F638A8F2B3292DC004D32C9 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		1F7CE3B92B59612F00C23FF1 /* GoalAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAlert.swift; sourceTree = "<group>"; };
 		1F838C862B5EBADC00C17A99 /* TodoFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFilter.swift; sourceTree = "<group>"; };
 		1F838C8C2B5EBC7700C17A99 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		1F838C8E2B5EBC8F00C17A99 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
@@ -215,6 +219,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F1074A92B6BC653002AADEF /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				1F2565F72B42B6CC000CD6CA /* Goal.swift */,
+				1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */,
+				1F2566072B42D9A0000CD6CA /* GoalDuration.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		1F1074AA2B6BC66D002AADEF /* SubManagers */ = {
+			isa = PBXGroup;
+			children = (
+				1F1074AB2B6BC6ED002AADEF /* GoalDBManager.swift */,
+				1F1074AD2B6BC6F7002AADEF /* GoalEditManager.swift */,
+				1F1074AF2B6BC700002AADEF /* GoalFilterManager.swift */,
+			);
+			path = SubManagers;
+			sourceTree = "<group>";
+		};
 		1F15DB6A2B522DA600ECDEC7 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				1F59FE882B48403B0067BEA2 /* Model */,
+				1F1074A92B6BC653002AADEF /* Entities */,
 				1F59FE872B4840370067BEA2 /* View */,
 			);
 			path = Goal;
@@ -310,11 +335,8 @@
 		1F59FE882B48403B0067BEA2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1F2565F72B42B6CC000CD6CA /* Goal.swift */,
-				1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */,
-				1F2566072B42D9A0000CD6CA /* GoalDuration.swift */,
 				1F2565FC2B42BD39000CD6CA /* GoalManager.swift */,
-				1F7CE3B92B59612F00C23FF1 /* GoalAlert.swift */,
+				1F1074AA2B6BC66D002AADEF /* SubManagers */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -564,8 +586,8 @@
 		1F7CE3B72B59539400C23FF1 /* Success */ = {
 			isa = PBXGroup;
 			children = (
-				1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */,
 				1F93D5AC2B53850C002FA726 /* SuccessListView.swift */,
+				1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */,
 			);
 			path = Success;
 			sourceTree = "<group>";
@@ -826,6 +848,7 @@
 				1FFC483E2B67EC6900B0D77A /* RoutineDBManager.swift in Sources */,
 				1F42CFF92B5B5D9800008787 /* String+toColor.swift in Sources */,
 				1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */,
+				1F1074B02B6BC700002AADEF /* GoalFilterManager.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
 				1F15DB692B52248A00ECDEC7 /* CheckPickerManger.swift in Sources */,
@@ -838,14 +861,15 @@
 				1F838C942B5EBCE500C17A99 /* GrassView.swift in Sources */,
 				1F638A0C2B3291FA004D32C9 /* MainView.swift in Sources */,
 				1F59FE8C2B4841600067BEA2 /* CheckListView.swift in Sources */,
+				1F1074AE2B6BC6F7002AADEF /* GoalEditManager.swift in Sources */,
 				1F838C9C2B5EBDAD00C17A99 /* RoutineManager.swift in Sources */,
 				1F93D5AD2B53850C002FA726 /* SuccessListView.swift in Sources */,
 				1F638A662B329275004D32C9 /* CalendarDetailView.swift in Sources */,
 				1F638A902B3292DC004D32C9 /* AppState.swift in Sources */,
 				1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */,
-				1F7CE3BA2B59612F00C23FF1 /* GoalAlert.swift in Sources */,
 				1F59FE7C2B483F5C0067BEA2 /* GoalView.swift in Sources */,
 				1F638A6D2B329275004D32C9 /* MSInfinteMonthView.swift in Sources */,
+				1F1074AC2B6BC6ED002AADEF /* GoalDBManager.swift in Sources */,
 				1F59FE952B484A460067BEA2 /* CheckTab.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
 				1F838C8F2B5EBC8F00C17A99 /* RoutineFormView.swift in Sources */,

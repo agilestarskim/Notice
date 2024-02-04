@@ -5,25 +5,44 @@
 //  Created by 김민성 on 1/1/24.
 //
 
+import Foundation
+import Observation
 import SwiftData
 import SwiftUI
 
-final class GoalManager: ObservableObject {
-    @Published var goals: [Goal] = []
-    @Published var filter: GoalFilter = .underway
-    @Published var goingRight: Bool = false
-    @Published var shouldOpenEditor = false
-    @Published var editingGoal: Goal? = nil        
+@Observable
+final class GoalManager {
+    let appState: AppState
+    let context: ModelContext
+    let formatter: NTFormatter
+    let calendar: Calendar
     
-    private let context: ModelContext
-    private let calendar: Calendar = Calendar.autoupdatingCurrent
+    let dbManager: DBManager
+    let editManager: EditManager
+    let filterManager: FilterManager
+    
+    init(
+        appState: AppState,
+        context: ModelContext,
+        formatter: NTFormatter = NTFormatter.shared,
+        calendar: Calendar = Calendar.autoupdatingCurrent
+    ) {
+        self.appState = appState
+        self.context = context
+        self.formatter = formatter
+        self.calendar = calendar
+        
+        self.dbManager = GoalManager.DBManager(context: context)
+        self.editManager = GoalManager.EditManager(calendar: calendar)
+        self.filterManager = GoalManager.FilterManager()
+    }
     
     var underways: [Goal] {
-        goals.filter { $0.state == 0 }
+        dbManager.goals.filter { $0.state == 0 }
     }
     
     var successes: [Goal] {
-        goals
+        dbManager.goals
             .filter { $0.state == 1 }
             .sorted {
                 $0.realEndDate > $1.realEndDate
@@ -31,109 +50,40 @@ final class GoalManager: ObservableObject {
     }
     
     var failures: [Goal] {
-        goals.filter { $0.state == 2 }
+        dbManager.goals.filter { $0.state == 2 }
     }
     
-    init(context: ModelContext) {
-        self.context = context
-        fetchGoals()
-    }
-    
-    func fetchGoals() {
-        do {
-            let sorts = [SortDescriptor(\Goal.endDate)]
-            self.goals = try context.fetch(FetchDescriptor<Goal>(sortBy: sorts))
-        } catch {
-            print("failed to load goals")
-        }
+    func onAppear() {
+        appState.onTapPlusButton = self.onTapPlusButton
+        dbManager.fetch()
     }
     
     func onTapPlusButton() {
-        shouldOpenEditor = true
+        editManager.shouldOpenEditor = true
     }
     
     func onTapEditButton(goal: Goal) {
-        editingGoal = goal
+        editManager.editingGoal = goal
     }
     
-    func setTabDirection(prevTab: GoalFilter, currentTab: GoalFilter) {
-        if prevTab.index - currentTab.index < 0 {
-            self.goingRight = true
+    func onTapDeleteButton(goal: Goal) {
+        dbManager.delete(goal)
+    }
+    
+    func onTapEditDoneButton() {
+        let newGoal = editManager.createNewGoal()
+        
+        if let origin = editManager.editingGoal {
+            dbManager.update(origin: origin, newGoal)
         } else {
-            self.goingRight = false
+            dbManager.create(newGoal)
         }
-    }
-    
-    func create(_ goal: Goal) {
-        context.insert(goal)
-        fetchGoals()
-    }
-    
-    func update(_ newGoal: Goal) {
-        if let origin = editingGoal {
-            origin.title = newGoal.title            
-            origin.emoji = newGoal.emoji
-            origin.startDate = newGoal.startDate
-            origin.endDate = newGoal.endDate
-            origin.duration = newGoal.duration
-                        
-            if origin.state == 2 {
-                origin.state = 0
-            }
-            
-            fetchGoals()
-        }
-    }
-    
-    func delete(_ goal: Goal) {
-        context.delete(goal)
-        fetchGoals()
-    }
-    
-    
-    func calculateEndDate(
-        _ duration: GoalDuration,
-        after startDate: Date
-    ) -> Date? {
-        switch duration {
-        case .week:
-            return calendar.date(byAdding: .weekOfYear, value: 1, to: startDate)
-        case .oneMonth:
-            return calendar.date(byAdding: .month, value: 1, to: startDate)
-        case .threeMonth:
-            return calendar.date(byAdding: .month, value: 3, to: startDate)
-        case .year:
-            return calendar.date(byAdding: .year, value: 1, to: startDate)        
-        case .custom:
-            return nil
-        }        
-    }
-    
-    func editState(_ state: Int) -> EditState {
-        if editingGoal == nil {
-            return .create
-        } else if editingGoal != nil && state != 2 {
-            return .edit
-        } else {
-            return .retry
-        }
-    }
-    
-    enum EditState { case create, edit, retry }
-    
-    func formTitle(_ state: Int) -> String {
-        switch editState(state) {            
-        case .create:
-            return "목표 추가"
-        case .edit:
-            return "목표 편집"
-        case .retry:
-            return "목표 재도전"
-        }
+        
+        editManager.resetData()
     }
     
     func deadline(_ goal: Goal) -> Int? {
-        let deadline = Calendar.autoupdatingCurrent.dateComponents(
+        let deadline = calendar.dateComponents(
             [.day],
             from: .now.stripTime(),
             to: goal.endDate.stripTime()

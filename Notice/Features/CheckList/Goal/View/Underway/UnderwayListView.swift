@@ -9,14 +9,15 @@ import SwiftUI
 
 struct UnderwayListView: View {    
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
+    @Environment(GoalManager.self) private var goalManager
     
     var body: some View {
         List {
-            ForEach(manager.underways) { goal in
+            ForEach(goalManager.underways) { goal in
                 UnderwayCellView(goal: goal)
             }
         }        
+        .animation(.default, value: goalManager.underways)
         .listRowSpacing(10)
         .scrollContentBackground(.hidden)
     }

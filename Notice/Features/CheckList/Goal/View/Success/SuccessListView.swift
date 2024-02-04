@@ -9,18 +9,18 @@ import SwiftUI
 
 struct SuccessListView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
+    @Environment(GoalManager.self) private var goalManager
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [.init(), .init()]) {
-                ForEach(manager.successes) { goal in
+                ForEach(goalManager.successes) { goal in
                     SuccessCellView(goal: goal)
                 }
             }
             .padding()
         }
-        .animation(.default, value: manager.goals)
+        .animation(.default, value: goalManager.successes)
     }
 }
 

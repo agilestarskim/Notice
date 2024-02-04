@@ -9,10 +9,8 @@ import SwiftUI
 
 struct FailureCellView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
-    
+    @Environment(GoalManager.self) private var goalManager
     @State private var shouldDeleteDialogOpen = false
-    
     let goal: Goal
     
     var body: some View {
@@ -46,7 +44,7 @@ struct FailureCellView: View {
                 .foregroundStyle(appState.theme.secondary)
                 
                 Button {                    
-                    manager.onTapEditButton(goal: goal)
+                    goalManager.onTapEditButton(goal: goal)
                 } label: {
                     Text("Retry")
                         .frame(maxWidth: .infinity)
@@ -69,7 +67,7 @@ struct FailureCellView: View {
             }
             .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
                 Button("Delete", role: .destructive) {
-                    manager.delete(goal)
+                    goalManager.onTapDeleteButton(goal: goal)
                     appState.showToast("삭제되었습니다")
                 }
             }

@@ -10,25 +10,20 @@ import SwiftUI
 struct GoalFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
-    
-    @State private var title: String = ""
-    @State private var emoji: Int = 0x1F3C6
-    @State private var startDate: Date = .now
-    @State private var endDate: Date = .now
-    @State private var duration: GoalDuration = .week
-    @State private var image: Data? = nil
-    @State private var state: Int = 0
-    
+    @Environment(GoalManager.self) private var goalManager
 
     var body: some View {
+        @Bindable var editManager = goalManager.editManager
         FormContainer(
-            title: manager.formTitle(state),
+            title: editManager.formTitle,
             theme: appState.theme,
             button: {
-                Button("완료", action: done)
-                    .tint(appState.theme.accent)
-                    .opacity(title.isEmpty ? 0.5 : 1)
+                Button("완료"){
+                    goalManager.onTapEditDoneButton()
+                    dismiss()
+                }
+                .tint(appState.theme.accent)
+                .disabled(editManager.isTitleEmpty)
             },
             content: {
                 List {
@@ -37,7 +32,7 @@ struct GoalFormView: View {
                         StartDatePicker
                         DurationPicker
                         EndDatePicker
-                        NTEmojiPicker(emoji: $emoji, selectColor: appState.theme.primary)
+                        NTEmojiPicker(emoji: $editManager.emoji, selectColor: appState.theme.primary)
                     }
                     .foregroundStyle(appState.theme.primary)
                     .listRowBackground(appState.theme.container.opacity(0.8))
@@ -46,16 +41,17 @@ struct GoalFormView: View {
                 .scrollContentBackground(.hidden)                
                 .listRowSpacing(10)
             }
-        )        
-        .onAppear(perform: setData)
-        .onChange(of: startDate, setEndDate)
-        .onChange(of: duration, setEndDate)
+        )
+        .onAppear(perform:editManager.setData)
+        .onChange(of: editManager.startDate, editManager.setEndDate)
+        .onChange(of: editManager.duration, editManager.setEndDate)
     }
     
     private var TitleTextField: some View {
-        TextField(
+        @Bindable var editManager = goalManager.editManager
+        return TextField(
             "title",
-            text: $title,
+            text: $editManager.title,
             prompt: Text("제목을 입력하세요")
                 .foregroundStyle(appState.theme.secondary)
         )
@@ -64,25 +60,26 @@ struct GoalFormView: View {
     
     @ViewBuilder
     var StartDatePicker: some View {
+        @Bindable var editManager = goalManager.editManager
         HStack {
             Text("시작일")
             Spacer()
-            switch manager.editState(state) {
+            switch editManager.editState {
             case .create:
                 DatePicker(
                     "startDate",
-                    selection: $startDate,
+                    selection: $editManager.startDate,
                     in: .now...,
                     displayedComponents: [.date]
                 )
                 .labelsHidden()
                 .colorInvert()
             case .edit:
-                Text(NTFormatter.shared.string(startDate, style: .yyyyMMdd))
+                Text(NTFormatter.shared.string(editManager.startDate, style: .yyyyMMdd))
             case .retry:
                 DatePicker(
                     "startDate",
-                    selection: $startDate,
+                    selection: $editManager.startDate,
                     in: .now...,
                     displayedComponents: [.date]
                 )
@@ -94,9 +91,10 @@ struct GoalFormView: View {
     
     @ViewBuilder
     var DurationPicker: some View {
-        let editState = manager.editState(state)
+        @Bindable var editManager = goalManager.editManager
+        let editState = editManager.editState
         if editState == .create || editState == .retry {
-            Picker("목표기간", selection: $duration) {
+            Picker("목표기간", selection: $editManager.duration) {
                 ForEach(GoalDuration.allCases, id: \.rawValue) { duration in
                     Text(duration.title)
                         .tag(duration)
@@ -109,78 +107,28 @@ struct GoalFormView: View {
     
     @ViewBuilder
     var EndDatePicker: some View {
+        @Bindable var editManager = goalManager.editManager
+        let editState = editManager.editState
         HStack {
             Text("종료일")
             Spacer()
-            let editState = manager.editState(state)
-            if duration == .custom && (editState == .create || editState == .retry) {
+            if editManager.duration == .custom && (editState == .create || editState == .retry) {
                 DatePicker(
                     "endDate",
-                    selection: $endDate,
-                    in: startDate...,
+                    selection: $editManager.endDate,
+                    in: editManager.startDate...,
                     displayedComponents: [.date]
                 )
                 .labelsHidden()
                 .colorInvert()
             } else {
-                Text(NTFormatter.shared.string(endDate, style: .yyyyMMdd))
+                if editManager.state == 1 {
+                    Text(NTFormatter.shared.string(editManager.editingGoal?.realEndDate ?? .now, style: .yyyyMMdd))
+                } else {
+                    Text(NTFormatter.shared.string(editManager.endDate, style: .yyyyMMdd))
+                }
+                
             }
         }
     }
-    
-    private func done() {
-        if title.isEmpty { return }
-        
-        let newGoal = Goal(
-            title: title,
-            emoji: emoji,
-            startDate: startDate,
-            endDate: endDate,
-            realEndDate: .now,
-            duration: duration.rawValue,
-            state: state
-        )
-        
-        if manager.editingGoal == nil {
-            manager.create(newGoal)
-        } else {
-            manager.update(newGoal)
-        }
-        dismiss()
-    }
-    
-    private func setEndDate() {
-        if let endDate = manager.calculateEndDate(duration, after: startDate) {
-            self.endDate = endDate
-        }
-    }
-    
-    private func setData() {
-        let state = manager.editingGoal?.state ?? 0
-        switch manager.editState(state) {
-        case .create:
-            break
-        case .edit:
-            if let goal = manager.editingGoal{
-                self.title = goal.title
-                self.emoji = goal.emoji
-                self.startDate = goal.startDate
-                self.endDate = goal.endDate
-                self.duration = GoalDuration(rawValue: goal.duration) ?? .week
-                self.state = goal.state
-            }
-        case .retry:
-            if let goal = manager.editingGoal{
-                self.title = goal.title
-                self.emoji = goal.emoji
-                self.duration = .week
-                self.state = goal.state
-            }
-        }
-        setEndDate()
-    }
-}
-
-#Preview {
-    GoalFormView()
 }

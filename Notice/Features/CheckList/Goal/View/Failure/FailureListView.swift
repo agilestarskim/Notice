@@ -9,21 +9,17 @@ import SwiftUI
 
 struct FailureListView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
+    @Environment(GoalManager.self) private var goalManager
     
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [.init(), .init()]) {
-                ForEach(manager.failures ) { goal in
+                ForEach(goalManager.failures) { goal in
                     FailureCellView(goal: goal)
                 }
             }
             .padding()
         }
-        .animation(.default, value: manager.goals)        
+        .animation(.default, value: goalManager.failures)
     }
-}
-
-#Preview {
-    FailureListView()
 }

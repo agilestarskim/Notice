@@ -9,13 +9,12 @@ import SwiftUI
 
 struct UnderwayCellView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var manager: GoalManager
+    @Environment(GoalManager.self) private var goalManager
     
     @State private var shouldDeleteDialogOpen = false
     @State private var shouldFailureDialogOpen = false
     @State private var shouldSuccessDialogOpen = false
     let goal: Goal
-    
     
     var body: some View {
         VStack(spacing: 20) {
@@ -25,7 +24,7 @@ struct UnderwayCellView: View {
         .confirmationDialog("삭제하시겠습니까?", isPresented: $shouldDeleteDialogOpen) {
             Button("Delete", role: .destructive) {
                 withAnimation {
-                    manager.delete(goal)
+                    goalManager.onTapDeleteButton(goal: goal)
                     appState.showToast("삭제되었습니다")
                 }
             }
@@ -33,7 +32,7 @@ struct UnderwayCellView: View {
         .listRowBackground(appState.theme.container)
         .swipeActions(edge: .leading) {
             Button("Edit") {
-                manager.onTapEditButton(goal: self.goal)
+                goalManager.onTapEditButton(goal: self.goal)
             }
             .tint(appState.theme.accent)
         }
@@ -65,7 +64,7 @@ struct UnderwayCellView: View {
                 .foregroundStyle(appState.theme.secondary)
             
                 
-                if let deadline = manager.deadline(goal) {
+                if let deadline = goalManager.deadline(goal) {
                     HStack {
                         Text("종료까지")
                         Text("\(deadline)일")
