@@ -26,18 +26,13 @@ struct RoutineFormView: View {
                 .tint(appState.theme.accent)
                 .disabled(editManager.isTitleEmpty)
             },
-            content: {
-                List {
-                    Section{
-                        TitleTextField
-                        CellColorPicker
-                    }
-                    .foregroundStyle(appState.theme.primary)
-                    .listRowBackground(appState.theme.container.opacity(0.8))
+            content: {                
+                Section{
+                    TitleTextField
+                    CellColorPicker
                 }
-                .scrollBounceBehavior(.basedOnSize)
-                .scrollContentBackground(.hidden)
-                .listRowSpacing(10)
+                .foregroundStyle(appState.theme.primary)
+                .listRowBackground(appState.theme.container.opacity(0.8))
             }
         )
     }

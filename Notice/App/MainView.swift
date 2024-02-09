@@ -16,6 +16,7 @@ struct MainView: View {
     @State private var todoManager: TodoManager
     @State private var routineManager: RoutineManager
     @State private var goalManager: GoalManager
+    @State private var memoManager: MemoManager
     
     init() {
         let modelContext = NTModelContainer.shared.mainContext
@@ -26,8 +27,8 @@ struct MainView: View {
         self.todoManager = TodoManager(appState: appState, context: modelContext)
         self.routineManager = RoutineManager(appState: appState, context: modelContext)
         self.goalManager = GoalManager(appState: appState, context: modelContext)
+        self.memoManager = MemoManager(appState: appState, context: modelContext)
     }
-    
     
     var body: some View {
         @Bindable var bindableAppState = appState
@@ -35,12 +36,8 @@ struct MainView: View {
             switch appState.tab {
             case .calendar:
                 CalendarView()
-                    .environment(calendarManager)
             case .check:
                 CheckListView()
-                    .environment(todoManager)
-                    .environment(routineManager)
-                    .environment(goalManager)
             case .memo:
                 MemoView()
             case .stat:
@@ -52,8 +49,17 @@ struct MainView: View {
             AlertToast(displayMode: .hud, type: .complete(.green), title: appState.toastMessage)            
         }
         .safeAreaInset(edge: .bottom) {
-            CustomTabView()
+            if appState.shouldShowTab {
+                CustomTabView()
+                    .transition(.scale)
+            }
         }
+        .animation(.easeInOut, value: appState.shouldShowTab)
         .environment(appState)
+        .environment(calendarManager)
+        .environment(todoManager)
+        .environment(routineManager)
+        .environment(goalManager)
+        .environment(memoManager)
     }
 }

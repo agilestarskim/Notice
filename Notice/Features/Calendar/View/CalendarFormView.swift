@@ -26,20 +26,15 @@ struct CalendarFormView: View {
                 .tint(appState.theme.accent)
                 .opacity(editor.title.isEmpty ? 0.5 : 1)
             },
-            content: {
-                List {
-                    Group {
-                        TitleTextField
-                        MemoTextField
-                        CategoryPicker
-                        StartDatePicker
-                    }
-                    .foregroundStyle(appState.theme.primary)
-                    .listRowBackground(appState.theme.container.opacity(0.8))
+            content: {                
+                Section {
+                    TitleTextField
+                    MemoTextField
+                    CategoryPicker
+                    StartDatePicker
                 }
-                .scrollBounceBehavior(.basedOnSize)
-                .scrollContentBackground(.hidden)
-                .listRowSpacing(10)
+                .foregroundStyle(appState.theme.primary)
+                .listRowBackground(appState.theme.container.opacity(0.8))
             }
         )        
     }

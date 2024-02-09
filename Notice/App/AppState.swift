@@ -14,6 +14,7 @@ final class AppState {
     var theme: Theme = Dawn()
     var toastMessage: String = ""
     var shouldToastOn: Bool = false
+    var shouldShowTab: Bool = true
     
     @ObservationIgnored
     var onTapPlusButton: (() -> Void)?
@@ -29,5 +30,13 @@ final class AppState {
     func showToast(_ message: String) {
         toastMessage = message
         shouldToastOn = true
+    }
+    
+    func showTab() {
+        shouldShowTab = true
+    }
+    
+    func hideTab() {
+        shouldShowTab = false
     }
 }

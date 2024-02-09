@@ -25,21 +25,16 @@ struct GoalFormView: View {
                 .tint(appState.theme.accent)
                 .disabled(editManager.isTitleEmpty)
             },
-            content: {
-                List {
-                    Section {
-                        TitleTextField
-                        StartDatePicker
-                        DurationPicker
-                        EndDatePicker
-                        NTEmojiPicker(emoji: $editManager.emoji, selectColor: appState.theme.primary)
-                    }
-                    .foregroundStyle(appState.theme.primary)
-                    .listRowBackground(appState.theme.container.opacity(0.8))
+            content: {                
+                Section {
+                    TitleTextField
+                    StartDatePicker
+                    DurationPicker
+                    EndDatePicker
+                    NTEmojiPicker(emoji: $editManager.emoji, selectColor: appState.theme.primary)
                 }
-                .scrollBounceBehavior(.basedOnSize)
-                .scrollContentBackground(.hidden)                
-                .listRowSpacing(10)
+                .foregroundStyle(appState.theme.primary)
+                .listRowBackground(appState.theme.container.opacity(0.8))
             }
         )
         .onAppear(perform:editManager.setData)

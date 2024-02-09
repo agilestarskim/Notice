@@ -10,7 +10,13 @@ import SwiftData
 struct NTModelContainer {
     static let shared: ModelContainer = {
         let schema = Schema([
-            Event.self, Todo.self, Routine.self, Goal.self
+            Event.self,
+            Todo.self,
+            Routine.self,
+            Goal.self,
+            Folder.self,
+            Memo.self,
+            QuickMemo.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

@@ -26,27 +26,21 @@ struct TodoFormView: View {
                 .tint(appState.theme.accent)
                 .disabled(editManager.isTitleEmpty)
             },
-            content: {
-                List {
+            content: {    
+                Group {
                     Section {
                         TitleTextField
                         MemoTextField
                         FlagToggle
                         StartDatePicker
                     }
-                    .foregroundStyle(appState.theme.primary)
-                    .listRowBackground(appState.theme.container.opacity(0.8))
-                    
                     Section {
                         SubTodoTextField
                         SubTodosList
                     }
-                    .foregroundStyle(appState.theme.primary)
-                    .listRowBackground(appState.theme.container.opacity(0.8))
                 }
-                .scrollBounceBehavior(.basedOnSize)
-                .scrollContentBackground(.hidden)
-                .listRowSpacing(10)
+                .foregroundStyle(appState.theme.primary)
+                .listRowBackground(appState.theme.container.opacity(0.8))
             }
         )
     }

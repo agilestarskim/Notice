@@ -25,7 +25,13 @@ struct FormContainer<Button: View, Content: View>: View {
             }
             .padding()
             
-            content()
+            List {
+                content()
+            }
+            .scrollBounceBehavior(.basedOnSize)
+            .scrollContentBackground(.hidden)
+            .listRowSpacing(10)
+            
         }
         .background(theme.background)
     }
