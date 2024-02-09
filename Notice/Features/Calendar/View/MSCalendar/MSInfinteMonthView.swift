@@ -7,23 +7,19 @@
 
 import SwiftUI
 
-struct MSInfinteMonthView<Content: View>: View {
-    @Binding var selectedDate: Date
-    @Binding var pageIndex: Int?
-    
-    let calendar: Calendar
-    let content: (Date) -> Content
+struct MSInfinteMonthView<CellContent: View>: View {
+    @Bindable var handler: CalendarManager.CalendarHandler
+    let cellContent: (Date) -> CellContent
     
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
-                ForEach(-100..<100, id: \.self) { index in
+                ForEach(-100..<100, id: \.self) { index in                    
                     MSDaysView(
-                        selectedDate: $selectedDate,
-                        pageDate: pageDate(index: index),
-                        dates: makeDays(from: index),
-                        calendar: calendar,
-                        content: content                        
+                        handler: handler,   
+                        pageDate: handler.pageDate(index: index),
+                        dates: handler.makeDays(from: index),
+                        cellContent: cellContent
                     )
                     .id(index)
                     .containerRelativeFrame(.vertical, alignment: .top)
@@ -32,41 +28,8 @@ struct MSInfinteMonthView<Content: View>: View {
             .scrollTargetLayout()
         }
         .scrollTargetBehavior(.paging)
-        .scrollPosition(id: $pageIndex)
+        .scrollPosition(id: $handler.pageIndex)
         .scrollIndicators(.hidden)
-        .animation(.default, value: pageIndex)
-        .onChange(of: pageIndex, onChangePage)        
-    }
-    
-    private func pageDate(index: Int?) -> Date {
-        guard let index = index,
-              let pageDate = calendar.date(byAdding: .month, value: index, to: .now)?.startOfMonth()
-        else {
-            return .now
-        }
-        return pageDate
-    }
-    
-    private func makeDays(from index: Int) -> [Date] {
-        guard let monthInterval = calendar.dateInterval(of: .month, for: self.pageDate(index: index)),
-              let monthFirstWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.start),
-              let monthLastWeek = calendar.dateInterval(of: .weekOfMonth, for: monthInterval.end - 1)
-        else { return [] }
-       
-        let dateInterval = DateInterval(start: monthFirstWeek.start, end: monthLastWeek.end)
-        
-        return calendar.generateDays(for: dateInterval)
-    }
-    
-    private func onChangePage() {
-        if isSameMonth() {
-            selectedDate = .now
-        } else {
-            selectedDate = pageDate(index: pageIndex)
-        }
-    }
-    
-    private func isSameMonth() -> Bool {
-        calendar.isDate(pageDate(index: pageIndex), equalTo: .now, toGranularity: .month)
+        .onChange(of: handler.pageIndex, handler.onChangePage)
     }
 }

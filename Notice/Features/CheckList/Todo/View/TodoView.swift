@@ -27,7 +27,7 @@ struct TodoView: View {
         @Bindable var filterManager = todoManager.filterManager
         
         return NTPicker(
-            $filterManager.todoFilter.animation(.easeInOut(duration: 0.2)),
+            $filterManager.todoFilter.animation(.easeInOut),
             TodoFilter.allCases,
             theme: appState.theme
         ) { oldValue, newValue in

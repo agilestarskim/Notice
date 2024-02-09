@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CalendarDetailView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: CalendarViewModel
+    @Environment(CalendarManager.self) private var calendarManager
     let events: [Event]
     
     var body: some View {
@@ -31,10 +31,10 @@ struct CalendarDetailView: View {
                 }
             } header: {
                 HStack {
-                    Text(NTFormatter.shared.string(vm.selectedDate, style: .yyyyMMddE))
-                    Text(vm.calendar.isDateInToday(vm.selectedDate) ? "Today" : "")
+                    Text(NTFormatter.shared.string(calendarManager.selectedDate, style: .yyyyMMddE))
+                    Text(calendarManager.calendar.isDateInToday(calendarManager.selectedDate) ? "Today" : "")
                     Spacer()
-                    Button(action: vm.gotoToday) {
+                    Button(action: calendarManager.onTapTodayButton) {
                         Image(systemName: "clock.arrow.circlepath")
                     }
                     .tint(appState.theme.container)

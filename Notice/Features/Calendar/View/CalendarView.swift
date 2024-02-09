@@ -10,21 +10,21 @@ import SwiftData
 
 struct CalendarView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: CalendarViewModel
+    @Environment(CalendarManager.self) private var calendarManager
     
     var body: some View {
+        @Bindable var editor = calendarManager.editManager
+        @Bindable var handler = calendarManager.handler
         NavigationStack {
             GeometryReader { geo in
                 VStack(spacing: 0) {
                     MSCalendar(
-                        selectedDate: $vm.selectedDate,
-                        pageIndex: $vm.pageIndex,
-                        calendar: vm.calendar,
-                        content: { CalendarDayView(events: vm.dailyEvents(by: $0)) }
+                        handler: handler,
+                        cellContent: { CalendarDayView(events: calendarManager.dailyEvents(by: $0)) }
                     )
                     .frame(height: geo.size.height * 0.5)                    
                     
-                    CalendarDetailView(events: vm.dailyEvents)
+                    CalendarDetailView(events: calendarManager.dailyEvents)
                         .frame(height: geo.size.height * 0.5)
                 }
                 .frame(maxHeight: .infinity)
@@ -34,21 +34,17 @@ struct CalendarView: View {
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    Text(NTFormatter.shared.string(vm.pageDate, style: .yyyyMM))
+                    Text(NTFormatter.shared.string(calendarManager.pageDate, style: .yyyyMM))
                         .font(.title3)
                         .fontWeight(.bold)
                         .foregroundStyle(appState.theme.accent)
                 }
             }
         }        
-        .sheet(isPresented: $vm.isOpenEditorToCreate) {
+        .sheet(isPresented: $editor.shouldOpenEditor) {
             CalendarFormView()
         }
-        .onAppear {
-            appState.onTapPlusButton = vm.onTapPlusButton
-        }
-        .onChange(of: vm.pageIndex) {
-            vm.fetchMontlyEvents()
-        }
+        .onAppear(perform: calendarManager.onAppear)
+        .onChange(of: handler.pageIndex, calendarManager.onSwipeCalendar)
     }
 }

@@ -7,34 +7,25 @@
 
 import SwiftUI
 
-struct MSCalendar<Content: View>: View {
-    @Binding var selectedDate: Date
-    @Binding var pageIndex: Int?
-    
-    let calendar: Calendar
-    let content: (Date) -> Content
+struct MSCalendar<CellContent: View>: View {
+    @Bindable var handler: CalendarManager.CalendarHandler
+    let cellContent: (Date) -> CellContent    
     
     init(
-        selectedDate: Binding<Date>,
-        pageIndex: Binding<Int?>,
-        calendar: Calendar,
-        @ViewBuilder content: @escaping (Date) -> Content
-    ) {
-        self._selectedDate = selectedDate
-        self._pageIndex = pageIndex
-        self.calendar = calendar
-        self.content = content
+        handler: CalendarManager.CalendarHandler,
+        @ViewBuilder cellContent: @escaping (Date) -> CellContent
+    ) {        
+        self.handler = handler
+        self.cellContent = cellContent
     }
     
     var body: some View {
         VStack() {
             MSWeekTitleView()
             MSInfinteMonthView(
-                selectedDate: $selectedDate,
-                pageIndex: $pageIndex,
-                calendar: calendar,
-                content: content
-            )            
+                handler: handler,
+                cellContent: cellContent
+            )
         }
     }
 }

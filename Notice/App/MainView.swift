@@ -9,24 +9,20 @@ import AlertToast
 import SwiftData
 import SwiftUI
 
-struct MainView: View {    
+@MainActor
+struct MainView: View {
     @State private var appState: AppState
+    @State private var calendarManager: CalendarManager
     @State private var todoManager: TodoManager
     @State private var routineManager: RoutineManager
     @State private var goalManager: GoalManager
-    
-    @StateObject private var calendarViewModel: CalendarViewModel
-    
     
     init() {
         let modelContext = NTModelContainer.shared.mainContext
         let appState = AppState()
         
-        //삭제예정
-        let calendarViewModel = CalendarViewModel(context: modelContext)
-        
         self.appState = appState
-        self._calendarViewModel = StateObject(wrappedValue: calendarViewModel)
+        self.calendarManager = CalendarManager(appState: appState, context: modelContext)
         self.todoManager = TodoManager(appState: appState, context: modelContext)
         self.routineManager = RoutineManager(appState: appState, context: modelContext)
         self.goalManager = GoalManager(appState: appState, context: modelContext)
@@ -39,7 +35,7 @@ struct MainView: View {
             switch appState.tab {
             case .calendar:
                 CalendarView()
-                    .environmentObject(calendarViewModel)
+                    .environment(calendarManager)
             case .check:
                 CheckListView()
                     .environment(todoManager)

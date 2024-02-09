@@ -11,21 +11,20 @@ import SwiftUI
 struct CalendarFormView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: CalendarViewModel
-    
-    @State private var title: String = ""
-    @State private var memo: String = ""
-    @State private var category: String = EventCategory.meeting.rawValue
-    @State private var startDate: Date = .now
+    @Environment(CalendarManager.self) private var calendarManager
     
     var body: some View {
+        let editor = calendarManager.editManager
         FormContainer(
-            title: vm.editingEvent == nil ? "이벤트 추가" : "이벤트 편집",
+            title: editor.editingEvent == nil ? "이벤트 추가" : "이벤트 편집",
             theme: appState.theme,
             button: {
-                Button("완료", action: done)
-                    .tint(appState.theme.accent)
-                    .opacity(title.isEmpty ? 0.5 : 1)
+                Button("완료") {
+                    calendarManager.onTapEditEventDoneButton()
+                    dismiss()
+                }
+                .tint(appState.theme.accent)
+                .opacity(editor.title.isEmpty ? 0.5 : 1)
             },
             content: {
                 List {
@@ -43,13 +42,13 @@ struct CalendarFormView: View {
                 .listRowSpacing(10)
             }
         )        
-        .onAppear(perform: setData)
     }
     
     var TitleTextField: some View {
-        TextField(
+        @Bindable var editor = calendarManager.editManager
+        return TextField(
             "title",
-            text: $title,
+            text: $editor.title,
             prompt: Text("제목을 입력하세요 (필수)")
                 .foregroundStyle(appState.theme.secondary)
         )
@@ -57,9 +56,10 @@ struct CalendarFormView: View {
     }
     
     var MemoTextField: some View {
-        TextField(
+        @Bindable var editor = calendarManager.editManager
+        return TextField(
             "memo",
-            text: $memo,
+            text: $editor.memo,
             prompt: Text("메모를 입력하세요 (선택)")
                 .foregroundStyle(appState.theme.secondary)
         )
@@ -67,7 +67,8 @@ struct CalendarFormView: View {
     }
     
     var CategoryPicker: some View {
-        Picker("카테고리", selection: $category) {
+        @Bindable var editor = calendarManager.editManager
+        return Picker("카테고리", selection: $editor.category) {
             ForEach(EventCategory.allCases, id: \.rawValue) { category in
                 Text(category.rawValue)
                     .tag(category.rawValue)
@@ -78,39 +79,17 @@ struct CalendarFormView: View {
     }
     
     var StartDatePicker: some View {
-        HStack {
+        @Bindable var editor = calendarManager.editManager
+        return HStack {
             Text("시작일")
             Spacer()
             DatePicker(
                 "startDate",
-                selection: $startDate,
+                selection: $editor.startDate,
                 displayedComponents: [.date, .hourAndMinute]
             )
             .labelsHidden()
             .colorInvert()
         }
-    }
-    
-    private func setData() {
-        if let event = vm.editingEvent {
-            self.title = event.title
-            self.memo = event.memo
-            self.category = event.category
-            self.startDate = event.startDate
-        } else {
-            self.startDate = vm.selectedDate
-        }
-    }
-    
-    
-    func done() {
-        if title.isEmpty { return }
-        let newEvent = Event(title: title, memo: memo, category: category, startDate: startDate)
-        if vm.editingEvent == nil {
-            vm.create(newEvent)            
-        } else {
-            vm.update(newEvent)
-        }
-        dismiss()
     }
 }

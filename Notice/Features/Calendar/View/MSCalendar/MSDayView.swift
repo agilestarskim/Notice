@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct MSDayView<Content: View>: View {
+struct MSDayView<CellContent: View>: View {
     let day: Date
     let isSameMonth: Bool
     let isSameDay: Bool    
     let textColor: Color
     let selectedColor: Color
-    let content: (Date) -> Content
+    let cellContent: (Date) -> CellContent
     
     var body: some View {
         VStack {
@@ -21,7 +21,7 @@ struct MSDayView<Content: View>: View {
                 Text("\(Calendar.current.component(.day, from: day))")
                     .fontWeight(.semibold)
                     .foregroundStyle(textColor)
-                content(day)
+                cellContent(day)
             }
             Spacer()
         }

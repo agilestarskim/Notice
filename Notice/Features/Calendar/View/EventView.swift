@@ -9,10 +9,11 @@ import SwiftUI
 
 struct EventView: View {
     @Environment(AppState.self) private var appState
-    @EnvironmentObject private var vm: CalendarViewModel
+    @Environment(CalendarManager.self) private var calendarManager
     let event: Event
     
     var body: some View {
+        @Bindable var editor = calendarManager.editManager
         HStack(alignment: .top, spacing: 20) {
             VStack(alignment: .leading, spacing: 10) {
                 HStack(spacing: 20) {
@@ -46,17 +47,17 @@ struct EventView: View {
         }
         .listRowSeparator(.hidden)
         .listRowBackground(appState.theme.container.opacity(0.5))
-        .sheet(item: $vm.editingEvent) { _ in
+        .sheet(item: $editor.editingEvent) { _ in
             CalendarFormView()
         }
         .swipeActions(edge: .leading) {
             Button("Edit") {
-                vm.onTapEditButton(event)
+                calendarManager.onTapEditEventButton(event)
             }
             .tint(appState.theme.accent)
         }
         .swipeActions(edge: .trailing) {
-            Button("Delete", role: .destructive) { vm.delete(event) }                
+            Button("Delete", role: .destructive) { calendarManager.onTapDeleteEventButton(event) }
         }
     }
 }

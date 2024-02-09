@@ -20,7 +20,7 @@ struct CheckListView: View {
     
     var CheckPicker: some View {
         NTPicker(
-            $manager.checkTab.animation(.easeInOut(duration: 0.2)),
+            $manager.checkTab.animation(.easeInOut),
             CheckTab.allCases,
             theme: appState.theme
         ) { oldValue, newValue in
