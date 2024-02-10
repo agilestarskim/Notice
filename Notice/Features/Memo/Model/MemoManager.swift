@@ -16,7 +16,7 @@ final class MemoManager {
     let formatter: NTFormatter
     let calendar: Calendar
     
-    let editManager: EditManager
+    let normalMemoManager: NormalMemoManager
     let folderManager: FolderManager
     let quickMemoManager: QuickMemoManager
     
@@ -31,9 +31,9 @@ final class MemoManager {
         self.formatter = formatter
         self.calendar = calendar
         
-        self.editManager = MemoManager.EditManager()
-        self.folderManager = MemoManager.FolderManager(context: context)
-        self.quickMemoManager = MemoManager.QuickMemoManager(context: context, appState: appState)
+        self.normalMemoManager = NormalMemoManager(context: context, appState: appState)
+        self.folderManager = FolderManager(context: context)
+        self.quickMemoManager = QuickMemoManager(context: context, appState: appState)
     }
     var folders: [Folder] {
         folderManager.folders

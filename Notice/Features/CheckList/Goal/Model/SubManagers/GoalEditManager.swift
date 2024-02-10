@@ -55,7 +55,7 @@ extension GoalManager {
         }
         
         func createNewGoal() -> Goal {
-            Goal(
+            return Goal(
                 title: title,
                 emoji: emoji,
                 startDate: startDate,

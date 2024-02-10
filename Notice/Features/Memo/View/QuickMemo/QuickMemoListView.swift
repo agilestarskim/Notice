@@ -13,9 +13,7 @@ struct QuickMemoListView: View {
     
     var body: some View {
         List(memoManager.quickMemos) { memo in
-            NavigationLink {
-                QuickMemoView(memo: memo)
-            } label: {
+            NavigationLink(value: memo) {
                 VStack(alignment: .leading, spacing: 14) {
                     Text(memo.content)
                         .foregroundStyle(appState.theme.primary)
@@ -30,7 +28,7 @@ struct QuickMemoListView: View {
                         memoManager.onTapQuickMemoDeleteButton(memo)
                     }
                     .tint(.red)
-                }
+                }                
             }
             .listRowBackground(appState.theme.container)
         }
@@ -38,9 +36,12 @@ struct QuickMemoListView: View {
         .listRowSpacing(10)
         .background(appState.theme.background)
         .scrollContentBackground(.hidden)
-        .onAppear(perform: memoManager.quickMemoManager.onAppearList)
+        .onAppear(perform: memoManager.quickMemoManager.onAppear)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Quick Memo")        
+        .navigationTitle("Quick Memo")    
+        .navigationDestination(for: QuickMemo.self) { memo in
+            QuickMemoView(memo: memo)
+        }
     }
 }
 

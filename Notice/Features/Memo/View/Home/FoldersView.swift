@@ -19,21 +19,25 @@ struct FoldersView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            
             List {
-                QuickMemos
-                Folders
-            }            
+                QuickMemosFolder
+                NormalMemosFolders
+            }
+            .listRowSpacing(10)
             .scrollIndicators(.hidden)
             .scrollContentBackground(.hidden)
+        }
+        .navigationDestination(for: Folder.self) { folder in
+            NormalMemoListView(folder: folder)
+        }
+        .navigationDestination(for: Bool.self) { _ in
+            QuickMemoListView()
         }
         .onAppear(perform: memoManager.folderManager.onAppear)
     }
     
-    var QuickMemos: some View {
-        NavigationLink {
-            QuickMemoListView()
-        } label: {
+    var QuickMemosFolder: some View {
+        NavigationLink(value: true) {
             HStack {
                 Text("⚡️")
                 Text("Quick Memos")
@@ -45,14 +49,12 @@ struct FoldersView: View {
             }
             .foregroundStyle(appState.theme.primary)
         }
-        .listRowBackground(appState.theme.container)
+        .listRowBackground(appState.theme.container)        
     }
     
-    var Folders: some View {
+    var NormalMemosFolders: some View {
         ForEach(memoManager.folders) { folder in
-            NavigationLink {
-                MemoListView(memos: folder.momos)
-            } label: {
+            NavigationLink(value: folder) {
                 HStack {
                     Text(folder.emoji.emoji)
                     Text(folder.title)
@@ -63,15 +65,9 @@ struct FoldersView: View {
                         .foregroundStyle(appState.theme.secondary)
                 }
                 .foregroundStyle(appState.theme.primary)
+                
             }
             .listRowBackground(appState.theme.container)
         }
     }
-}
-
-#Preview {
-    FoldersView()
-        .padding()
-        .background(AppState().theme.background)
-        .environment(AppState())
 }

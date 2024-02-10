@@ -41,7 +41,7 @@ extension MemoManager {
             }
         }
         
-        func onAppearList() {
+        func onAppear() {
             fetch()
         }        
         

@@ -69,11 +69,11 @@
 		1F6948902B75E75E00BEFB0F /* MemoFolderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F69488F2B75E75E00BEFB0F /* MemoFolderManager.swift */; };
 		1F6948922B75E80300BEFB0F /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948912B75E80300BEFB0F /* Folder.swift */; };
 		1F6948942B75E80B00BEFB0F /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948932B75E80B00BEFB0F /* Memo.swift */; };
-		1F6948962B75FC2500BEFB0F /* MemoEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948952B75FC2500BEFB0F /* MemoEditManager.swift */; };
+		1F6948962B75FC2500BEFB0F /* NormalMemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948952B75FC2500BEFB0F /* NormalMemoManager.swift */; };
 		1F6948982B76048D00BEFB0F /* FolderEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948972B76048D00BEFB0F /* FolderEditView.swift */; };
 		1F69489A2B76178700BEFB0F /* QuickMemoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948992B76178700BEFB0F /* QuickMemoManager.swift */; };
 		1F69489C2B76427300BEFB0F /* QuickMemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F69489B2B76427300BEFB0F /* QuickMemo.swift */; };
-		1F69489E2B76450F00BEFB0F /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F69489D2B76450F00BEFB0F /* MemoListView.swift */; };
+		1F69489E2B76450F00BEFB0F /* NormalMemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F69489D2B76450F00BEFB0F /* NormalMemoListView.swift */; };
 		1F6948A02B76474D00BEFB0F /* QuickMemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F69489F2B76474D00BEFB0F /* QuickMemoListView.swift */; };
 		1F6948A32B765C9C00BEFB0F /* QuickMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948A22B765C9C00BEFB0F /* QuickMemoView.swift */; };
 		1F838C872B5EBADC00C17A99 /* TodoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C862B5EBADC00C17A99 /* TodoFilter.swift */; };
@@ -97,6 +97,7 @@
 		1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93EEA22B55680E00A5C757 /* FailureCellView.swift */; };
 		1FA4560C2B5D49A4001A853F /* FormContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4560B2B5D49A4001A853F /* FormContainer.swift */; };
 		1FA456142B5E997B001A853F /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 1FA456132B5E997B001A853F /* AlertToast */; };
+		1FB4E21C2B77199D0046FC97 /* NormalMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB4E21B2B77199D0046FC97 /* NormalMemoView.swift */; };
 		1FCD30EE2B6FD18900A6AA2F /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCD30ED2B6FD18900A6AA2F /* CalendarManager.swift */; };
 		1FCD30F12B6FD1C500A6AA2F /* CalendarDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCD30F02B6FD1C500A6AA2F /* CalendarDBManager.swift */; };
 		1FCD30F32B6FD1D000A6AA2F /* CalendarEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FCD30F22B6FD1D000A6AA2F /* CalendarEditManager.swift */; };
@@ -190,11 +191,11 @@
 		1F69488F2B75E75E00BEFB0F /* MemoFolderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFolderManager.swift; sourceTree = "<group>"; };
 		1F6948912B75E80300BEFB0F /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
 		1F6948932B75E80B00BEFB0F /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
-		1F6948952B75FC2500BEFB0F /* MemoEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoEditManager.swift; sourceTree = "<group>"; };
+		1F6948952B75FC2500BEFB0F /* NormalMemoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalMemoManager.swift; sourceTree = "<group>"; };
 		1F6948972B76048D00BEFB0F /* FolderEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEditView.swift; sourceTree = "<group>"; };
 		1F6948992B76178700BEFB0F /* QuickMemoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMemoManager.swift; sourceTree = "<group>"; };
 		1F69489B2B76427300BEFB0F /* QuickMemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMemo.swift; sourceTree = "<group>"; };
-		1F69489D2B76450F00BEFB0F /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
+		1F69489D2B76450F00BEFB0F /* NormalMemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalMemoListView.swift; sourceTree = "<group>"; };
 		1F69489F2B76474D00BEFB0F /* QuickMemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMemoListView.swift; sourceTree = "<group>"; };
 		1F6948A22B765C9C00BEFB0F /* QuickMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMemoView.swift; sourceTree = "<group>"; };
 		1F838C862B5EBADC00C17A99 /* TodoFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFilter.swift; sourceTree = "<group>"; };
@@ -217,6 +218,7 @@
 		1F93EEA02B555E7500A5C757 /* SuccessCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCellView.swift; sourceTree = "<group>"; };
 		1F93EEA22B55680E00A5C757 /* FailureCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailureCellView.swift; sourceTree = "<group>"; };
 		1FA4560B2B5D49A4001A853F /* FormContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormContainer.swift; sourceTree = "<group>"; };
+		1FB4E21B2B77199D0046FC97 /* NormalMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalMemoView.swift; sourceTree = "<group>"; };
 		1FCD30ED2B6FD18900A6AA2F /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		1FCD30F02B6FD1C500A6AA2F /* CalendarDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDBManager.swift; sourceTree = "<group>"; };
 		1FCD30F22B6FD1D000A6AA2F /* CalendarEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEditManager.swift; sourceTree = "<group>"; };
@@ -630,11 +632,9 @@
 		1F69488B2B75E52D00BEFB0F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1FB4E21A2B76FF4C0046FC97 /* Home */,
+				1FB4E2192B76FF1B0046FC97 /* NormalMemo */,
 				1F6948A12B765C6D00BEFB0F /* QuickMemo */,
-				1F638A5F2B329275004D32C9 /* MemoView.swift */,
-				1F6948872B75E09900BEFB0F /* FoldersView.swift */,
-				1F6948972B76048D00BEFB0F /* FolderEditView.swift */,
-				1F69489D2B76450F00BEFB0F /* MemoListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -644,7 +644,7 @@
 			children = (
 				1F69488F2B75E75E00BEFB0F /* MemoFolderManager.swift */,
 				1F6948992B76178700BEFB0F /* QuickMemoManager.swift */,
-				1F6948952B75FC2500BEFB0F /* MemoEditManager.swift */,
+				1F6948952B75FC2500BEFB0F /* NormalMemoManager.swift */,
 			);
 			path = SubManagers;
 			sourceTree = "<group>";
@@ -652,7 +652,6 @@
 		1F6948A12B765C6D00BEFB0F /* QuickMemo */ = {
 			isa = PBXGroup;
 			children = (
-				1F6948852B75C3C500BEFB0F /* QuickMemoEditView.swift */,
 				1F69489F2B76474D00BEFB0F /* QuickMemoListView.swift */,
 				1F6948A22B765C9C00BEFB0F /* QuickMemoView.swift */,
 			);
@@ -767,6 +766,26 @@
 				1FA4560B2B5D49A4001A853F /* FormContainer.swift */,
 			);
 			path = FormContainer;
+			sourceTree = "<group>";
+		};
+		1FB4E2192B76FF1B0046FC97 /* NormalMemo */ = {
+			isa = PBXGroup;
+			children = (
+				1F69489D2B76450F00BEFB0F /* NormalMemoListView.swift */,
+				1FB4E21B2B77199D0046FC97 /* NormalMemoView.swift */,
+			);
+			path = NormalMemo;
+			sourceTree = "<group>";
+		};
+		1FB4E21A2B76FF4C0046FC97 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				1F638A5F2B329275004D32C9 /* MemoView.swift */,
+				1F6948852B75C3C500BEFB0F /* QuickMemoEditView.swift */,
+				1F6948872B75E09900BEFB0F /* FoldersView.swift */,
+				1F6948972B76048D00BEFB0F /* FolderEditView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		1FCD30EC2B6FCD6600A6AA2F /* Entity */ = {
@@ -938,7 +957,7 @@
 			files = (
 				1FA4560C2B5D49A4001A853F /* FormContainer.swift in Sources */,
 				1F638A762B329275004D32C9 /* TodoView.swift in Sources */,
-				1F6948962B75FC2500BEFB0F /* MemoEditManager.swift in Sources */,
+				1F6948962B75FC2500BEFB0F /* NormalMemoManager.swift in Sources */,
 				1F6948882B75E09900BEFB0F /* FoldersView.swift in Sources */,
 				1F6948A02B76474D00BEFB0F /* QuickMemoListView.swift in Sources */,
 				1FFC48402B67EC7A00B0D77A /* RoutineEditManager.swift in Sources */,
@@ -985,7 +1004,7 @@
 				1F638A6D2B329275004D32C9 /* MSInfinteMonthView.swift in Sources */,
 				1F1074AC2B6BC6ED002AADEF /* GoalDBManager.swift in Sources */,
 				1F59FE952B484A460067BEA2 /* CheckTab.swift in Sources */,
-				1F69489E2B76450F00BEFB0F /* MemoListView.swift in Sources */,
+				1F69489E2B76450F00BEFB0F /* NormalMemoListView.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
 				1F838C8F2B5EBC8F00C17A99 /* RoutineFormView.swift in Sources */,
 				1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */,
@@ -1011,6 +1030,7 @@
 				1F838C9F2B5EBE4600C17A99 /* TodoManager.swift in Sources */,
 				1F638A682B329275004D32C9 /* MSCalendar.swift in Sources */,
 				1F3771612B49001A00334065 /* NTPicker.swift in Sources */,
+				1FB4E21C2B77199D0046FC97 /* NormalMemoView.swift in Sources */,
 				1F6948862B75C3C500BEFB0F /* QuickMemoEditView.swift in Sources */,
 				1F93EEA32B55680E00A5C757 /* FailureCellView.swift in Sources */,
 				1F10AF5A2B5A9AF2001EE0A3 /* NTEmojiPicker.swift in Sources */,

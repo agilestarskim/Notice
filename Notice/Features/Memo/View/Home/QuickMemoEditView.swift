@@ -32,6 +32,7 @@ struct QuickMemoEditView: View {
                 
                 Button("Save") {
                     memoManager.onTapQuickMemoSaveButton()
+                    isEditing = false
                 }
                 .tint(appState.theme.accent)
                 .buttonStyle(.bordered)
