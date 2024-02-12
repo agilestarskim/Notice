@@ -15,32 +15,40 @@ extension MemoManager {
         private let context: ModelContext
         private let appState: AppState
         
-        var memos: [Memo] = []
-        var shouldOpenMemoEditor: Bool = false
+        var memos: [Memo] = []        
         var editingMemo: Memo?
-        var folder: Folder?
+        var selectedFolder: Folder?
         
         init(context: ModelContext, appState: AppState) {
             self.context = context
             self.appState = appState
         }
         
-        func onAppear(_ folder: Folder) {
-            appState.onTapPlusButton = self.onTapPlusButton
-            self.folder = folder
+        func openMemo(_ memo: Memo) {
+            editingMemo = memo
         }
         
-        private func onTapPlusButton() {
+        func fetch() {            
+            guard let id = selectedFolder?.persistentModelID else { return }
+            let predicate = #Predicate<Folder> { folder in
+                folder.persistentModelID == id
+            }
+            guard let fetched = try? context.fetch(FetchDescriptor<Folder>(predicate: predicate)) else { return }
+            self.memos = fetched.first?.memos ?? []          
+        }
+        
+        func create() -> Memo {
             let newMemo = Memo(title: "New Memo", content: "", date: .now)
-            editingMemo = newMemo
-            
-            create(newMemo)
+            selectedFolder?.memos.append(newMemo)            
+            return newMemo
         }
         
-        func create(_ memo: Memo) {
-            folder?.momos.append(memo)
+        func delete(_ memo: Memo) {
+            context.delete(memo)
         }
         
-        
+        func changeLastAccessDate(_ memo: Memo) {
+            memo.date = .now
+        }
     }
 }

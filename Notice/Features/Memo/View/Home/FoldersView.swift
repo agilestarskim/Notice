@@ -14,8 +14,9 @@ struct FoldersView: View {
         VStack(spacing: 0) {
             HStack {
                 Text("Folders")
-                    .font(.title2)
+                    .font(.title.bold())                    
                     .foregroundStyle(appState.theme.primary)
+                    .padding(.horizontal)
                 Spacer()
             }
             .padding(.horizontal)
@@ -23,9 +24,10 @@ struct FoldersView: View {
                 QuickMemosFolder
                 NormalMemosFolders
             }
+            .animation(.default, value: memoManager.folders)
             .listRowSpacing(10)
             .scrollIndicators(.hidden)
-            .scrollContentBackground(.hidden)
+            .scrollContentBackground(.hidden)            
         }
         .navigationDestination(for: Folder.self) { folder in
             NormalMemoListView(folder: folder)
@@ -38,16 +40,21 @@ struct FoldersView: View {
     
     var QuickMemosFolder: some View {
         NavigationLink(value: true) {
-            HStack {
-                Text("⚡️")
+            HStack(spacing: 10) {
+                Image(systemName: "bolt.fill")
+                    .renderingMode(.original)
+                    .symbolEffect(.bounce, options: .repeat(3).speed(1.5), value: memoManager.quickMemoAnimation)
+                    .imageScale(.large)
                 Text("Quick Memos")
                 
                 Spacer()
                 
                 Text("\(memoManager.quickMemoManager.quickMemoCount)")
                     .foregroundStyle(appState.theme.secondary)
+                    .transition(.scale)
             }
             .foregroundStyle(appState.theme.primary)
+            .animation(.bouncy, value: memoManager.quickMemoManager.quickMemoCount)
         }
         .listRowBackground(appState.theme.container)        
     }
@@ -56,18 +63,22 @@ struct FoldersView: View {
         ForEach(memoManager.folders) { folder in
             NavigationLink(value: folder) {
                 HStack {
-                    Text(folder.emoji.emoji)
-                    Text(folder.title)
+                    Text(memoManager.displayFolderTitle(folder))
                     
                     Spacer()
                     
-                    Text("\(folder.momos.count)")
+                    Text("\(folder.memos.count)")
                         .foregroundStyle(appState.theme.secondary)
                 }
                 .foregroundStyle(appState.theme.primary)
-                
             }
             .listRowBackground(appState.theme.container)
+            .swipeActions(edge: .trailing) {
+                Button("Delete") {
+                    memoManager.onTapFolderDeleteButton(folder)
+                }
+                .tint(.red)
+            }
         }
     }
 }

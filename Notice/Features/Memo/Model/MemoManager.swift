@@ -43,12 +43,23 @@ final class MemoManager {
         quickMemoManager.quickMemos
     }
     
+    var normalMemos: [Memo] {
+        normalMemoManager.memos.sorted {
+            $0.date > $1.date
+        }
+    }
+    
+    var quickMemoAnimation: Bool {
+        quickMemoManager.savingAnimation
+    }
+    
+    // MARK: - Home
     func onAppear() {
-        appState.onTapPlusButton = onTapPlusButton
+        appState.onTapPlusButton = openFolderEditor
         quickMemoManager.fetchCount()
     }
     
-    private func onTapPlusButton() {
+    private func openFolderEditor() {
         folderManager.shouldOpenFolderEditor = true
     }
     
@@ -60,10 +71,46 @@ final class MemoManager {
     }
     
     func onTapQuickMemoSaveButton() {
+        if quickMemoManager.quickMemoText.isEmpty { return }
         quickMemoManager.createQuickMemo()
         quickMemoManager.fetchCount()
-        quickMemoManager.resetQuickMemo()        
+        quickMemoManager.resetQuickMemo()       
+        quickMemoManager.turnOnSavingAnimation()
         appState.showToast("저장되었습니다")
+    }
+    
+    func onTapFolderDeleteButton(_ folder: Folder) {
+        folderManager.delete(folder)
+        folderManager.fetch()
+        appState.showToast("삭제되었습니다")
+    }
+    
+    func displayFolderTitle(_ folder: Folder) -> String {
+        folderManager.displayTitle(folder)
+    }
+    
+    // MARK: - Quick Memo
+    func onAppearQuickMemoListView() {
+        appState.onTapPlusButton = openNewQuickMemo
+        quickMemoManager.fetch()
+    }
+    
+    func openNewQuickMemo() {
+        let quickMemo = quickMemoManager.createQuickMemo()
+        quickMemoManager.openQuickMemo(quickMemo)
+    }
+    
+    func onAppearQuickMemoView(_ quickMemo: QuickMemo) {
+        appState.hideTab()
+        quickMemoManager.changeLastAccessDate(quickMemo)
+    }
+    
+    func onDisappearQuickMemoView(_ quickMemo: QuickMemo) {
+        appState.showTab()
+        if quickMemo.content.isEmpty {
+            quickMemoManager.delete(quickMemo)
+            quickMemoManager.fetch()
+        }
     }
     
     func onTapQuickMemoDeleteButton(_ quickMemo: QuickMemo) {
@@ -72,6 +119,36 @@ final class MemoManager {
         appState.showToast("삭제되었습니다")
     }
     
+    func onTapMoveButton(_ quickMemo: QuickMemo, folder: Folder) {
+        quickMemoManager.move(quickMemo, to: folder)
+        quickMemoManager.delete(quickMemo)            
+        appState.showToast("\(folder.title)로 이동되었습니다")
+    }
     
+    // MARK: - Normal Memo
+    func onAppearNormalMemoListView(at folder: Folder) {
+        appState.onTapPlusButton = openNewNormalMemo
+        normalMemoManager.selectedFolder = folder
+        normalMemoManager.fetch()
+    }
     
+    func openNewNormalMemo() {
+        let memo = normalMemoManager.create()
+        normalMemoManager.openMemo(memo)
+    }
+    
+    func onAppearNormalMemoView(_ memo: Memo) {
+        appState.hideTab()
+        normalMemoManager.changeLastAccessDate(memo)
+    }
+
+    func onDisappearNormalMemoView(_ memo: Memo) {
+        appState.showTab()        
+    }
+    
+    func onTapNormalMemoDeleteButton(_ memo: Memo){
+        normalMemoManager.delete(memo)
+        normalMemoManager.fetch()
+        appState.showToast("삭제되었습니다")
+    }
 }

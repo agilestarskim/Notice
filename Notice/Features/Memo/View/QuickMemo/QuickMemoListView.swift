@@ -12,8 +12,11 @@ struct QuickMemoListView: View {
     @Environment(MemoManager.self) private var memoManager    
     
     var body: some View {
+        @Bindable var quickManager = memoManager.quickMemoManager
         List(memoManager.quickMemos) { memo in
-            NavigationLink(value: memo) {
+            Button {
+                quickManager.openQuickMemo(memo)
+            } label: {
                 VStack(alignment: .leading, spacing: 14) {
                     Text(memo.content)
                         .foregroundStyle(appState.theme.primary)
@@ -23,24 +26,24 @@ struct QuickMemoListView: View {
                         .font(.caption)
                         .foregroundStyle(appState.theme.secondary)
                 }
-                .swipeActions(edge: .trailing) {
-                    Button("Delete") {
-                        memoManager.onTapQuickMemoDeleteButton(memo)
-                    }
-                    .tint(.red)
-                }                
             }
             .listRowBackground(appState.theme.container)
+            .swipeActions(edge: .trailing) {
+                Button("Delete") {
+                    memoManager.onTapQuickMemoDeleteButton(memo)
+                }
+                .tint(.red)
+            }
         }
         .animation(.default, value: memoManager.quickMemos)
         .listRowSpacing(10)
         .background(appState.theme.background)
         .scrollContentBackground(.hidden)
-        .onAppear(perform: memoManager.quickMemoManager.onAppear)
+        .onAppear(perform: memoManager.onAppearQuickMemoListView)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Quick Memo")    
-        .navigationDestination(for: QuickMemo.self) { memo in
-            QuickMemoView(memo: memo)
+        .navigationTitle("Quick Memo")     
+        .navigationDestination(item: $quickManager.editingQuickMemo) { quickMemo in
+            QuickMemoView(memo: quickMemo)
         }
     }
 }

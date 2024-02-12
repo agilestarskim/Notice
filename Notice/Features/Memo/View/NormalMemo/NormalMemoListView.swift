@@ -15,8 +15,10 @@ struct NormalMemoListView: View {
     var body: some View {
         @Bindable var normalManager = memoManager.normalMemoManager
         List {
-            ForEach(folder.momos) { memo in
-                NavigationLink(value: memo) {
+            ForEach(memoManager.normalMemos) { memo in
+                Button {
+                    normalManager.openMemo(memo)
+                } label: {
                     VStack(alignment: .leading, spacing: 14) {
                         Text(memo.title)
                             .foregroundStyle(appState.theme.accent)
@@ -29,29 +31,27 @@ struct NormalMemoListView: View {
                             .font(.caption)
                             .foregroundStyle(appState.theme.secondary)
                     }
-                    .swipeActions(edge: .trailing) {
-                        Button("Delete") {
-                            
-                        }
-                        .tint(.red)
-                    }
                 }
                 .listRowBackground(appState.theme.container)
+                .swipeActions(edge: .trailing) {
+                    Button("Delete") {
+                        memoManager.onTapNormalMemoDeleteButton(memo)
+                    }
+                    .tint(.red)
+                }
             }
         }
+        .animation(.default, value: memoManager.normalMemos)
         .scrollContentBackground(.hidden)
         .listRowSpacing(10)
         .background(appState.theme.background)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle(folder.title)
         .onAppear {
-            memoManager.normalMemoManager.onAppear(folder)
-        }
-        .navigationDestination(for: Memo.self) { memo in
-            NormalMemoView(memo: memo)
+            memoManager.onAppearNormalMemoListView(at: folder)
         }
         .navigationDestination(item: $normalManager.editingMemo) { memo in
             NormalMemoView(memo: memo)
-        }        
+        }
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QuickMemoView: View {
+struct QuickMemoView: View {    
     @Environment(AppState.self) private var appState
     @Environment(MemoManager.self) private var memoManager
     @FocusState private var isFocus: Bool
@@ -34,11 +34,31 @@ struct QuickMemoView: View {
                         }
                     }
                 }
+            
+            Menu {
+                ForEach(memoManager.folders) { folder in
+                    Button {
+                        memoManager.onTapMoveButton(memo, folder: folder)                        
+                    } label: {
+                        Text(memoManager.displayFolderTitle(folder))
+                    }
+                }
+            } label: {
+                Button {
+                    
+                } label: {
+                    Label("폴더 이동", systemImage: "arrowshape.bounce.right.fill")
+                        .frame(maxWidth: .infinity)
+                }
+                .tint(appState.theme.container)
+                .buttonStyle(.borderedProminent)
+                .padding()
+            }
         }
         .background(appState.theme.background)
         .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Quick Memo")
-        .onAppear(perform: appState.hideTab)
-        .onDisappear(perform: appState.showTab)
+        .onAppear { memoManager.onAppearQuickMemoView(memo) }
+        .onDisappear { memoManager.onDisappearQuickMemoView(memo) }        
     }
 }

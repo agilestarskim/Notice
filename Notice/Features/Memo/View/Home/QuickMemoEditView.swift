@@ -16,9 +16,10 @@ struct QuickMemoEditView: View {
         @Bindable var quickMemo = memoManager.quickMemoManager
         VStack {
             HStack {
-                Text("Quick Memo")
-                    .font(.title2)
+                Text("Quick")
+                    .font(.title.bold())
                     .foregroundStyle(appState.theme.primary)
+                    .padding(.horizontal)
                 Spacer()
                 
                 if isEditing {
@@ -30,14 +31,15 @@ struct QuickMemoEditView: View {
                     .transition(.scale)
                 }
                 
-                Button("Save") {
+                Button("Save") {                    
                     memoManager.onTapQuickMemoSaveButton()
                     isEditing = false
                 }
-                .tint(appState.theme.accent)
+                .tint(appState.theme.accent)                
                 .buttonStyle(.bordered)
             }
             .animation(.bouncy, value: isEditing)
+            
             
             TextEditor(text: $quickMemo.quickMemoText)
                 .focused($isEditing)
@@ -47,7 +49,8 @@ struct QuickMemoEditView: View {
                 .frame(height: 130)
                 .background(appState.theme.container)
                 .clipShape(.rect(cornerRadius: 10), style: FillStyle())
-        }        
+                .autocorrectionDisabled()
+        }
         .onChange(of: isEditing) {
             if isEditing {
                 appState.hideTab()

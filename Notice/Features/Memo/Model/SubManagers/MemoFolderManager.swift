@@ -30,7 +30,8 @@ extension MemoManager {
         
         func fetch() {
             let sort = [SortDescriptor(\Folder.date)]
-            
+            var fetchDescriptor = FetchDescriptor<Folder>(sortBy: sort)
+            fetchDescriptor.propertiesToFetch = [\.title, \.emoji]
             do {
                 folders = try context.fetch(FetchDescriptor(sortBy: sort))
             } catch {
@@ -48,9 +49,17 @@ extension MemoManager {
             context.insert(folder)            
         }
         
+        func delete(_ folder: Folder) {
+            context.delete(folder)
+        }
+        
         func resetData() {
             folderTitle = ""
             folderEmoji = 0x1F3C6
+        }
+        
+        func displayTitle(_ folder: Folder) -> String {
+            return folder.emoji.emoji + "  " + folder.title
         }
     }
 }
