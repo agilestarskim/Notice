@@ -27,9 +27,18 @@ struct NormalMemoListView: View {
                             .foregroundStyle(appState.theme.primary)
                             .lineLimit(3)
                         
-                        Text(NTFormatter.shared.string(memo.date, style: .yyyyMMddE))
-                            .font(.caption)
-                            .foregroundStyle(appState.theme.secondary)
+                        HStack {
+                            Text(NTFormatter.shared.string(memo.date, style: .yyyyMMddE))
+                                .font(.caption)
+                                .foregroundStyle(appState.theme.secondary)
+                            
+                            if memo.pin {
+                                Image(systemName: "pin")
+                                    .imageScale(.small)
+                                    .foregroundStyle(appState.theme.primary)
+                            }                            
+                        }
+                        
                     }
                 }
                 .listRowBackground(appState.theme.container)
@@ -38,6 +47,14 @@ struct NormalMemoListView: View {
                         memoManager.onTapNormalMemoDeleteButton(memo)
                     }
                     .tint(.red)
+                }
+                .swipeActions(edge: .leading) {
+                    Button {
+                        memoManager.onTapPinButton(memo)
+                    } label: {
+                        Label("Pin", systemImage: "pin")
+                    }
+                    .tint(appState.theme.accent)
                 }
             }
         }

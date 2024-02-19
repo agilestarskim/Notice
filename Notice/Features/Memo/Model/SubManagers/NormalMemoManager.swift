@@ -15,9 +15,19 @@ extension MemoManager {
         private let context: ModelContext
         private let appState: AppState
         
-        var memos: [Memo] = []        
+        private var _memos: [Memo] = []
         var editingMemo: Memo?
         var selectedFolder: Folder?
+        
+        var memos: [Memo] {
+            _memos.sorted {
+                if $0.pin == $1.pin {
+                    return $0.date > $1.date
+                } else {
+                    return $0.pin > $1.pin
+                }
+            }
+        }
         
         init(context: ModelContext, appState: AppState) {
             self.context = context
@@ -34,7 +44,8 @@ extension MemoManager {
                 folder.persistentModelID == id
             }
             guard let fetched = try? context.fetch(FetchDescriptor<Folder>(predicate: predicate)) else { return }
-            self.memos = fetched.first?.memos ?? []          
+            
+            self._memos = fetched.first?.memos ?? []
         }
         
         func create() -> Memo {
@@ -49,6 +60,10 @@ extension MemoManager {
         
         func changeLastAccessDate(_ memo: Memo) {
             memo.date = .now
+        }
+        
+        func togglePin(_ memo: Memo) {
+            memo.pin.toggle()
         }
     }
 }

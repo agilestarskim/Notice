@@ -45,7 +45,7 @@ struct NormalMemoView: View {
         }
         .padding()
         .background(appState.theme.background)
-        .onAppear(perform: appState.hideTab)
-        .onDisappear(perform: appState.showTab)
+        .onAppear { memoManager.onAppearNormalMemoView(memo) }
+        .onDisappear { memoManager.onDisappearNormalMemoView(memo) }
     }
 }

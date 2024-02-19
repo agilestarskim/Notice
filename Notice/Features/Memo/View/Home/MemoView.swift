@@ -22,14 +22,8 @@ struct MemoView: View {
             .sheet(isPresented: $folderManager.shouldOpenFolderEditor) {
                 FolderEditView()
             }
-            
-            
+            .onAppear(perform: memoManager.onAppear)
         }
-        .onAppear(perform: memoManager.onAppear)
+        
     }
-}
-
-#Preview {
-    MemoView()
-        .environment(AppState())
 }

@@ -13,20 +13,23 @@ final class Memo: Codable {
     var title: String = ""
     var content: String = ""
     var date: Date = Date.now
+    var pin: Bool = false
     var folder: Folder?
     
     init(
         title: String = "",
         content: String = "",
-        date: Date = Date.now
+        date: Date = Date.now,
+        pin: Bool = false
     ) {
         self.title = title
         self.content = content
         self.date = date        
+        self.pin = pin
     }
     
     enum CodingKeys: CodingKey {
-        case title, content, date, folder
+        case title, content, date, pin, folder
     }
     
     required init(from decoder: Decoder) throws {
@@ -34,6 +37,7 @@ final class Memo: Codable {
         title = try container.decode(String.self, forKey: .title)
         content = try container.decode(String.self, forKey: .content)
         date = try container.decode(Date.self, forKey: .date)
+        pin = try container.decode(Bool.self, forKey: .pin)
         folder = try container.decode(Folder.self, forKey: .folder)
     }
     
@@ -42,8 +46,8 @@ final class Memo: Codable {
         try container.encode(title, forKey: .title)
         try container.encode(content, forKey: .content)
         try container.encode(date, forKey: .date)
+        try container.encode(pin, forKey: .pin)
         try container.encode(folder, forKey: .folder)
     }
-    
 }
 

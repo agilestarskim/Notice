@@ -44,9 +44,7 @@ final class MemoManager {
     }
     
     var normalMemos: [Memo] {
-        normalMemoManager.memos.sorted {
-            $0.date > $1.date
-        }
+        normalMemoManager.memos
     }
     
     var quickMemoAnimation: Bool {
@@ -111,6 +109,7 @@ final class MemoManager {
             quickMemoManager.delete(quickMemo)
             quickMemoManager.fetch()
         }
+        onAppear()
     }
     
     func onTapQuickMemoDeleteButton(_ quickMemo: QuickMemo) {
@@ -129,7 +128,7 @@ final class MemoManager {
     func onAppearNormalMemoListView(at folder: Folder) {
         appState.onTapPlusButton = openNewNormalMemo
         normalMemoManager.selectedFolder = folder
-        normalMemoManager.fetch()
+        normalMemoManager.fetch()        
     }
     
     func openNewNormalMemo() {
@@ -143,12 +142,21 @@ final class MemoManager {
     }
 
     func onDisappearNormalMemoView(_ memo: Memo) {
-        appState.showTab()        
+        appState.showTab()
+        if memo.content.isEmpty {
+            normalMemoManager.delete(memo)
+            normalMemoManager.fetch()
+        }
     }
     
-    func onTapNormalMemoDeleteButton(_ memo: Memo){
+    func onTapNormalMemoDeleteButton(_ memo: Memo) {
         normalMemoManager.delete(memo)
         normalMemoManager.fetch()
         appState.showToast("삭제되었습니다")
+    }
+    
+    func onTapPinButton(_ memo: Memo) {
+        normalMemoManager.togglePin(memo)
+        normalMemoManager.fetch()
     }
 }
