@@ -18,7 +18,6 @@ final class TodoManager {
     
     let dbManager: DBManager
     let editManager: EditManager
-    let filterManager: FilterManager
     
     init(
         appState: AppState,
@@ -33,7 +32,6 @@ final class TodoManager {
         
         self.dbManager = TodoManager.DBManager(context: context)
         self.editManager = TodoManager.EditManager()
-        self.filterManager = TodoManager.FilterManager()
     }
     
     var todos: [Todo] {
@@ -45,8 +43,15 @@ final class TodoManager {
     }
     
     func onAppear() {
-        appState.onTapPlusButton = self.onTapPlusButton
+        setOnTapPlusButton()
         dbManager.fetch()
+    }
+    
+    private func setOnTapPlusButton() {
+        appState.onTapPlusButton = nil
+        appState.onTapPlusButton = { [weak self] in
+            self?.editManager.shouldOpenEditor = true
+        }
     }
     
     func onTapEditButton(todo: Todo) {
@@ -56,11 +61,7 @@ final class TodoManager {
     
     func onTapDeleteButton(_ todo: Todo) {
         dbManager.delete(todo)
-    }
-    
-    func onChangeFilter(prev: TodoFilter, current: TodoFilter) {
-        filterManager.setTabDirection(prevTab: prev, currentTab: current)
-    }
+    }    
     
     func onTapDoneButton(of todo: Todo) {
         dbManager.toggle(todo)
@@ -99,12 +100,6 @@ final class TodoManager {
         } else {
             return .none
         }
-    }
-    
-    // MARK: - Private functions
-    
-    private func onTapPlusButton() {
-        editManager.shouldOpenEditor = true
     }
 }
 

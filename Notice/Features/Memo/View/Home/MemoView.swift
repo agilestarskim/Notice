@@ -24,6 +24,5 @@ struct MemoView: View {
             }
             .onAppear(perform: memoManager.onAppear)
         }
-        
     }
 }

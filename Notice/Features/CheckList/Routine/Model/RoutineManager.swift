@@ -40,12 +40,15 @@ final class RoutineManager {
     }
     
     func onAppear() {
-        appState.onTapPlusButton = self.onTapPlusButton
+        setOnTapPlusButton()
         dbManager.fetch()
     }
     
-    private func onTapPlusButton() {
-        editManager.shouldOpenEditor = true
+    private func setOnTapPlusButton() {
+        appState.onTapPlusButton = nil
+        appState.onTapPlusButton = { [weak self] in
+            self?.editManager.shouldOpenEditor = true
+        }
     }
     
     func onTapEditButton(routine: Routine) {

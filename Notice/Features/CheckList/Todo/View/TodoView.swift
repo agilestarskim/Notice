@@ -8,64 +8,46 @@
 import SwiftUI
 
 struct TodoView: View {
+    
+    enum TodoTab: String, CaseIterable, Identifiable {
+        var id: String { self.rawValue }
+        case today = "Today"
+        case all = "All"
+    }
+    
     @Environment(AppState.self) private var appState
     @Environment(TodoManager.self) private var todoManager
+    @State private var tab: TodoTab = .today
     
     var body: some View {
         @Bindable var editManager = todoManager.editManager
-        VStack {
-            TodoFilterPicker
-            TodoList
+        TabView(selection: $tab) {
+            List {
+                ForEach(todoManager.todayTodos) { todo in
+                    TodoCellView(todo: todo)
+                }
+            }
+            .listRowSpacing(10)
+            .scrollContentBackground(.hidden)
+            .tag(TodoTab.today)
+            
+            List {
+                ForEach(todoManager.todos) { todo in
+                    TodoCellView(todo: todo)
+                }
+            }
+            .listRowSpacing(10)
+            .scrollContentBackground(.hidden)
+            .tag(TodoTab.all)
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .onAppear(perform: todoManager.onAppear)        
+        .animation(.easeInOut, value: todoManager.todos)
+        .safeAreaInset(edge: .top) {
+            NTPicker(tab: $tab)
         }
         .sheet(isPresented: $editManager.shouldOpenEditor) {
             TodoFormView()
         }
-        .onAppear(perform: todoManager.onAppear)
-    }
-    
-    var TodoFilterPicker: some View {
-        @Bindable var filterManager = todoManager.filterManager
-        
-        return NTPicker(
-            $filterManager.todoFilter.animation(.easeInOut),
-            TodoFilter.allCases,
-            theme: appState.theme
-        ) { oldValue, newValue in
-            todoManager.onChangeFilter(prev: oldValue, current: newValue)
-        }
-        .padding(.horizontal)
-    }
-    
-    var TodoList: some View {
-        let filterManager = todoManager.filterManager
-        
-        return Group {
-            switch filterManager.todoFilter {
-            case .all:
-                List {
-                    ForEach(todoManager.todos) { todo in
-                        TodoCellView(todo: todo)
-                    }
-                }
-                .listRowSpacing(10)
-                .scrollContentBackground(.hidden)
-            case .today:
-                List {
-                    ForEach(todoManager.todayTodos) { todo in
-                        TodoCellView(todo: todo)
-                    }
-                }                
-                .listRowSpacing(10)
-                .scrollContentBackground(.hidden)
-            }
-        }
-        .animation(.easeInOut, value: todoManager.todos)
-        .transition(
-            .asymmetric(
-                insertion: .move(edge: filterManager.goingRight ? .trailing : .leading),
-                removal: .move(edge: filterManager.goingRight ? .leading : .trailing)
-            )
-        )        
-        
     }
 }

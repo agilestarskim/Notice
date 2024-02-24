@@ -8,54 +8,39 @@
 import SwiftUI
 
 struct GoalView: View {
+    enum GoalTab: String, CaseIterable, Identifiable {
+        var id: String { self.rawValue }
+        case underway = "Underway"
+        case success = "Success"
+        case failure = "Failure"
+    }
+
     @Environment(AppState.self) private var appState
     @Environment(GoalManager.self) private var goalManager
+    @State private var tab: GoalTab = .underway
     
     var body: some View {
         @Bindable var editManager = goalManager.editManager
-        VStack {
-            GoalFilterPicker
-            GoalList
+        
+        TabView(selection: $tab) {
+            UnderwayListView()
+                .tag(GoalTab.underway)
+            SuccessListView()
+                .tag(GoalTab.success)
+            FailureListView()
+                .tag(GoalTab.failure)
         }
+        .animation(.default, value: self.tab)
+        .tabViewStyle(.page(indexDisplayMode: .never))
         .sheet(isPresented: $editManager.shouldOpenEditor) {
             GoalFormView()
         }
         .sheet(item: $editManager.editingGoal) { _ in
             GoalFormView()
         }
+        .safeAreaInset(edge: .top) {
+            NTPicker(tab: $tab)
+        }
         .onAppear(perform: goalManager.onAppear)
-    }
-    
-    var GoalFilterPicker: some View {
-        @Bindable var filterManager = goalManager.filterManager
-        return NTPicker(
-            $filterManager.filter.animation(.easeInOut),
-            GoalFilter.allCases,
-            theme: appState.theme
-        ) { oldValue, newValue in
-            filterManager.setTabDirection(prevTab: oldValue, currentTab: newValue)
-        }
-        .padding(.horizontal)
-    }
-    
-    var GoalList: some View {
-        let filterManager = goalManager.filterManager
-        return Group {
-            switch filterManager.filter {
-            case .underway:
-                UnderwayListView()
-            case .success:
-                SuccessListView()
-            case .failure:
-                FailureListView()
-            }
-        }
-        .animation(.easeInOut, value: filterManager.goingRight)
-        .transition(
-            .asymmetric(
-                insertion: .move(edge: filterManager.goingRight ? .trailing : .leading),
-                removal: .move(edge: filterManager.goingRight ? .leading : .trailing)
-            )
-        )
     }
 }

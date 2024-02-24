@@ -7,60 +7,42 @@
 
 import SwiftUI
 
-struct NTPicker<SelectionValue, Data>: View where
-    SelectionValue: Hashable & RawRepresentable,
-    SelectionValue.RawValue: StringProtocol,
-    Data: RandomAccessCollection,
-    Data.Element == SelectionValue
+struct NTPicker<Tab>: View where
+    Tab: Hashable & RawRepresentable,
+    Tab.RawValue: StringProtocol,
+    Tab: CaseIterable,
+    Tab: Identifiable,
+    Tab.AllCases: RandomAccessCollection
 {
-    @Binding var selection: SelectionValue
-    let data: Data
-    let theme: Theme
-    let onChange: ((SelectionValue, SelectionValue) -> Void)?
-    
-    init(
-        _ selection: Binding<SelectionValue>,
-        _ data: Data,
-        theme: Theme,
-        onChange: ((SelectionValue, SelectionValue) -> Void)? = nil
-    ) {
-        self._selection = selection
-        self.data = data
-        self.theme = theme
-        self.onChange = onChange
-    }
-    
+    @Environment(AppState.self) private var appState
+    @Binding var tab: Tab
     var body: some View {
         HStack {
-            ForEach(data, id: \.self) { element in
-                if selection == element {
-                    Button {
-                        selection = element
-                    } label: {
-                        Text(element.rawValue)
-                            .minimumScaleFactor(0.3)
-                            .lineLimit(1)
-                            .foregroundStyle(theme.primary)
-                            .frame(maxWidth: .infinity)
-                            
-                    }
+            ForEach(Tab.allCases) { tab in
+                if self.tab == tab {
+                    TabButton(tab: tab)
                     .buttonStyle(.borderedProminent)
-                    .tint(theme.container)                    
-                } else {
-                    Button {
-                        onChange?(selection, element)
-                        selection = element
-                    } label: {
-                        Text(element.rawValue)
-                            .minimumScaleFactor(0.3)
-                            .lineLimit(1)
-                            .foregroundStyle(theme.primary)
-                            .frame(maxWidth: .infinity)
-                            
-                    }
-                    .buttonStyle(.bordered)                    
+                    .tint(appState.theme.container)
+                } else{
+                    TabButton(tab: tab)
+                    .buttonStyle(.bordered)
                 }
             }
-        }        
+        }
+        .padding(.horizontal)
+    }
+    
+    func TabButton(tab: Tab) -> some View {
+        Button {
+            withAnimation {
+                self.tab = tab
+            }
+        } label: {
+            Text(tab.rawValue)
+                .minimumScaleFactor(0.3)
+                .lineLimit(1)
+                .foregroundStyle(appState.theme.primary)
+                .frame(maxWidth: .infinity)
+        }
     }
 }

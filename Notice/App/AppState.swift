@@ -21,7 +21,7 @@ final class AppState {
     
     @ObservationIgnored
     let tabHeight = 56.0
-    
+
     @ObservationIgnored
     var bottomSafeAreaPadding: CGFloat {
         tabHeight + 14.0

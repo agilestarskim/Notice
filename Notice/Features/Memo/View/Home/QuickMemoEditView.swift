@@ -40,7 +40,6 @@ struct QuickMemoEditView: View {
             }
             .animation(.bouncy, value: isEditing)
             
-            
             TextEditor(text: $quickMemo.quickMemoText)
                 .focused($isEditing)
                 .textEditorStyle(.plain)
@@ -60,9 +59,4 @@ struct QuickMemoEditView: View {
         }
         .background(appState.theme.background)
     }
-}
-
-#Preview {
-    QuickMemoEditView()
-        .environment(AppState())
 }

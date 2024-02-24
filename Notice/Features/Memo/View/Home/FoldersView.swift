@@ -24,7 +24,6 @@ struct FoldersView: View {
                 QuickMemosFolder
                 NormalMemosFolders
             }
-            .animation(.default, value: memoManager.folders)
             .listRowSpacing(10)
             .scrollIndicators(.hidden)
             .scrollContentBackground(.hidden)            
@@ -74,7 +73,7 @@ struct FoldersView: View {
             }
             .listRowBackground(appState.theme.container)
             .swipeActions(edge: .trailing) {
-                Button("Delete") {
+                Button("Delete") {                    
                     memoManager.onTapFolderDeleteButton(folder)
                 }
                 .tint(.red)

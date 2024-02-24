@@ -19,7 +19,6 @@ final class GoalManager {
     
     let dbManager: DBManager
     let editManager: EditManager
-    let filterManager: FilterManager
     
     init(
         appState: AppState,
@@ -34,7 +33,6 @@ final class GoalManager {
         
         self.dbManager = GoalManager.DBManager(context: context)
         self.editManager = GoalManager.EditManager(calendar: calendar)
-        self.filterManager = GoalManager.FilterManager()
     }
     
     var underways: [Goal] {
@@ -95,7 +93,5 @@ final class GoalManager {
             return nil
         }
     }
-    
-    
 }
 

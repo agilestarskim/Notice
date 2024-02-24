@@ -11,14 +11,11 @@
 		1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0722032B32D7C3008B80A0 /* EventCategory.swift */; };
 		1F1074AC2B6BC6ED002AADEF /* GoalDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1074AB2B6BC6ED002AADEF /* GoalDBManager.swift */; };
 		1F1074AE2B6BC6F7002AADEF /* GoalEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1074AD2B6BC6F7002AADEF /* GoalEditManager.swift */; };
-		1F1074B02B6BC700002AADEF /* GoalFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F1074AF2B6BC700002AADEF /* GoalFilterManager.swift */; };
 		1F10AF5A2B5A9AF2001EE0A3 /* NTEmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10AF592B5A9AF2001EE0A3 /* NTEmojiPicker.swift */; };
 		1F10AF5C2B5AD057001EE0A3 /* Int+toEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F10AF5B2B5AD057001EE0A3 /* Int+toEmoji.swift */; };
 		1F12142F2B37106000DB04CD /* SubTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F12142E2B37106000DB04CD /* SubTodo.swift */; };
-		1F15DB692B52248A00ECDEC7 /* CheckPickerManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F15DB682B52248A00ECDEC7 /* CheckPickerManger.swift */; };
 		1F24EF382B3680C700FA6B25 /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */; };
 		1F2565F82B42B6CC000CD6CA /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565F72B42B6CC000CD6CA /* Goal.swift */; };
-		1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */; };
 		1F2565FD2B42BD39000CD6CA /* GoalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2565FC2B42BD39000CD6CA /* GoalManager.swift */; };
 		1F2566082B42D9A0000CD6CA /* GoalDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F2566072B42D9A0000CD6CA /* GoalDuration.swift */; };
 		1F376E822B569ED000DA43AD /* NTColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F376E812B569ED000DA43AD /* NTColorPicker.swift */; };
@@ -31,7 +28,6 @@
 		1F59FE8C2B4841600067BEA2 /* CheckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE8B2B4841600067BEA2 /* CheckListView.swift */; };
 		1F59FE8F2B48440A0067BEA2 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE8E2B48440A0067BEA2 /* StatisticsView.swift */; };
 		1F59FE932B48463A0067BEA2 /* NTModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE922B48463A0067BEA2 /* NTModelContainer.swift */; };
-		1F59FE952B484A460067BEA2 /* CheckTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F59FE942B484A460067BEA2 /* CheckTab.swift */; };
 		1F638A0A2B3291FA004D32C9 /* NoticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A092B3291FA004D32C9 /* NoticeApp.swift */; };
 		1F638A0C2B3291FA004D32C9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F638A0B2B3291FA004D32C9 /* MainView.swift */; };
 		1F638A102B3291FB004D32C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F638A0F2B3291FB004D32C9 /* Assets.xcassets */; };
@@ -76,7 +72,6 @@
 		1F69489E2B76450F00BEFB0F /* NormalMemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F69489D2B76450F00BEFB0F /* NormalMemoListView.swift */; };
 		1F6948A02B76474D00BEFB0F /* QuickMemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F69489F2B76474D00BEFB0F /* QuickMemoListView.swift */; };
 		1F6948A32B765C9C00BEFB0F /* QuickMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6948A22B765C9C00BEFB0F /* QuickMemoView.swift */; };
-		1F838C872B5EBADC00C17A99 /* TodoFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C862B5EBADC00C17A99 /* TodoFilter.swift */; };
 		1F838C8D2B5EBC7700C17A99 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C8C2B5EBC7700C17A99 /* RoutineView.swift */; };
 		1F838C8F2B5EBC8F00C17A99 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C8E2B5EBC8F00C17A99 /* RoutineFormView.swift */; };
 		1F838C912B5EBCB400C17A99 /* RoutineCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838C902B5EBCB400C17A99 /* RoutineCellView.swift */; };
@@ -88,7 +83,6 @@
 		1F838CA22B5EBFBE00C17A99 /* NTFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA12B5EBFBE00C17A99 /* NTFormatter.swift */; };
 		1F838CA72B5EC2D500C17A99 /* TodoDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA62B5EC2D500C17A99 /* TodoDBManager.swift */; };
 		1F838CA92B5EC46E00C17A99 /* TodoEditManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CA82B5EC46E00C17A99 /* TodoEditManager.swift */; };
-		1F838CAD2B5EC51300C17A99 /* TodoFilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F838CAC2B5EC51300C17A99 /* TodoFilterManager.swift */; };
 		1F93D5A72B53841E002FA726 /* UnderwayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */; };
 		1F93D5AB2B5384F4002FA726 /* UnderwayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */; };
 		1F93D5AD2B53850C002FA726 /* SuccessListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93D5AC2B53850C002FA726 /* SuccessListView.swift */; };
@@ -128,14 +122,11 @@
 		1F0722032B32D7C3008B80A0 /* EventCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
 		1F1074AB2B6BC6ED002AADEF /* GoalDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDBManager.swift; sourceTree = "<group>"; };
 		1F1074AD2B6BC6F7002AADEF /* GoalEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalEditManager.swift; sourceTree = "<group>"; };
-		1F1074AF2B6BC700002AADEF /* GoalFilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFilterManager.swift; sourceTree = "<group>"; };
 		1F10AF592B5A9AF2001EE0A3 /* NTEmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTEmojiPicker.swift; sourceTree = "<group>"; };
 		1F10AF5B2B5AD057001EE0A3 /* Int+toEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+toEmoji.swift"; sourceTree = "<group>"; };
 		1F12142E2B37106000DB04CD /* SubTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTodo.swift; sourceTree = "<group>"; };
-		1F15DB682B52248A00ECDEC7 /* CheckPickerManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckPickerManger.swift; sourceTree = "<group>"; };
 		1F24EF372B3680C700FA6B25 /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		1F2565F72B42B6CC000CD6CA /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
-		1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalFilter.swift; sourceTree = "<group>"; };
 		1F2565FC2B42BD39000CD6CA /* GoalManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalManager.swift; sourceTree = "<group>"; };
 		1F2566072B42D9A0000CD6CA /* GoalDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDuration.swift; sourceTree = "<group>"; };
 		1F376E812B569ED000DA43AD /* NTColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTColorPicker.swift; sourceTree = "<group>"; };
@@ -148,7 +139,6 @@
 		1F59FE8B2B4841600067BEA2 /* CheckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListView.swift; sourceTree = "<group>"; };
 		1F59FE8E2B48440A0067BEA2 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		1F59FE922B48463A0067BEA2 /* NTModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTModelContainer.swift; sourceTree = "<group>"; };
-		1F59FE942B484A460067BEA2 /* CheckTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTab.swift; sourceTree = "<group>"; };
 		1F638A062B3291FA004D32C9 /* Notice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F638A092B3291FA004D32C9 /* NoticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeApp.swift; sourceTree = "<group>"; };
 		1F638A0B2B3291FA004D32C9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -198,7 +188,6 @@
 		1F69489D2B76450F00BEFB0F /* NormalMemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalMemoListView.swift; sourceTree = "<group>"; };
 		1F69489F2B76474D00BEFB0F /* QuickMemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMemoListView.swift; sourceTree = "<group>"; };
 		1F6948A22B765C9C00BEFB0F /* QuickMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMemoView.swift; sourceTree = "<group>"; };
-		1F838C862B5EBADC00C17A99 /* TodoFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFilter.swift; sourceTree = "<group>"; };
 		1F838C8C2B5EBC7700C17A99 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
 		1F838C8E2B5EBC8F00C17A99 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
 		1F838C902B5EBCB400C17A99 /* RoutineCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCellView.swift; sourceTree = "<group>"; };
@@ -210,7 +199,6 @@
 		1F838CA12B5EBFBE00C17A99 /* NTFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTFormatter.swift; sourceTree = "<group>"; };
 		1F838CA62B5EC2D500C17A99 /* TodoDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoDBManager.swift; sourceTree = "<group>"; };
 		1F838CA82B5EC46E00C17A99 /* TodoEditManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEditManager.swift; sourceTree = "<group>"; };
-		1F838CAC2B5EC51300C17A99 /* TodoFilterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFilterManager.swift; sourceTree = "<group>"; };
 		1F93D5A62B53841E002FA726 /* UnderwayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayCellView.swift; sourceTree = "<group>"; };
 		1F93D5AA2B5384F4002FA726 /* UnderwayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderwayListView.swift; sourceTree = "<group>"; };
 		1F93D5AC2B53850C002FA726 /* SuccessListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessListView.swift; sourceTree = "<group>"; };
@@ -257,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				1F2565F72B42B6CC000CD6CA /* Goal.swift */,
-				1F2565FA2B42BC4A000CD6CA /* GoalFilter.swift */,
 				1F2566072B42D9A0000CD6CA /* GoalDuration.swift */,
 			);
 			path = Entities;
@@ -268,7 +255,6 @@
 			children = (
 				1F1074AB2B6BC6ED002AADEF /* GoalDBManager.swift */,
 				1F1074AD2B6BC6F7002AADEF /* GoalEditManager.swift */,
-				1F1074AF2B6BC700002AADEF /* GoalFilterManager.swift */,
 			);
 			path = SubManagers;
 			sourceTree = "<group>";
@@ -349,7 +335,6 @@
 				1F0722012B32D42A008B80A0 /* Todo.swift */,
 				1F12142E2B37106000DB04CD /* SubTodo.swift */,
 				1F3E08372B4AD95B0092F7AF /* TodoState.swift */,
-				1F838C862B5EBADC00C17A99 /* TodoFilter.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -371,23 +356,6 @@
 			children = (
 				1F2565FC2B42BD39000CD6CA /* GoalManager.swift */,
 				1F1074AA2B6BC66D002AADEF /* SubManagers */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1F59FE892B48410F0067BEA2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1F59FE8B2B4841600067BEA2 /* CheckListView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1F59FE8A2B48411A0067BEA2 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1F59FE942B484A460067BEA2 /* CheckTab.swift */,
-				1F15DB682B52248A00ECDEC7 /* CheckPickerManger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -546,8 +514,8 @@
 		1F638A542B329275004D32C9 /* CheckList */ = {
 			isa = PBXGroup;
 			children = (
+				1F59FE8B2B4841600067BEA2 /* CheckListView.swift */,
 				1F838C892B5EBBF300C17A99 /* Routine */,
-				1F838C882B5EBB8800C17A99 /* Container */,
 				1F59FE802B48400A0067BEA2 /* Todo */,
 				1F59FE822B4840180067BEA2 /* Goal */,
 			);
@@ -685,15 +653,6 @@
 			path = Failure;
 			sourceTree = "<group>";
 		};
-		1F838C882B5EBB8800C17A99 /* Container */ = {
-			isa = PBXGroup;
-			children = (
-				1F59FE8A2B48411A0067BEA2 /* Model */,
-				1F59FE892B48410F0067BEA2 /* View */,
-			);
-			path = Container;
-			sourceTree = "<group>";
-		};
 		1F838C892B5EBBF300C17A99 /* Routine */ = {
 			isa = PBXGroup;
 			children = (
@@ -755,7 +714,6 @@
 			children = (
 				1F838CA62B5EC2D500C17A99 /* TodoDBManager.swift */,
 				1F838CA82B5EC46E00C17A99 /* TodoEditManager.swift */,
-				1F838CAC2B5EC51300C17A99 /* TodoFilterManager.swift */,
 			);
 			path = SubManagers;
 			sourceTree = "<group>";
@@ -963,9 +921,7 @@
 				1FFC48402B67EC7A00B0D77A /* RoutineEditManager.swift in Sources */,
 				1F638A652B329275004D32C9 /* EventView.swift in Sources */,
 				1F638A782B329275004D32C9 /* MemoView.swift in Sources */,
-				1F838C872B5EBADC00C17A99 /* TodoFilter.swift in Sources */,
 				1F838C992B5EBD4700C17A99 /* PerformedDate.swift in Sources */,
-				1F2565FB2B42BC4A000CD6CA /* GoalFilter.swift in Sources */,
 				1F638A7F2B32927E004D32C9 /* Forest.swift in Sources */,
 				1FCD30F12B6FD1C500A6AA2F /* CalendarDBManager.swift in Sources */,
 				1F6948902B75E75E00BEFB0F /* MemoFolderManager.swift in Sources */,
@@ -978,11 +934,9 @@
 				1FFC483E2B67EC6900B0D77A /* RoutineDBManager.swift in Sources */,
 				1F42CFF92B5B5D9800008787 /* String+toColor.swift in Sources */,
 				1F4631FD2B4436AE007B89C5 /* GoalFormView.swift in Sources */,
-				1F1074B02B6BC700002AADEF /* GoalFilterManager.swift in Sources */,
 				1F0722042B32D7C3008B80A0 /* EventCategory.swift in Sources */,
 				1FCD30F52B6FD62D00A6AA2F /* CalendarHandler.swift in Sources */,
 				1F638A672B329275004D32C9 /* MSDaysView.swift in Sources */,
-				1F15DB692B52248A00ECDEC7 /* CheckPickerManger.swift in Sources */,
 				1F638A8C2B3292D5004D32C9 /* TabIcon.swift in Sources */,
 				1F838CA92B5EC46E00C17A99 /* TodoEditManager.swift in Sources */,
 				1F6948A32B765C9C00BEFB0F /* QuickMemoView.swift in Sources */,
@@ -1003,7 +957,6 @@
 				1F59FE7C2B483F5C0067BEA2 /* GoalView.swift in Sources */,
 				1F638A6D2B329275004D32C9 /* MSInfinteMonthView.swift in Sources */,
 				1F1074AC2B6BC6ED002AADEF /* GoalDBManager.swift in Sources */,
-				1F59FE952B484A460067BEA2 /* CheckTab.swift in Sources */,
 				1F69489E2B76450F00BEFB0F /* NormalMemoListView.swift in Sources */,
 				1F638A692B329275004D32C9 /* Calendar+.swift in Sources */,
 				1F838C8F2B5EBC8F00C17A99 /* RoutineFormView.swift in Sources */,
@@ -1011,7 +964,6 @@
 				1F10AF5C2B5AD057001EE0A3 /* Int+toEmoji.swift in Sources */,
 				1F93EEA12B555E7500A5C757 /* SuccessCellView.swift in Sources */,
 				1F59FE8F2B48440A0067BEA2 /* StatisticsView.swift in Sources */,
-				1F838CAD2B5EC51300C17A99 /* TodoFilterManager.swift in Sources */,
 				1F638A8D2B3292D5004D32C9 /* CustomTabView.swift in Sources */,
 				1F638A772B329275004D32C9 /* TodoCellView.swift in Sources */,
 				1F6948922B75E80300BEFB0F /* Folder.swift in Sources */,

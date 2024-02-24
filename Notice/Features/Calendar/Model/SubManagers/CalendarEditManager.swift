@@ -20,13 +20,13 @@ extension CalendarManager {
         var category: String = EventCategory.meeting.rawValue
         var startDate: Date = .now
         
-        func setData(_ selectedDate: Date) {
+        func setData(_ selectedDate: Date?) {
             if let event = editingEvent {
                 self.title = event.title
                 self.memo = event.memo
                 self.category = event.category
                 self.startDate = event.startDate
-            } else {
+            } else if let selectedDate {
                 self.startDate = selectedDate
             }
         }

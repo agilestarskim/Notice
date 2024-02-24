@@ -32,19 +32,16 @@ struct MainView: View {
     
     var body: some View {
         @Bindable var bindableAppState = appState
-        VStack {
-            switch appState.tab {
-            case .calendar:
-                CalendarView()
-            case .check:
-                CheckListView()
-            case .memo:
-                MemoView()
-            case .stat:
-                StatisticsView()
-            }
-        }
-        .background(appState.theme.background)
+        TabView(selection: $bindableAppState.tab) {
+            CalendarView()
+                .tag(Tabs.calendar)
+            CheckListView()
+                .tag(Tabs.check)
+            MemoView()
+                .tag(Tabs.memo)
+            StatisticsView()
+                .tag(Tabs.stat)
+        }        
         .toast(isPresenting: $bindableAppState.shouldToastOn, duration: 1) {
             AlertToast(displayMode: .hud, type: .complete(.green), title: appState.toastMessage)            
         }

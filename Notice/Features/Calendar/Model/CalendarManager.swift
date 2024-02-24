@@ -67,13 +67,16 @@ final class CalendarManager {
     }
     
     func onAppear() {
-        appState.onTapPlusButton = self.onTapPlusButton
+        setOnTapPlusButton()
         dbManager.fetch(pageDate: pageDate)
     }
     
-    private func onTapPlusButton() {
-        editManager.shouldOpenEditor = true
-        editManager.setData(selectedDate)
+    private func setOnTapPlusButton() {
+        appState.onTapPlusButton = nil
+        appState.onTapPlusButton = { [weak self] in
+            self?.editManager.shouldOpenEditor = true
+            self?.editManager.setData(self?.selectedDate)
+        }
     }
     
     func onSwipeCalendar() {
