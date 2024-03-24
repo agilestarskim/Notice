@@ -13,31 +13,15 @@ struct CustomTabView: View {
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 0) {
-            TabIcon(tab: .calendar)
-            TabIcon(tab: .check)
-            PlusButton()
+            TabIcon(tab: .todo)
+            TabIcon(tab: .routine)
+            TabIcon(tab: .goal)
             TabIcon(tab: .memo)
-            TabIcon(tab: .stat)
+            TabIcon(tab: .calendar)
         }
         .padding(.horizontal, 10)
         .padding(.top, 10)
         .frame(height: appState.tabHeight)
         .background(appState.theme.container)
-    }
-    
-    func PlusButton() -> some View {
-        Button {
-            appState.onTapPlusButton?()
-        } label: {
-            Image(systemName: "plus")
-                .font(.system(size: 20, weight: .bold, design: .rounded))
-                .foregroundStyle(.black)
-                .padding(12)
-                .background {
-                    Circle()
-                        .fill(.white)
-                }
-        }
-        .shadow(color: appState.theme.accent, radius: 5)
     }
 }
